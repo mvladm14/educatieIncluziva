@@ -68,9 +68,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\EducatieIncluzivaDBContext.cs" />
-    <Compile Include="Models\Elevi.cs" />
-    <Compile Include="Models\Mapping\EleviMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
