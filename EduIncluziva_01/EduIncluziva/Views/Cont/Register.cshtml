@@ -86,7 +86,7 @@ Alegeti categoria la care apartineti :
     <br />
     <br />
     <br />
-    <input id="Enter" type="submit" value="Inregistreaza-te" />
+    <input id="Enter" type="submit" value="Inregistreaza-te" onclick = "sendMail(); return true;" />
     </td>
     <td>
     <img src = "../../Pictures/altele/students.png" alt = "Students" height = "480" width = "310"/>
@@ -96,6 +96,21 @@ Alegeti categoria la care apartineti :
      <a class="close-reveal-modal">&#215;</a>
 </div>
 
+
+<script type = "text/javascript">
+    function sendMail() {
+        var link = "mailto:mmp_mircea@yahoo.com" + 
+        "?cc=myCCaddress@example.com" + 
+            + "&subject= Utilizator Nou" +
+                 +"&body=" + escape(document.getElementById('nume').value) +
+                     +escape(document.getElementById('prenume').value) +
+                        +escape(document.getElementById('mail').value;
+
+
+        window.location.href = link;
+    }
+
+</script>
 <script type="text/javascript">
     $(document).ready(function () {
         $('#myButton').click(function (e) {
@@ -109,3 +124,5 @@ Alegeti categoria la care apartineti :
         });
     });
 </script>
+
+
