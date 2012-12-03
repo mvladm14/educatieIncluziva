@@ -60,5 +60,14 @@ namespace EduIncluziva.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+        /// <summary>
+        /// Register Made by MMp
+        /// </summary>
+        /// <returns>View</returns>
+        public ActionResult Register()
+        {
+            return View();
+        }
+       
     }
 }
