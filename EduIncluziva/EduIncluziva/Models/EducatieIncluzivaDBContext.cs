@@ -17,10 +17,16 @@ namespace EduIncluziva.Models
 		}
 
         public DbSet<Elevi> Elevis { get; set; }
+        public DbSet<Lectii> Lectiis { get; set; }
+        public DbSet<Profesori> Profesoris { get; set; }
+        public DbSet<sysdiagram> sysdiagrams { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new EleviMap());
+            modelBuilder.Configurations.Add(new LectiiMap());
+            modelBuilder.Configurations.Add(new ProfesoriMap());
+            modelBuilder.Configurations.Add(new sysdiagramMap());
         }
     }
 }
