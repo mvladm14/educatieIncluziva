@@ -23,9 +23,6 @@ namespace EduIncluziva.Models.Mapping
                 .IsRequired()
                 .HasMaxLength(50);
 
-            this.Property(t => t.Elev_ID)
-                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-
             this.Property(t => t.Parola)
                 .IsRequired()
                 .HasMaxLength(50);
