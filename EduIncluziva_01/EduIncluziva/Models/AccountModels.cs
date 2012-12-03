@@ -64,4 +64,19 @@ namespace EduIncluziva.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
+
+    public class ElevLogonModel
+    {
+        [Required]
+        [Display(Name = "User name")]
+        public string Mail { get; set; }
+
+        [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "Parola")]
+        public string Parola { get; set; }
+
+        [Display(Name = "Remember me?")]
+        public bool RememberMe { get; set; }
+    }
 }
