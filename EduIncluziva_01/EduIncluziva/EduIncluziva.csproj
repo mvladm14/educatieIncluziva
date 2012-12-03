@@ -67,17 +67,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ContController.cs" />
     <Compile Include="Controllers\EleviController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Metrics\DataBaseValidator.cs" />
+    <Compile Include="Metrics\Exceptii.cs" />
+    <Compile Include="Metrics\ResourcesRepository.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\EducatieIncluzivaDBContext.cs" />
     <Compile Include="Models\Elevi.cs" />
     <Compile Include="Models\Lectii.cs" />
+    <Compile Include="Models\Licee.cs" />
     <Compile Include="Models\Mapping\EleviMap.cs" />
     <Compile Include="Models\Mapping\LectiiMap.cs" />
+    <Compile Include="Models\Mapping\LiceeMap.cs" />
     <Compile Include="Models\Mapping\ProfesoriMap.cs" />
     <Compile Include="Models\Mapping\sysdiagramMap.cs" />
     <Compile Include="Models\Profesori.cs" />
@@ -167,6 +173,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Elevi\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Cont\LogOn.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_LogOnPartialCont.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
