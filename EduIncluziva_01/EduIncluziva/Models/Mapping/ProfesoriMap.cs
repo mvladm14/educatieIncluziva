@@ -8,7 +8,7 @@ namespace EduIncluziva.Models.Mapping
         public ProfesoriMap()
         {
             // Primary Key
-            this.HasKey(t => t.ProfesoriId);
+            this.HasKey(t => t.Profesor_ID);
 
             // Properties
             this.Property(t => t.Mail)
@@ -28,15 +28,7 @@ namespace EduIncluziva.Models.Mapping
                 .HasMaxLength(50);
 
             this.Property(t => t.Bio)
-                .IsRequired()
                 .HasMaxLength(50);
-
-            this.Property(t => t.Poza)
-                .IsRequired()
-                .HasMaxLength(50);
-
-            this.Property(t => t.ProfesoriId)
-                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 
             // Table & Column Mappings
             this.ToTable("Profesori");
@@ -44,9 +36,16 @@ namespace EduIncluziva.Models.Mapping
             this.Property(t => t.Nume).HasColumnName("Nume");
             this.Property(t => t.Prenume).HasColumnName("Prenume");
             this.Property(t => t.Parola).HasColumnName("Parola");
-            this.Property(t => t.Bio).HasColumnName("Bio");
             this.Property(t => t.Poza).HasColumnName("Poza");
-            this.Property(t => t.ProfesoriId).HasColumnName("ProfesoriId");
+            this.Property(t => t.Bio).HasColumnName("Bio");
+            this.Property(t => t.Profesor_ID).HasColumnName("Profesor_ID");
+            this.Property(t => t.Liceu_ID).HasColumnName("Liceu_ID");
+
+            // Relationships
+            this.HasRequired(t => t.Licee)
+                .WithMany(t => t.Profesoris)
+                .HasForeignKey(d => d.Liceu_ID);
+
         }
     }
 }
