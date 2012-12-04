@@ -1,103 +1,115 @@
 ﻿@{
     ViewBag.Title = "Register";
 }
-
-<h2> Register</h2>
-
-<table border = "0">
-<tr>
-<td> 
-<img src = "../../Pictures/altele/t.jpg" alt = "Teacher and Student" height = "400" width = "300"/>
-</td>
-<td> 
-Alegeti categoria la care apartineti : 
-
-<br />
-<br />
-<input id="Elevi" name = "categorie" type="radio" />Elevi
-<br />
-<input id="Profesori" name = "categorie" type="radio" />Profesori
-<br />
-<br />
-<br />
-
-&nbsp&nbsp&nbsp<input id="myButton" type="submit" value="Select" />
-
-</td>
-</tr>
+<h2>
+    Register</h2>
+<table border="0">
+    <tr>
+        <td>
+            <img src="../../Pictures/altele/t.jpg" alt="Teacher and Student" height="400" width="300" />
+        </td>
+        <td>
+            Alegeti categoria la care apartineti :
+            <br />
+            <br />
+            <input id="Elevi" name="categorie" type="radio" />Elevi
+            <br />
+            <input id="Profesori" name="categorie" type="radio" />Profesori
+            <br />
+            <br />
+            <br />
+            &nbsp&nbsp&nbsp<input id="myButton" type="submit" value="Select" />
+        </td>
+    </tr>
 </table>
-
 <link rel="stylesheet" href="../../Content/reveal.css">
-
 <script src="../../Scripts/jquery.min.js" type="text/javascript"></script>
-
 <script src="../../Scripts/jquery.reveal.js" type="text/javascript"></script>
-
 <div id="myModalTeachers" class="reveal-modal">
-     <h1>Register</h1>
-     <br />
-     <table border = "0">
-     <tr>
-     <td>
-     <p> Nume : </p>
-    <input id="numep" type="text" />
-    <p> Prenume : </p>
-    <input id="prenumep" type="text" />
-    <p> Mail (Acesta va fi si user Name) : </p>
-    <input id="mailp" type="text" />
-    <p>Poza</p>
-         <input id="File1" type="file" />
-    <p>Scurta Descriere</p>
-         <textarea id="TextArea1" cols="20" rows="2"></textarea>
-    <p> Parola : </p>
-    <input id="pa1" type="password" />
-    <p> Confirma Parola : </p>
-    <input id="pa2" type="password" />
-    
+    <h1>
+        Register</h1>
     <br />
-    <br />
-    <br />
-    <input id="Enter2" type="submit" value="Inregistreaza-te" />
-    </td>
-    <td>
-    <img src = "../../Pictures/altele/teacher.png" alt = "Students" height = "460" width = "290"/>
-      </td>
-      </tr>
-      </table>
-     <a class="close-reveal-modal">&#215;</a>
+    <table border="0">
+        <tr>
+            <td>
+                <p>
+                    Nume :
+                </p>
+                <input id="numep" type="text" />
+                <p>
+                    Prenume :
+                </p>
+                <input id="prenumep" type="text" />
+                <p>
+                    Mail (Acesta va fi si user Name) :
+                </p>
+                <input id="mailp" type="text" />
+                <p>
+                    Poza</p>
+                <input id="File1" type="file" />
+                <p>
+                    Scurta Descriere</p>
+                <textarea id="TextArea1" cols="20" rows="2"></textarea>
+                <p>
+                    Parola :
+                </p>
+                <input id="pa1" type="password" />
+                <p>
+                    Confirma Parola :
+                </p>
+                <input id="pa2" type="password" />
+                <br />
+                <br />
+                <br />
+                <input id="Enter2" type="submit" value="Inregistreaza-te" />
+            </td>
+            <td>
+                <img src="../../Pictures/altele/teacher.png" alt="Students" height="460" width="290" />
+            </td>
+        </tr>
+    </table>
+    <a class="close-reveal-modal">&#215;</a>
 </div>
-
 <div id="myModalStudents" class="reveal-modal">
-     <h1>Register</h1>
-     <br />
-     <table border = "0">
-     <tr>
-     <td>
-     <p> Nume : </p>
-    <input id="nume" type="text" />
-    <p> Prenume : </p>
-    <input id="prenume" type="text" />
-    <p> Mail (Acesta va fi si user Name) : </p>
-    <input id="mail" type="text" />
-    <p> Parola : </p>
-    <input id="p1" type="password" />
-    <p> Confirma Parola : </p>
-    <input id="p2" type="password" />
+    <h1>
+        Register</h1>
     <br />
-    <br />
-    <br />
-    <input id="Enter" type="submit" value="Inregistreaza-te" onclick = "sendMail(); return true;" />
-    </td>
-    <td>
-    <img src = "../../Pictures/altele/students.png" alt = "Students" height = "480" width = "310"/>
-      </td>
-      </tr>
-      </table>
-     <a class="close-reveal-modal">&#215;</a>
+    <table border="0">
+        <tr>
+            <td>
+                <p>
+                    Nume :
+                </p>
+                <input id="nume" type="text" />
+                <p>
+                    Prenume :
+                </p>
+                <input id="prenume" type="text" />
+                <p>
+                    Mail (Acesta va fi si user Name) :
+                </p>
+                <input id="mail" type="text" />
+                <p>
+                    Parola :
+                </p>
+                <input id="p1" type="password" />
+                <p>
+                    Confirma Parola :
+                </p>
+                <input id="p2" type="password" />
+                <br />
+                <br />
+                <br />
+                <input id="Enter" type="submit" value="Inregistreaza-te" onclick="sendMail(); return true;" />
+            </td>
+            <td>
+                <img src="../../Pictures/altele/students.png" alt="Students" height="480" width="310" />
+            </td>
+        </tr>
+    </table>
+    <a class="close-reveal-modal">&#215;</a>
 </div>
-
-
-<script type = "text/javascript">
+<script type="text/javascript">
     function sendMail() {
         var link = "mailto:mmp_mircea@yahoo.com" + 
         "?cc=myCCaddress@example.com" + 
@@ -124,5 +136,3 @@ Alegeti categoria la care apartineti :
         });
     });
 </script>
-
-
