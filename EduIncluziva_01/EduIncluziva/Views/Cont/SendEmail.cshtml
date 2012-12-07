@@ -1,0 +1,32 @@
+﻿@model EduIncluziva.Models.EmailDetail
+@{
+    ViewBag.Title = "SendEmail";
+}
+<h2>
+    SendEmail</h2>
+@using (Html.BeginForm("SendEmail", "My"))
+{
+    <table>
+        <tr>
+            <td>
+                To: @Html.TextBoxFor(m => m.ToEmail)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Subject : @Html.TextBoxFor(m => m.Subject)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Message : @Html.TextAreaFor(m => m.Message)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="SendEmail" />
+            </td>
+        </tr>
+    </table>
+}
+email sent
