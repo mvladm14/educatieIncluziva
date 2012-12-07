@@ -1,4 +1,5 @@
-﻿@{
+﻿
+@{
     ViewBag.Title = "Register";
 }
 <h2>
@@ -23,53 +24,59 @@
     </tr>
 </table>
 <link rel="stylesheet" href="../../Content/reveal.css">
-<script src="../../Scripts/jquery.min.js" type="text/javascript"></script>
+<script src="../../Scripts/jquery-1.4.4.min.js" type="text/javascript"></script>
 <script src="../../Scripts/jquery.reveal.js" type="text/javascript"></script>
-<div id="myModalTeachers" class="reveal-modal">
-    <h1>
-        Register</h1>
-    <br />
-    <table border="0">
-        <tr>
-            <td>
-                <p>
-                    Nume :
-                </p>
-                <input id="numep" type="text" />
-                <p>
-                    Prenume :
-                </p>
-                <input id="prenumep" type="text" />
-                <p>
-                    Mail (Acesta va fi si user Name) :
-                </p>
-                <input id="mailp" type="text" />
-                <p>
-                    Poza</p>
-                <input id="File1" type="file" />
-                <p>
-                    Scurta Descriere</p>
-                <textarea id="TextArea1" cols="20" rows="2"></textarea>
-                <p>
-                    Parola :
-                </p>
-                <input id="pa1" type="password" />
-                <p>
-                    Confirma Parola :
-                </p>
-                <input id="pa2" type="password" />
-                <br />
-                <br />
-                <br />
-                <input id="Enter2" type="submit" value="Inregistreaza-te" />
-            </td>
-            <td>
-                <img src="../../Pictures/altele/teacher.png" alt="Students" height="460" width="290" />
-            </td>
-        </tr>
-    </table>
-    <a class="close-reveal-modal">&#215;</a>
-</div>
+
+@using (Html.BeginForm())
+{
+    
+    <div id="myModalTeachers" class="reveal-modal">
+        <h1>
+            Register</h1>
+        <br />
+        <table border="0">
+            <tr>
+                <td>
+                    <p>
+                        Nume :
+                    </p>
+                    <input id="numep" type="text" />
+                    <p>
+                        Prenume :
+                    </p>
+                    <input id="prenumep" type="text" />
+                    <p>
+                        Mail (Acesta va fi si user Name) :
+                    </p>
+                    <input id="mailp" type="text" />
+                    <p>
+                        Poza</p>
+                    <input id="File1" type="file" />
+                    <p>
+                        Scurta Descriere</p>
+                    <textarea id="bio" cols="20" rows="2"></textarea>
+                    <p>
+                        Parola :
+                    </p>
+                    <input id="pa1" type="password" />
+                    <p>
+                        Confirma Parola :
+                    </p>
+                    <input id="pa2" type="password" />
+                    <br />
+                    <br />
+                    <br />
+                    <input id="Enter2" type="submit" value="Inregistreaza-te" />
+                </td>
+                <td>
+                    <img src="../../Pictures/altele/teacher.png" alt="Students" height="460" width="290" />
+                </td>
+            </tr>
+        </table>
+        <a class="close-reveal-modal">&#215;</a>
+    </div>
+}
+
 <div id="myModalStudents" class="reveal-modal">
     <h1>
         Register</h1>
@@ -100,7 +107,7 @@
                 <br />
                 <br />
                 <br />
-                <input id="Enter" type="submit" value="Inregistreaza-te" onclick="sendMail(); return true;" />
+                <input id="Enter" type="submit" value="Inregistreaza-te" onclick="sendMail(); return false;" />
             </td>
             <td>
                 <img src="../../Pictures/altele/students.png" alt="Students" height="480" width="310" />
@@ -109,20 +116,6 @@
     </table>
     <a class="close-reveal-modal">&#215;</a>
 </div>
-<script type="text/javascript">
-    function sendMail() {
-        var link = "mailto:mmp_mircea@yahoo.com" + 
-        "?cc=myCCaddress@example.com" + 
-            + "&subject= Utilizator Nou" +
-                 +"&body=" + escape(document.getElementById('nume').value) +
-                     +escape(document.getElementById('prenume').value) +
-                        +escape(document.getElementById('mail').value;
-
-
-        window.location.href = link;
-    }
-
-</script>
 <script type="text/javascript">
     $(document).ready(function () {
         $('#myButton').click(function (e) {
