@@ -79,6 +79,7 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\EducatieIncluzivaDBContext.cs" />
     <Compile Include="Models\Elevi.cs" />
+    <Compile Include="Models\EmailDetail.cs" />
     <Compile Include="Models\Lectii.cs" />
     <Compile Include="Models\Licee.cs" />
     <Compile Include="Models\Mapping\EleviMap.cs" />
@@ -193,6 +194,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Cont\Register.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Cont\SendEmail.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
