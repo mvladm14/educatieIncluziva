@@ -1,0 +1,68 @@
+﻿@{
+var dataFile = Server.MapPath("~/App_Data/news.txt");
+Array userData = File.ReadAllLines(dataFile);
+}
+
+@{
+var dataFile2 = Server.MapPath("~/App_Data/articoleVechi.txt");
+Array userData2 = File.ReadAllLines(dataFile2);
+}
+
+<div>
+    <hr />
+    <table border = "1" width = "800">
+    <tr>
+    <td>
+        <img alt="Latest News" src="../../Pictures/altele/LatestNews.png" />
+    </td>
+    </tr>
+    <tr>
+    <td>
+     <textarea id="ta" cols="100" rows="12" readonly="readonly">
+        @foreach (string dataLine in userData)
+         {
+                foreach (string dataItem in dataLine.Split(','))
+                    {       
+                        
+                            @dataItem <text>&nbsp;</text>
+                             
+                     }
+          }
+          </textarea>
+        <hr />
+       </td>
+    </tr>
+    <tr>
+    <td>
+
+    <br />
+
+    </td>
+    </tr>
+    <tr>
+    <td>
+        <hr />
+     <img alt="Latest News" src="../../Pictures/altele/Banner.png" />
+
+    </td>
+    </tr>
+    <tr>
+    <td>
+     <textarea id="ta2" cols="100" rows="12" readonly="readonly">
+        @foreach (string dataLine in userData2)
+         {
+                foreach (string dataItem in dataLine.Split(','))
+                    {       
+                        
+                            @dataItem <text>&nbsp;</text>
+                             
+                     }
+          }
+    
+          </textarea>
+    </td>
+    </tr>
+
+    </table>
+    <hr />
+</div>
