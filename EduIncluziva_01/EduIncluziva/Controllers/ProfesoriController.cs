@@ -8,6 +8,7 @@ namespace EduIncluziva.Controllers
 {
     public class ProfesoriController : Controller
     {
+
         public ActionResult AddStudents()
         {
             return View();
