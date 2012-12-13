@@ -9,6 +9,11 @@ namespace EduIncluziva.Controllers
     public class ProfesoriController : Controller
     {
 
+        public ActionResult PaginaProfesorului()
+        {
+            return View();
+        }
+
         public ActionResult AddStudents()
         {
             return View();
