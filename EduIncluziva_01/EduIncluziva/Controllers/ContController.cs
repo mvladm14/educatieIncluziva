@@ -73,7 +73,7 @@ namespace EduIncluziva.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register(string nume,string prenume, string bio, string mail)
+        public ActionResult Register(string nume, string prenume, string bio, string mail)
         {
             ViewData["nume"] = nume;
             ViewData["prenume"] = prenume;
@@ -82,7 +82,7 @@ namespace EduIncluziva.Controllers
 
             EmailDetail ed = new EmailDetail(nume, prenume, bio, mail);
             bool ok = true;
-            ok = SendEmailValidate.SendEmail(ed);
+            //ok = SendEmailValidate.SendEmail(ed);
 
             if (!ok)
             {
@@ -95,13 +95,56 @@ namespace EduIncluziva.Controllers
 
             return View();
         }
+
         public ActionResult SendEmail()
         {
             return View();
         }
 
-       
-        
-       
+        /// <summary>
+        /// Register for Elevi
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult RegisterElevi()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// Register for Elevi de tip Post
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult RegisterElevi(ElevRegisterModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                // Attempt to register the user
+                EducatieIncluzivaDBContext _db = new EducatieIncluzivaDBContext();
+
+                Elevi elev = new Elevi();
+                elev.Nume = model.Nume;
+                elev.Prenume = model.Prenume;
+                elev.Mail = model.Mail;
+                elev.Parola = model.Parola;
+                elev.Elev_ID = Guid.NewGuid();
+
+                try
+                {
+                    _db.Elevis.Add(elev);
+                    _db.SaveChanges();
+                    FormsAuthentication.SetAuthCookie(model.Nume, false /* createPersistentCookie */);
+                    return RedirectToAction("Index", "Home");
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            } 
+            Redirect("http://www.google.ro");
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
     }
 }

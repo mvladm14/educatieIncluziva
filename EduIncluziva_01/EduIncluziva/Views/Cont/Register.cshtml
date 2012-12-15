@@ -1,7 +1,23 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Register";
+    
 }
+<link rel="stylesheet" href="../../Content/reveal.css">
+<script src="../../Scripts/jquery-1.4.4.min.js" type="text/javascript"></script>
+<script src="../../Scripts/jquery.reveal.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#myButton').click(function (e) {
+            if (document.getElementById('Profesori').checked) {
+                e.preventDefault();
+                $('#myModalTeachers').reveal();
+            } else if (document.getElementById('Elevi').checked) {
+                e.preventDefault();
+                $('#myModalStudents').reveal();
+            }
+        });
+    });
+</script>
 <h2>
     Register</h2>
 <table border="0">
@@ -23,10 +39,6 @@
         </td>
     </tr>
 </table>
-<link rel="stylesheet" href="../../Content/reveal.css">
-<script src="../../Scripts/jquery-1.4.4.min.js" type="text/javascript"></script>
-<script src="../../Scripts/jquery.reveal.js" type="text/javascript"></script>
-
 @using (Html.BeginForm())
 {
     
@@ -76,57 +88,7 @@
         <a class="close-reveal-modal">&#215;</a>
     </div>
 }
-
 <div id="myModalStudents" class="reveal-modal">
-    <h1>
-        Register</h1>
-    <br />
-    <table border="0">
-        <tr>
-            <td>
-                <p>
-                    Nume :
-                </p>
-                <input id="nume" type="text" />
-                <p>
-                    Prenume :
-                </p>
-                <input id="prenume" type="text" />
-                <p>
-                    Mail (Acesta va fi si user Name) :
-                </p>
-                <input id="mail" type="text" />
-                <p>
-                    Parola :
-                </p>
-                <input id="p1" type="password" />
-                <p>
-                    Confirma Parola :
-                </p>
-                <input id="p2" type="password" />
-                <br />
-                <br />
-                <br />
-                <input id="Enter" type="submit" value="Inregistreaza-te" onclick="sendMail(); return false;" />
-            </td>
-            <td>
-                <img src="../../Pictures/altele/students.png" alt="Students" height="480" width="310" />
-            </td>
-        </tr>
-    </table>
+    @Html.Partial("RegisterElevi")
     <a class="close-reveal-modal">&#215;</a>
 </div>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#myButton').click(function (e) {
-            if (document.getElementById('Profesori').checked) {
-                e.preventDefault();
-                $('#myModalTeachers').reveal();
-            } else if (document.getElementById('Elevi').checked) {
-                e.preventDefault();
-                $('#myModalStudents').reveal();
-            }
-        });
-    });
-</script>
