@@ -141,8 +141,7 @@ namespace EduIncluziva.Controllers
                 {
                     Console.WriteLine(e.Message);
                 }
-            } 
-            Redirect("http://www.google.ro");
+            }            
             // If we got this far, something failed, redisplay form
             return View(model);
         }
