@@ -12,6 +12,8 @@ namespace EduIncluziva.Models
 
         public string Nume { get; set; }
         public System.Guid Liceu_ID { get; set; }
+        public System.Guid Profesor_ID { get; set; }
+        public virtual Profesori Profesori { get; set; }
         public virtual ICollection<Profesori> Profesoris { get; set; }
     }
 }

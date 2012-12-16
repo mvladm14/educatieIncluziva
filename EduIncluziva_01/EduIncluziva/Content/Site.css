@@ -331,3 +331,13 @@ div#title {
 .tri-state {
     width: 6em;
 }
+
+.LatestNewsTable tr th
+{
+    width:33%;
+}
+
+#ta, #ta2
+{
+    width:100%;
+}

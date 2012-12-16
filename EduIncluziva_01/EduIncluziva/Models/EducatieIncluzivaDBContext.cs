@@ -29,6 +29,6 @@ namespace EduIncluziva.Models
             modelBuilder.Configurations.Add(new LiceeMap());
             modelBuilder.Configurations.Add(new ProfesoriMap());
             modelBuilder.Configurations.Add(new sysdiagramMap());
-        }       
+        }
     }
 }

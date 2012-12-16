@@ -7,16 +7,15 @@
     Array userData2 = File.ReadAllLines(dataFile2);
 }
 <div>
-    <hr />
-    <table border="1" width="800">
+    <table border="1">
         <tr>
             <td>
-                <img alt="Latest News" src="../../Pictures/altele/LatestNews.png" />
+                <img alt="Latest News" src="../../Pictures/altele/LatestNews.png" width="100%" />
             </td>
         </tr>
         <tr>
             <td>
-                <textarea id="ta" cols="100" rows="12" readonly="readonly">
+                <textarea id="ta" rows="12" readonly="readonly" />
         @foreach (string dataLine in userData)
         {
             foreach (string dataItem in dataLine.Split(','))
@@ -27,23 +26,18 @@
             }
         }
           </textarea>
-                <hr />
+            </td>
+        </tr>
+        <tr>
+        </tr>
+        <tr>
+            <td>
+                <img alt="Latest News" src="../../Pictures/altele/Banner.png" width="100%" />
             </td>
         </tr>
         <tr>
             <td>
-                <br />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <hr />
-                <img alt="Latest News" src="../../Pictures/altele/Banner.png" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <textarea id="ta2" cols="100" rows="12" readonly="readonly">
+                <textarea id="ta2" rows="12" readonly="readonly" width="100%"/>
         @foreach (string dataLine in userData2)
         {
             foreach (string dataItem in dataLine.Split(','))
@@ -58,5 +52,4 @@
             </td>
         </tr>
     </table>
-    <hr />
 </div>

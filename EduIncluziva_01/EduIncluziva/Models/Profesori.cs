@@ -8,6 +8,7 @@ namespace EduIncluziva.Models
         public Profesori()
         {
             this.Lectiis = new List<Lectii>();
+            this.Licees = new List<Licee>();
         }
 
         public string Mail { get; set; }
@@ -19,6 +20,7 @@ namespace EduIncluziva.Models
         public System.Guid Profesor_ID { get; set; }
         public System.Guid Liceu_ID { get; set; }
         public virtual ICollection<Lectii> Lectiis { get; set; }
+        public virtual ICollection<Licee> Licees { get; set; }
         public virtual Licee Licee { get; set; }
     }
 }

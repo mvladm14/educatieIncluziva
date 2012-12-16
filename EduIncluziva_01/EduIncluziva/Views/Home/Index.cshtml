@@ -1,13 +1,35 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-
 <h2>@ViewBag.Message</h2>
 <p>
-    To learn more about ASP.NET MVC visit <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
+    To learn more about ASP.NET MVC visit <a href="http://asp.net/mvc" title="ASP.NET MVC Website">
+        http://asp.net/mvc</a>.
 </p>
 <div>
+    <table class="LatestNewsTable">
+        <tr>
+            <th>
+                Licee
+            </th>
+            <th>
+                Altele
+            </th>
+            <th>
+                Stiri
+            </th>
+        </tr>
+        <tr>
+            <td>
+                @Html.Partial("_LiceePartialPage")
+            </td>
+            <td>
+                bla blaa
+            </td>
+            <td>
+                @Html.Partial("_LatestNews")
+            </td>
+        </tr>
+    </table>
     
-    @Html.Partial("_LatestNews")
-
 </div>
