@@ -145,5 +145,10 @@ namespace EduIncluziva.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+
+        public ActionResult ContulMeu(Elevi model)
+        {
+            return View(model);
+        }
     }
 }

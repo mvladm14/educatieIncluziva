@@ -19,6 +19,13 @@ namespace EduIncluziva.Models.Mapping
             this.ToTable("Licee");
             this.Property(t => t.Nume).HasColumnName("Nume");
             this.Property(t => t.Liceu_ID).HasColumnName("Liceu_ID");
+            this.Property(t => t.Profesor_ID).HasColumnName("Profesor_ID");
+
+            // Relationships
+            this.HasRequired(t => t.Profesori)
+                .WithMany(t => t.Licees)
+                .HasForeignKey(d => d.Profesor_ID);
+
         }
     }
 }

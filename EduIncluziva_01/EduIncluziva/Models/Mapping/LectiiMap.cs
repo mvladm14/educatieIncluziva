@@ -30,7 +30,7 @@ namespace EduIncluziva.Models.Mapping
             // Relationships
             this.HasRequired(t => t.Profesori)
                 .WithMany(t => t.Lectiis)
-                .HasForeignKey(d => d.Profesor_ID); 
+                .HasForeignKey(d => d.Profesor_ID);
 
         }
     }
