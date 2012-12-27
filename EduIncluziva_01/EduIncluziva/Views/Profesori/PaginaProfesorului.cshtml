@@ -40,9 +40,11 @@ Materia 1 :
 </td>
 <td>
 <center>
-    <a href="@Url.Action("AddLesson", "Lesson")">
-    <input id="Submit3" type="submit" value="Adauga Lectii" />
-    </a>
+@using (Html.BeginForm("AdaugaLectii", "Profesori", FormMethod.Post))
+{
+    <input type="submit" value="Adauga Lectii" name = "materie1"/>
+}
+  
 </center>
 </td>
 </tr>
@@ -53,7 +55,10 @@ Materia 2 :
 </td>
 <td>
 <center>
-    <input id="Submit4" type="submit" value="Adauga Lectii" />
+@using (Html.BeginForm("AdaugaLectii", "Profesori", FormMethod.Post))
+{
+    <input type="submit" value="Adauga Lectii" name = "materie2" />
+}
 </center>
 </td>
 </tr>
@@ -64,7 +69,10 @@ Materia 3:
 </td>
 <td>
 <center>
-    <input id="Submit5" type="submit" value="Adauga Lectii" />
+ @using (Html.BeginForm("AdaugaLectii", "Profesori", FormMethod.Post))
+ {
+    <input type="submit" value="Adauga Lectii" name = "materie3" />
+ }
 </center>
 </td>
 </tr>
