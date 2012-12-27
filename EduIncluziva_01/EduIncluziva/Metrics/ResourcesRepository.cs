@@ -56,5 +56,29 @@ namespace EduIncluziva.Metrics
             }
         }
         #endregion
+
+        #region User
+        /// <summary>
+        /// Returns an User corresponding to the Mail parameter.
+        /// </summary>
+        /// <param name="Mail"></param>
+        /// <returns></returns>
+        public User GetUserByMail(string Mail)
+        {
+            try
+            {
+                using (var context = new EducatieIncluzivaDBContext())
+                {
+                    return context.Users.SingleOrDefault(item => item.Mail == Mail);
+                }
+            }
+            catch (Exception exc)
+            {
+                //Logger.Instance.LogError(ErrorCategory.Data, "Unable to retrieve information about Employees.", exc);
+                throw new InvalidUserException();
+            }
+        }
+
+        #endregion
     }
 }

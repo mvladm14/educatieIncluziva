@@ -27,7 +27,7 @@ namespace EduIncluziva.Controllers
         // POST: /Account/LogOn
 
         [HttpPost]
-        public ActionResult LogOn(ElevLogonModel model, string returnUrl)
+        public ActionResult LogOn(UserLogonModel model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
@@ -130,9 +130,18 @@ namespace EduIncluziva.Controllers
                 elev.Parola = model.Parola;
                 elev.Elev_ID = Guid.NewGuid();
 
+                User user = new User()
+                {
+                    User_ID = elev.Elev_ID,
+                    Role    = "Elev",
+                    Mail    = elev.Mail,
+                    Parola  = elev.Parola
+                };
+
                 try
                 {
                     _db.Elevis.Add(elev);
+                    _db.Users.Add(user);
                     _db.SaveChanges();
                     FormsAuthentication.SetAuthCookie(model.Nume, false /* createPersistentCookie */);
                     return RedirectToAction("Index", "Home");

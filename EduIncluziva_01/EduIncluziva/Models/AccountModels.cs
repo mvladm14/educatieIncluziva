@@ -106,4 +106,19 @@ namespace EduIncluziva.Models
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
     }
+
+    public class UserLogonModel
+    {
+        [Required]
+        [Display(Name = "User name")]
+        public string Mail { get; set; }
+
+        [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "Parola")]
+        public string Parola { get; set; }
+
+        [Display(Name = "Remember me?")]
+        public bool RememberMe { get; set; }
+    }
 }

@@ -12,6 +12,19 @@ namespace EduIncluziva.Metrics
         public static bool ValidateUser(string Mail, string Parola)
         {
             ResourcesRepository rr = new ResourcesRepository();
+            
+            User user = rr.GetUserByMail(Mail);
+            if (user != null)
+            {
+                //daca l-am gasit in baza de date
+                if (user.Parola.Equals(Parola))
+                {
+                    //daca parolele coincid
+                    return true;
+                }
+            }
+
+            /*
             Elevi elev = rr.GetEleviByMail(Mail);
 
             if (elev != null)
@@ -34,7 +47,7 @@ namespace EduIncluziva.Metrics
                     return true;
                 }
             }
-
+            */
             //daca nu l-am gasit nici la elevi, nici la profesori
             return false;
         }
