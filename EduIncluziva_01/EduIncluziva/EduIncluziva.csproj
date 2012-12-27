@@ -78,18 +78,22 @@
     <Compile Include="Metrics\Exceptii.cs" />
     <Compile Include="Metrics\ResourcesRepository.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\Administratori.cs" />
     <Compile Include="Models\EducatieIncluzivaDBContext.cs" />
     <Compile Include="Models\Elevi.cs" />
     <Compile Include="Models\EmailDetail.cs" />
     <Compile Include="Models\Lectii.cs" />
     <Compile Include="Models\Licee.cs" />
+    <Compile Include="Models\Mapping\AdministratoriMap.cs" />
     <Compile Include="Models\Mapping\EleviMap.cs" />
     <Compile Include="Models\Mapping\LectiiMap.cs" />
     <Compile Include="Models\Mapping\LiceeMap.cs" />
     <Compile Include="Models\Mapping\ProfesoriMap.cs" />
     <Compile Include="Models\Mapping\sysdiagramMap.cs" />
+    <Compile Include="Models\Mapping\UserMap.cs" />
     <Compile Include="Models\Profesori.cs" />
     <Compile Include="Models\sysdiagram.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
