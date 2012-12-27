@@ -131,7 +131,9 @@
     <Content Include="EntityFramework.dll" />
     <Content Include="Global.asax" />
     <Content Include="Pictures\altele\1.png" />
+    <Content Include="Pictures\altele\1a.png" />
     <Content Include="Pictures\altele\2.png" />
+    <Content Include="Pictures\altele\AddLessonBanner.png" />
     <Content Include="Pictures\altele\Banner.png" />
     <Content Include="Pictures\altele\cs.jpg" />
     <Content Include="Pictures\altele\happy.png" />
@@ -230,6 +232,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Contact.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\AddLesson\AddLesson.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
