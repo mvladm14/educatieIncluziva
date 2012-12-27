@@ -1,29 +1,30 @@
 ﻿@{
     ViewBag.Title = "Profesori";
 }
-
-<h2>Profesori</h2>
-
-<table border = "0">
-<tr>
-<td>
-<center>
-<table border = "0">
-<tr>
-<td>
-  <a href="@Url.Action("PaginaProfesorului", "Profesori")"><img src="@Url.Content("../../Pictures/altele/1.png")" alt="Home" /></a>
-</td>
-</tr>
-<tr>
-<td>
-   <a href="@Url.Action("AddStudents", "Profesori")"><img src="@Url.Content("../../Pictures/altele/2.png")" alt="Home" /></a>
-</td>
-</tr>
-</table>
-</center>
-</td>
-<td>
-    <img alt="Teacher" src="../../Pictures/altele/teachers.png" />
-</td>
-</tr>
+<h2>
+    Profesori</h2>
+<table border="0">
+    <tr>
+        <td>
+            <center>
+                <table border="0">
+                    <tr>
+                        <td>
+                            <a href="@Url.Action("PaginaProfesorului", "Profesori")">
+                                <img src="@Url.Content("../../Pictures/altele/1.png")" alt="Home" /></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="@Url.Action("AddStudents", "Profesori")">
+                                <img src="@Url.Content("../../Pictures/altele/2.png")" alt="Home" /></a>
+                        </td>
+                    </tr>
+                </table>
+            </center>
+        </td>
+        <td>
+            <img alt="Teacher" src="../../Pictures/altele/teachers.png" />
+        </td>
+    </tr>
 </table>

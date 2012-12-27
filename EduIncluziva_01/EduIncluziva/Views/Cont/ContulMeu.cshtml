@@ -4,15 +4,24 @@
 
     EduIncluziva.Metrics.ResourcesRepository rr = new EduIncluziva.Metrics.ResourcesRepository();
     EduIncluziva.Models.Elevi elev = null;
-
-    int typeOfUser = 0; // 0 pt elev 
+    EduIncluziva.Models.Profesori profesor = null;
+    // 0 pt elev 
     // 1 pt profesor
     // 2 pt administrator
+    int typeOfUser = 0;
+
     if (Model.Role.Equals("Elev"))
     {
         elev = rr.GetEleviByID(Model.User_ID);
         typeOfUser = 0;
     }
+
+    if (Model.Role.Equals("Profesor"))
+    {
+        profesor = rr.GetProfesorByID(Model.User_ID);
+        typeOfUser = 1;
+    }
+    
 }
 <div>
     <fieldset>
@@ -25,7 +34,6 @@
                         //adica pt elev
                         <div class="editor-label">
                             @Html.LabelFor(m => elev.Nume) : @elev.Nume
-
                         </div>
                         <div class="editor-label">
                             @Html.LabelFor(m => elev.Prenume) : @elev.Prenume
@@ -33,6 +41,11 @@
                         <div class="editor-label">
                             @Html.LabelFor(m => elev.Mail) : @elev.Mail
                         </div>
+                    }
+                    @if (typeOfUser == 1)
+                    {
+                        //adica pt profesor
+                        //Html.Partial("~/Views/Profesori/PaginaProfesorului.cshtml");
                     }
                 </td>
             </tr>

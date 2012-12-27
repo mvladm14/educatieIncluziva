@@ -71,6 +71,27 @@ namespace EduIncluziva.Metrics
                 throw new InvalidUserException();
             }
         }
+
+        /// <summary>
+        /// Returns a Profesor corresponding to the GUID parameter.
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
+        public Profesori GetProfesorByID(Guid ID)
+        {
+            try
+            {
+                using (var context = new EducatieIncluzivaDBContext())
+                {
+                    return context.Profesoris.SingleOrDefault(item => item.Profesor_ID.Equals(ID));
+                }
+            }
+            catch (Exception exc)
+            {
+                //Logger.Instance.LogError(ErrorCategory.Data, "Unable to retrieve information about Employees.", exc);
+                throw new InvalidUserException();
+            }
+        }
         #endregion
 
         #region User
