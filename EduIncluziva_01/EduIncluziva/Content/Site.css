@@ -332,6 +332,16 @@ div#title {
     width: 6em;
 }
 
+.LatestNewsTable
+{
+    width:100%;
+}
+
+.LatestNewsTable td
+{
+    vertical-align:baseline
+}
+
 .LatestNewsTable tr th
 {
     width:33%;
