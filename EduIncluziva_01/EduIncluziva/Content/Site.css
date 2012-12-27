@@ -339,7 +339,7 @@ div#title {
 
 .LatestNewsTable td
 {
-    vertical-align:baseline
+    vertical-align:baseline;
 }
 
 .LatestNewsTable tr th
