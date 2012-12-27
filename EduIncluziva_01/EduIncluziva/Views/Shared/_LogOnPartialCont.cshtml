@@ -1,7 +1,13 @@
 ﻿@if (Request.IsAuthenticated)
 {
-    <text>Welcome <strong>@User.Identity.Name</strong>! 
+    EduIncluziva.Metrics.ResourcesRepository rr = new EduIncluziva.Metrics.ResourcesRepository();
+    EduIncluziva.Models.User user = rr.GetUserByMail(User.Identity.Name);    
+    
+    <text>Buna <strong>@User.Identity.Name</strong>! 
     [ @Html.ActionLink("Deconectare", "LogOff", "Cont") ]</text>
+    <br />
+    <text>[ @Html.ActionLink("Contul meu", "ContulMeu", "Cont",
+                                    new { mail = user.Mail }, null ) ] </text>
 }
 else
 {

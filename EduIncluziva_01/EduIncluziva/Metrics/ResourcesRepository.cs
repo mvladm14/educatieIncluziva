@@ -30,6 +30,22 @@ namespace EduIncluziva.Metrics
             }
         }
 
+        public Elevi GetEleviByID(Guid ID)
+        {
+            try
+            {
+                using (var context = new EducatieIncluzivaDBContext())
+                {
+                    return context.Elevis.SingleOrDefault(item => item.Elev_ID.Equals(ID));
+                }
+            }
+            catch (Exception exc)
+            {
+                //Logger.Instance.LogError(ErrorCategory.Data, "Unable to retrieve information about Employees.", exc);
+                throw new InvalidUserException();
+            }
+        }
+
         #endregion
 
 

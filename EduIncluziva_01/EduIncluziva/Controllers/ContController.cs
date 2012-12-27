@@ -133,9 +133,9 @@ namespace EduIncluziva.Controllers
                 User user = new User()
                 {
                     User_ID = elev.Elev_ID,
-                    Role    = "Elev",
-                    Mail    = elev.Mail,
-                    Parola  = elev.Parola
+                    Role = "Elev",
+                    Mail = elev.Mail,
+                    Parola = elev.Parola
                 };
 
                 try
@@ -150,14 +150,18 @@ namespace EduIncluziva.Controllers
                 {
                     Console.WriteLine(e.Message);
                 }
-            }            
+            }
             // If we got this far, something failed, redisplay form
             return View(model);
         }
 
-        public ActionResult ContulMeu(Elevi model)
+        public ActionResult ContulMeu(string mail)
         {
+            ResourcesRepository rr = new ResourcesRepository();
+            var model = rr.GetUserByMail(mail);
+
             return View(model);
+
         }
     }
 }

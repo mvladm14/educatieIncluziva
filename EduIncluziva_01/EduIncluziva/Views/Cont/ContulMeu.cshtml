@@ -1,0 +1,41 @@
+﻿@model EduIncluziva.Models.User
+@{
+    ViewBag.Title = "ContulMeu";
+
+    EduIncluziva.Metrics.ResourcesRepository rr = new EduIncluziva.Metrics.ResourcesRepository();
+    EduIncluziva.Models.Elevi elev = null;
+
+    int typeOfUser = 0; // 0 pt elev 
+    // 1 pt profesor
+    // 2 pt administrator
+    if (Model.Role.Equals("Elev"))
+    {
+        elev = rr.GetEleviByID(Model.User_ID);
+        typeOfUser = 0;
+    }
+}
+<div>
+    <fieldset>
+        <legend>Informatii despre contul meu</legend>
+        <table border="0">
+            <tr>
+                <td>
+                    @if (typeOfUser == 0)
+                    {
+                        //adica pt elev
+                        <div class="editor-label">
+                            @Html.LabelFor(m => elev.Nume) : @elev.Nume
+
+                        </div>
+                        <div class="editor-label">
+                            @Html.LabelFor(m => elev.Prenume) : @elev.Prenume
+                        </div>
+                        <div class="editor-label">
+                            @Html.LabelFor(m => elev.Mail) : @elev.Mail
+                        </div>
+                    }
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+</div>
