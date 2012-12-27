@@ -13,6 +13,15 @@ namespace EduIncluziva.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult AdaugaLectii(FormCollection collection)
+        {
+            if (collection.AllKeys.Contains("materie1")) return View("AddStudents");
+            if (collection.AllKeys.Contains("materie2")) return View("Profesori");
+            if (collection.AllKeys.Contains("materie3")) return View("PaginaProfesorului");
+
+            return View("Index");
+        }
 
         public ActionResult AddStudents()
         {
