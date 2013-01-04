@@ -1,4 +1,5 @@
-﻿@{
+﻿@model EduIncluziva.Models.EmailDetail
+@{
     ViewBag.Title = "Register";
     
 }
@@ -39,7 +40,7 @@
         </td>
     </tr>
 </table>
-@using (Html.BeginForm())
+@using (Html.BeginForm("SendEmail","Cont"))
 {
     
     <div id="myModalTeachers" class="reveal-modal">
@@ -52,25 +53,25 @@
                     <p>
                         Nume :
                     </p>
-                    <input id="numep" type="text" />
+                    @Html.TextBoxFor(m => m.nume)
                     <p>
                         Prenume :
                     </p>
-                    <input id="prenumep" type="text" />
+                    @Html.TextBoxFor(m => m.prenume)
                     <p>
                         Mail (Acesta va fi si user Name) :
                     </p>
-                    <input id="mailp" type="text" />
+                  @Html.TextBoxFor(m => m.mail)
                     <p>
                         Poza</p>
                     <input id="File1" type="file" />
                     <p>
                         Scurta Descriere</p>
-                    <textarea id="bio" cols="20" rows="2"></textarea>
+                    @Html.TextAreaFor(m => m.bio)
                     <p>
                         Parola :
                     </p>
-                    <input id="pa1" type="password" />
+                     @Html.TextBoxFor(m => m.pass)
                     <p>
                         Confirma Parola :
                     </p>
