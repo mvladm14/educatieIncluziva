@@ -73,8 +73,48 @@ namespace EduIncluziva.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register(string nume, string prenume, string bio, string mail)
+        public ActionResult SendEmail(EmailDetail objEmailDetail)
         {
+            try
+            {
+
+                System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage();
+                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+
+                mail.From = new MailAddress("eduincluziva@gmail.com");
+                mail.To.Add("mmp_mircea@yahoo.com");
+                mail.Subject = "New User";
+
+                string s="";
+                s += " Nume :  " + objEmailDetail.nume + "\n" +
+                    " Prenume : " + objEmailDetail.prenume + "\n" +
+                    "Mail : " + objEmailDetail.mail + "\n" +
+                    "Descriere : " + objEmailDetail.bio + "\n" +
+                    "Parola : " + objEmailDetail.pass;
+
+                mail.Body = s;
+
+                SmtpServer.Port = 587;
+                SmtpServer.Credentials = new System.Net.NetworkCredential("eduincluziva", "edu123456789");
+                SmtpServer.EnableSsl = true;
+
+                SmtpServer.Send(mail);
+
+                /* 
+                 WebMail.SmtpServer = "smtp.gmail.com";
+                 WebMail.UserName = "****@gmail.com";
+                 WebMail.Password = "******";
+                 WebMail.Send(objEmailDetail.ToEmail, objEmailDetail.Subject, objEmailDetail.Message, "dotnetpools@email.com");
+                 ViewData["message"] = "Send Succesfully";*/
+                return View("../../Views/Home/Index");
+            }
+            catch (Exception ex)
+            {
+                ViewData["message"] = ex.ToString();
+            }
+            return View("../../Views/Home/Index");
+
+            /*
             ViewData["nume"] = nume;
             ViewData["prenume"] = prenume;
             ViewData["bio"] = bio;
@@ -93,7 +133,7 @@ namespace EduIncluziva.Controllers
                 Redirect("http://www.google.ro");
             }
 
-            return View();
+            return View();*/
         }
 
         public ActionResult SendEmail()
