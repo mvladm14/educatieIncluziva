@@ -32,9 +32,12 @@ Selecteaza Lectia:
 <h2>
 Adauga Lectie
 </h2>
-    <input id="File1" type="file" />
-    <input id="Submit1" type="submit" value="Adauga" />
 
+@using (Html.BeginForm("AddLesson", "AddLesson", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+<input name="file" type="file" />
+<input id="Submit1" type="submit" value="submit" />
+}
 </div>
 <div>
 <h2>Cauta Lectie: </h2>
