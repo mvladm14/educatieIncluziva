@@ -13,10 +13,11 @@ namespace EduIncluziva.Controllers
         //
         // GET: /Elevi/
 
-        EducatieIncluzivaDBContext _educatieIncluzivaDB = new EducatieIncluzivaDBContext();
+        EducatieIncluzivaDBContext3 _educatieIncluzivaDB = new EducatieIncluzivaDBContext3();
 
         public ActionResult Index()
         {
+            /*
             var elev = new Elevi()
             {
                 Nume = "mirel2",
@@ -25,7 +26,7 @@ namespace EduIncluziva.Controllers
                 Parola = "vlad",
                 Elev_ID = Guid.NewGuid()
             };
-
+            */
             
 
             /*
@@ -39,14 +40,14 @@ namespace EduIncluziva.Controllers
                         where b.Mail.Equals("mvladm2@yahoo.com")
                         select b;
              * */
-            
+            /*
             List<Elevi> le = new List<Elevi>();
             le.Add(new ResourcesRepository().GetEleviByMail("mvladm@yahoo.com"));
             var model = le;
-
+            */
             
             
-            return View(model);
+            return View();
         }
     }
 }

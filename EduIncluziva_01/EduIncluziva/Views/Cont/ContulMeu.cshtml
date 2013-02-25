@@ -1,27 +1,13 @@
 ﻿@model EduIncluziva.Models.User
 @{
     ViewBag.Title = "ContulMeu";
-
-    EduIncluziva.Metrics.ResourcesRepository rr = new EduIncluziva.Metrics.ResourcesRepository();
-    EduIncluziva.Models.Elevi elev = null;
-    EduIncluziva.Models.Profesori profesor = null;
+    
+    EduIncluziva.Models.Student student = null;
+    EduIncluziva.Models.Teacher teacher = null;
     // 0 pt elev 
     // 1 pt profesor
     // 2 pt administrator
-    int typeOfUser = 0;
-
-    if (Model.Role.Equals("Elev"))
-    {
-        elev = rr.GetEleviByID(Model.User_ID);
-        typeOfUser = 0;
-    }
-
-    if (Model.Role.Equals("Profesor"))
-    {
-        profesor = rr.GetProfesorByID(Model.User_ID);
-        typeOfUser = 1;
-    }
-    
+    int typeOfUser = 0;    
 }
 <div>
     <fieldset>
@@ -29,17 +15,18 @@
         <table border="0">
             <tr>
                 <td>
-                    @if (typeOfUser == 0)
+                    @if (Model.Role.Equals("Elev"))
                     {
                         //adica pt elev
+                        student = (EduIncluziva.Models.Student)Model;
                         <div class="editor-label">
-                            @Html.LabelFor(m => elev.Nume) : @elev.Nume
+                            @Html.LabelFor(m => student.Nume) : @student.Nume
                         </div>
                         <div class="editor-label">
-                            @Html.LabelFor(m => elev.Prenume) : @elev.Prenume
+                            @Html.LabelFor(m => student.Prenume) : @student.Prenume
                         </div>
                         <div class="editor-label">
-                            @Html.LabelFor(m => elev.Mail) : @elev.Mail
+                            @Html.LabelFor(m => student.Mail) : @student.Mail
                         </div>
                     }
                     @if (typeOfUser == 1)

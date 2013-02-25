@@ -85,7 +85,7 @@ namespace EduIncluziva.Controllers
                 mail.To.Add("mmp_mircea@yahoo.com");
                 mail.Subject = "New User";
 
-                string s="";
+                string s = "";
                 s += " Nume :  " + objEmailDetail.nume + "\n" +
                     " Prenume : " + objEmailDetail.prenume + "\n" +
                     "Mail : " + objEmailDetail.mail + "\n" +
@@ -160,35 +160,25 @@ namespace EduIncluziva.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Attempt to register the user
-                EducatieIncluzivaDBContext _db = new EducatieIncluzivaDBContext();
+                Student elev = new Student(model.Parola, model.Nume, model.Prenume, model.Mail);
 
-                Elevi elev = new Elevi();
-                elev.Nume = model.Nume;
-                elev.Prenume = model.Prenume;
-                elev.Mail = model.Mail;
-                elev.Parola = model.Parola;
-                elev.Elev_ID = Guid.NewGuid();
+                //User user = new User(model.Parola, model.Nume, model.Prenume, model.Mail);
 
-                User user = new User()
-                {
-                    User_ID = elev.Elev_ID,
-                    Role = "Elev",
-                    Mail = elev.Mail,
-                    Parola = elev.Parola
-                };
+                using (var db = new EducatieIncluzivaDBContext3())
+                {                
+                    //db.Useri.Add(user);
+                    db.Students.Add(elev);
+                    try
+                    {
+                        db.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }                   
 
-                try
-                {
-                    _db.Elevis.Add(elev);
-                    _db.Users.Add(user);
-                    _db.SaveChanges();
                     FormsAuthentication.SetAuthCookie(model.Nume, false /* createPersistentCookie */);
                     return RedirectToAction("Index", "Home");
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
                 }
             }
             // If we got this far, something failed, redisplay form
