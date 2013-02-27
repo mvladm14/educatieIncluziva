@@ -14,6 +14,7 @@ namespace EduIncluziva.Models
         public string Nume { get; set; }
         public string Prenume { get; set; }
         public string Role { get; set; }
+
         /// <summary>
         /// Constructor pentru User
         /// </summary>

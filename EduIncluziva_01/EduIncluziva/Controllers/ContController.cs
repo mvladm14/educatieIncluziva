@@ -177,7 +177,7 @@ namespace EduIncluziva.Controllers
                         throw ex;
                     }                   
 
-                    FormsAuthentication.SetAuthCookie(model.Nume, false /* createPersistentCookie */);
+                    FormsAuthentication.SetAuthCookie(model.Mail, false /* createPersistentCookie */);
                     return RedirectToAction("Index", "Home");
                 }
             }
