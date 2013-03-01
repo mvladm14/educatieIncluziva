@@ -18,6 +18,8 @@ namespace EduIncluziva.Controllers
         //
         // GET: /Cont/
 
+        #region Autentificare
+
         public ActionResult LogOn()
         {
             return View();
@@ -63,6 +65,10 @@ namespace EduIncluziva.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+        #endregion
+
+
         /// <summary>
         /// Register Made by MMp
         /// </summary>
@@ -141,6 +147,8 @@ namespace EduIncluziva.Controllers
             return View();
         }
 
+        #region InregistrareElev
+
         /// <summary>
         /// Register for Elevi
         /// </summary>
@@ -184,6 +192,8 @@ namespace EduIncluziva.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+
+        #endregion
 
         public ActionResult ContulMeu(string mail)
         {
