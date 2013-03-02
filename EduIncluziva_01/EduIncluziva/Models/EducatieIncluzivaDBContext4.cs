@@ -7,7 +7,7 @@ using System.Data.Entity;
 
 namespace EduIncluziva.Models
 {
-    public class EducatieIncluzivaDBContext3 : DbContext
+    public class EducatieIncluzivaDBContext4 : DbContext
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Teacher> Teachers { get; set; }

@@ -18,7 +18,7 @@ namespace EduIncluziva.Metrics
         {
             try
             {
-                using (var context = new EducatieIncluzivaDBContext3())
+                using (var context = new EducatieIncluzivaDBContext4())
                 {
                     return context.Teachers.SingleOrDefault(item => item.Mail == Mail);
                 }
@@ -39,7 +39,7 @@ namespace EduIncluziva.Metrics
         {
             try
             {
-                using (var context = new EducatieIncluzivaDBContext3())
+                using (var context = new EducatieIncluzivaDBContext4())
                 {
                     return context.Teachers.SingleOrDefault(item => item.User_ID.Equals(ID));
                 }
@@ -62,7 +62,7 @@ namespace EduIncluziva.Metrics
         {
             try
             {
-                using (var context = new EducatieIncluzivaDBContext3())
+                using (var context = new EducatieIncluzivaDBContext4())
                 {
                     return context.Users.SingleOrDefault(item => item.Mail == Mail);
                 }

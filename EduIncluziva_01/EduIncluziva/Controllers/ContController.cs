@@ -172,7 +172,7 @@ namespace EduIncluziva.Controllers
 
                 //User user = new User(model.Parola, model.Nume, model.Prenume, model.Mail);
 
-                using (var db = new EducatieIncluzivaDBContext3())
+                using (var db = new EducatieIncluzivaDBContext4())
                 {                
                     //db.Useri.Add(user);
                     db.Students.Add(elev);

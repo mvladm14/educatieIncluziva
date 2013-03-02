@@ -90,7 +90,7 @@
     <Compile Include="Metrics\ResourcesRepository.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Administratori.cs" />
-    <Compile Include="Models\EducatieIncluzivaDBContext3.cs" />
+    <Compile Include="Models\EducatieIncluzivaDBContext4.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\EmailDetail.cs" />
     <Compile Include="Models\Lesson.cs" />

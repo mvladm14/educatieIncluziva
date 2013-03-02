@@ -13,7 +13,7 @@ namespace EduIncluziva.Controllers
         //
         // GET: /Elevi/
 
-        EducatieIncluzivaDBContext3 _educatieIncluzivaDB = new EducatieIncluzivaDBContext3();
+        EducatieIncluzivaDBContext4 _educatieIncluzivaDB = new EducatieIncluzivaDBContext4();
 
         public ActionResult Index()
         {
