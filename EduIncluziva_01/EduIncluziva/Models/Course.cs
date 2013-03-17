@@ -8,8 +8,12 @@ namespace EduIncluziva.Models
 {
     public class Course
     {
-        [Key]
+        [ConcurrencyCheck]
         public string Nume { get; set; }
+
+        [Key]
+        public System.Guid Course_ID { get; set; }
+
         public virtual List<Lesson> Lectii { get; set; }
         public virtual List<Teacher> Profesori { get; set; }
 

@@ -90,6 +90,11 @@ namespace EduIncluziva.Models
         [Display(Name = "Confirmare parola")]
         [Compare("Parola", ErrorMessage = "Parolele nu coincid.")]
         public string ConfirmareParola { get; set; }
+
+        [Required]
+        [Display(Name = "Scoala de provenienta")]
+        public string ScoalaDeProvenienta { get; set; }
+
     }
 
     public class ElevLogonModel
@@ -120,5 +125,42 @@ namespace EduIncluziva.Models
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
+    }
+
+    public class SearchedUserModel
+    {
+        [Required]
+        [Display(Name = "Username sau adresa de mail")]
+        public string Mail { get; set; }
+    }
+
+    public class UserInfoModel
+    {
+        [Display(Name = "Nume")]
+        public string Nume { get; set; }
+
+        [Display(Name = "Prenume")]
+        public string Prenume { get; set; }
+
+        [Required]
+        [DataType(DataType.EmailAddress)]
+        [Display(Name = "Mail")]
+        public string Mail { get; set; }
+
+        [StringLength(100, ErrorMessage = "{0} trebuie sa aiba cel putin {2} caractere.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Parola")]
+        public string Parola { get; set; }
+
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirmare parola")]
+        [Compare("Parola", ErrorMessage = "Parolele nu coincid.")]
+        public string ConfirmareParola { get; set; }
+
+        [Display(Name = "Scoala de provenienta")]
+        public HighSchool ScoalaDeProvenienta { get; set; }
+
+        [Display(Name = "Scurta descriere")]
+        public string ScurtaDescriere { get; set; }
     }
 }

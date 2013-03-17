@@ -11,8 +11,8 @@ namespace EduIncluziva.Models
     {
         private static string ELEV_ROLE = "Elev";
 
-        public Student(string Parola, string Nume, string Prenume, string Mail) :
-            base(Parola, Nume, Prenume, Mail)
+        public Student(string Parola, string Nume, string Prenume, string Mail, HighSchool ScoalaDeProvenienta) :
+            base(Parola, Nume, Prenume, Mail, ScoalaDeProvenienta)
         {
             this.Role = ELEV_ROLE;
         }

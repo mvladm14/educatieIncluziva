@@ -78,6 +78,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AddLessonController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ContController.cs" />
     <Compile Include="Controllers\EleviController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -89,8 +90,8 @@
     <Compile Include="Metrics\Exceptii.cs" />
     <Compile Include="Metrics\ResourcesRepository.cs" />
     <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\Administratori.cs" />
-    <Compile Include="Models\EducatieIncluzivaDBContext4.cs" />
+    <Compile Include="Models\Administrator.cs" />
+    <Compile Include="Models\EducatieIncluzivaDBContext9.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\EmailDetail.cs" />
     <Compile Include="Models\Lesson.cs" />
@@ -151,6 +152,7 @@
     <Content Include="Pictures\altele\teachers.png" />
     <Content Include="Pictures\altele\test.png" />
     <Content Include="Pictures\altele\untip.jpg" />
+    <Content Include="Pictures\gifs\ajax-loader.gif" />
     <Content Include="Scripts\jquery-1.4.4.min.js" />
     <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.5.1.js" />
@@ -243,10 +245,16 @@
     <Content Include="Views\AddLesson\AddLesson.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Home\AdminPage.cshtml" />
+    <Folder Include="App_Data\uploads\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\uploads\" />
+    <Content Include="Views\Admin\AdminPage.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Admin\AdaugaUtilizatorNou.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Admin\CautaUtilizator.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

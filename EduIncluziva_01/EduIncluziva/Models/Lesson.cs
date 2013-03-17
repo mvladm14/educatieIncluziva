@@ -8,8 +8,12 @@ namespace EduIncluziva.Models
 {
     public class Lesson
     {
-        [Key]
+        [ConcurrencyCheck]
         public string   Titlu { get; set; }
+
+        [Key]
+        public System.Guid Lesson_ID { get; set; }
+
         public Teacher ProfesorOwner;
         public DateTime DataPublicatie;
 

@@ -1,7 +1,7 @@
 ﻿@model EduIncluziva.Models.User
 @{
     ViewBag.Title = "ContulMeu";
-    
+
     EduIncluziva.Models.Student student = null;
     EduIncluziva.Models.Teacher teacher = null;
     // 0 pt elev 
@@ -11,31 +11,38 @@
 }
 <div>
     <fieldset>
-        <legend>Informatii despre contul meu</legend>
-        <table border="0">
-            <tr>
-                <td>
-                    @if (Model.Role.Equals("Elev"))
-                    {
-                        //adica pt elev
-                        student = (EduIncluziva.Models.Student)Model;
-                        <div class="editor-label">
-                            @Html.LabelFor(m => student.Nume) : @student.Nume
-                        </div>
-                        <div class="editor-label">
-                            @Html.LabelFor(m => student.Prenume) : @student.Prenume
-                        </div>
-                        <div class="editor-label">
-                            @Html.LabelFor(m => student.Mail) : @student.Mail
-                        </div>
-                    }
-                    @if (typeOfUser == 1)
-                    {
-                        //adica pt profesor
-                        //Html.Partial("~/Views/Profesori/PaginaProfesorului.cshtml");
-                    }
-                </td>
-            </tr>
-        </table>
+        @if (Model.Role.Equals("Admin"))
+        {
+            Html.RenderAction("AdminPage", "Admin");
+        }
+        else
+        {
+            <legend>Informatii despre contul meu</legend>
+            <table border="0">
+                <tr>
+                    <td>
+                        @if (Model.Role.Equals("Elev"))
+                        {
+                            //adica pt elev
+                            student = (EduIncluziva.Models.Student)Model;
+                            <div class="editor-label">
+                                @Html.LabelFor(m => student.Nume) : @student.Nume
+                            </div>
+                            <div class="editor-label">
+                                @Html.LabelFor(m => student.Prenume) : @student.Prenume
+                            </div>
+                            <div class="editor-label">
+                                @Html.LabelFor(m => student.Mail) : @student.Mail
+                            </div>
+                        }
+                        @if (typeOfUser == 1)
+                        {
+                            //adica pt profesor
+                            //Html.Partial("~/Views/Profesori/PaginaProfesorului.cshtml");
+                        }
+                    </td>
+                </tr>
+            </table>
+        }
     </fieldset>
 </div>

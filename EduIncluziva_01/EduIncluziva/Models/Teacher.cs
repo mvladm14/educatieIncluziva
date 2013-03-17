@@ -11,8 +11,8 @@ namespace EduIncluziva.Models
         public virtual List<Course> Materii { get; set; }
         private static string PROFESOR_ROLE = "Profesor";
 
-        public Teacher(string Parola, string Nume, string Prenume, string Mail) :
-            base(Parola, Nume, Prenume, Mail)
+        public Teacher(string Parola, string Nume, string Prenume, string Mail, HighSchool ScoalaDeProvenienta) :
+            base(Parola, Nume, Prenume, Mail, ScoalaDeProvenienta)
         {
             this.Role = PROFESOR_ROLE;
         }

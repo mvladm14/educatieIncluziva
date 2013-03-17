@@ -18,7 +18,7 @@ namespace EduIncluziva.Metrics
         {
             try
             {
-                using (var context = new EducatieIncluzivaDBContext4())
+                using (var context = new EducatieIncluzivaDBContext9())
                 {
                     return context.Teachers.SingleOrDefault(item => item.Mail == Mail);
                 }
@@ -39,7 +39,7 @@ namespace EduIncluziva.Metrics
         {
             try
             {
-                using (var context = new EducatieIncluzivaDBContext4())
+                using (var context = new EducatieIncluzivaDBContext9())
                 {
                     return context.Teachers.SingleOrDefault(item => item.User_ID.Equals(ID));
                 }
@@ -62,9 +62,29 @@ namespace EduIncluziva.Metrics
         {
             try
             {
-                using (var context = new EducatieIncluzivaDBContext4())
+                using (var context = new EducatieIncluzivaDBContext9())
                 {
                     return context.Users.SingleOrDefault(item => item.Mail == Mail);
+                }
+            }
+            catch (Exception exc)
+            {
+                //Logger.Instance.LogError(ErrorCategory.Data, "Unable to retrieve information about Employees.", exc);
+                throw exc;
+            }
+        }
+
+        #endregion
+
+        #region HighSchool
+
+        public HighSchool GetHighSchoolByName(string Name)
+        {
+            try
+            {
+                using (var context = new EducatieIncluzivaDBContext9())
+                {
+                    return context.HighSchools.SingleOrDefault(item => item.Nume == Name);
                 }
             }
             catch (Exception exc)

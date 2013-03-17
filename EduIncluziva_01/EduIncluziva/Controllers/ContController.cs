@@ -10,6 +10,7 @@ using EduIncluziva.Metrics;
 using System.Web.Helpers;
 using System.Web.Mail;
 using System.Net.Mail;
+using System.Data;
 
 namespace EduIncluziva.Controllers
 {
@@ -48,7 +49,7 @@ namespace EduIncluziva.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                    ModelState.AddModelError("", "Username-ul sau parola sunt gresite.");
                 }
             }
 
@@ -168,13 +169,17 @@ namespace EduIncluziva.Controllers
         {
             if (ModelState.IsValid)
             {
-                Student elev = new Student(model.Parola, model.Nume, model.Prenume, model.Mail);
+                ResourcesRepository rr = new ResourcesRepository();
+                HighSchool hs = rr.GetHighSchoolByName(model.ScoalaDeProvenienta);
+
+                Student elev = new Student(model.Parola, model.Nume, model.Prenume, model.Mail, hs);
 
                 //User user = new User(model.Parola, model.Nume, model.Prenume, model.Mail);
 
-                using (var db = new EducatieIncluzivaDBContext4())
+                using (var db = new EducatieIncluzivaDBContext9())
                 {                
                     //db.Useri.Add(user);
+                    db.Entry(hs).State = EntityState.Unchanged;
                     db.Students.Add(elev);
                     try
                     {

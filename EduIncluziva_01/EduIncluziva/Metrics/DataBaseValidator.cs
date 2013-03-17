@@ -23,31 +23,6 @@ namespace EduIncluziva.Metrics
                     return true;
                 }
             }
-
-            /*
-            Elevi elev = rr.GetEleviByMail(Mail);
-
-            if (elev != null)
-            {
-                //daca l-am gasit in baza de date
-                if (elev.Parola.Equals(Parola))
-                {
-                    //daca parolele coincid
-                    return true;
-                }
-            }
-
-            Profesori profesor = rr.GetProfesoriByMail(Mail);
-            if (profesor != null)
-            {
-                //daca l-am gasit in baza de date
-                if (profesor.Parola.Equals(Parola))
-                {
-                    //daca parolele coincid
-                    return true;
-                }
-            }
-            */
             //daca nu l-am gasit nici la elevi, nici la profesori
             return false;
         }

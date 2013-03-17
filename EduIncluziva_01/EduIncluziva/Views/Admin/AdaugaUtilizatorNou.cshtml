@@ -1,18 +1,16 @@
 ﻿@model EduIncluziva.Models.ElevRegisterModel
 @{
-    ViewBag.Title = "Inregistrare";
-
-    string[] listaNumeLicee = { "Liceu1", "Liceu2", "Liceu3" };
-    
+    ViewBag.Title = "AdaugaUtilizatorNou";
+    string[] listaNumeLicee = { "Liceu1", "Liceu2", "Liceu3" };    
 }
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
-@using (Html.BeginForm("RegisterElevi", "Cont"))
+@using (Html.BeginForm("AdaugaUtilizatorNou", "Admin"))
 { 
     @Html.ValidationSummary(true, "Oooups! Va rugam corectati erorile si apoi reincercati.")
     <div>
         <fieldset>
-            <legend>Informatii despre cont</legend>
+            <legend>Inregstrare cont nou</legend>
             <table border="0">
                 <tr>
                     <td>
