@@ -23,32 +23,39 @@ namespace EduIncluziva.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult AdminPage(SearchedUserModel uim)
+        {
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("CautaUtilizator", "Admin", new { mail = uim.Mail });
+            }
+            else
+            {
+                return View();
+            }
+        }
+
         public ActionResult AdaugaUtilizatorNou()
         {
             return View();
         }
 
-        public ActionResult CautaUtilizator()
-        {
-            return View();
-        }
-
-        [HttpGet]
-        public ActionResult CautaUtilizator(UserInfoModel uim)
+        public ActionResult CautaUtilizator(string mail)
         {
             if (ModelState.IsValid)
             {
                 ResourcesRepository rr = new ResourcesRepository();
-                User user = rr.GetUserByMail(uim.Mail);
+                User user = rr.GetUserByMail(mail);
                 UserInfoModel newUIM = new UserInfoModel();
-                    newUIM.Nume = user.Nume;
-                    newUIM.Prenume = user.Prenume;
-                    newUIM.Mail = user.Mail;
-                    newUIM.Parola = user.Parola;
-                    newUIM.ScoalaDeProvenienta = user.ScoalaDeProvenienta;
-                    return View(newUIM);
+                newUIM.Nume = user.Nume;
+                newUIM.Prenume = user.Prenume;
+                newUIM.Mail = user.Mail;
+                newUIM.Parola = user.Parola;
+                newUIM.ScoalaDeProvenienta = user.ScoalaDeProvenienta;
+                return View(newUIM);
             }
-            return View(uim);
+            return View();
         }
 
     }
