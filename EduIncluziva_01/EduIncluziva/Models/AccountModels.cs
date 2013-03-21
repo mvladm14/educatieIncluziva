@@ -158,7 +158,7 @@ namespace EduIncluziva.Models
         public string ConfirmareParola { get; set; }
 
         [Display(Name = "Scoala de provenienta")]
-        public HighSchool ScoalaDeProvenienta { get; set; }
+        public string ScoalaDeProvenienta { get; set; }
 
         [Display(Name = "Scurta descriere")]
         public string ScurtaDescriere { get; set; }

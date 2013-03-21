@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace EduIncluziva.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         //
@@ -52,10 +53,24 @@ namespace EduIncluziva.Controllers
                 newUIM.Prenume = user.Prenume;
                 newUIM.Mail = user.Mail;
                 newUIM.Parola = user.Parola;
-                newUIM.ScoalaDeProvenienta = user.ScoalaDeProvenienta;
+                //TODO change the schoolName
+                newUIM.ScoalaDeProvenienta = "Liceu1";
                 return View(newUIM);
             }
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult CautaUtilizator(UserInfoModel userInfoModel)
+        {
+            if (ModelState.IsValid)
+            {
+                ResourcesRepository rr = new ResourcesRepository();
+                HighSchool highSchool = rr.GetHighSchoolByName("Liceu1");
+                rr.UpdateUser(userInfoModel.Parola, userInfoModel.Nume, userInfoModel.Prenume, userInfoModel.Mail, highSchool);
+                return RedirectToAction("Index", "Home");
+            }
+            return RedirectToAction("Index", "Home");
         }
 
     }

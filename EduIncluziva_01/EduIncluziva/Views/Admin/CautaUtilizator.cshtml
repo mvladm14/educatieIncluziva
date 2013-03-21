@@ -17,14 +17,7 @@
                 <tr>
                     <td>
                         <div class="editor-label">
-                            @Html.LabelFor(m => m.Nume) : @if (Model != null)
-                                                          {
-                                <p>@Model.Nume</p>
-                                                          }
-                                                          else
-                                                          {
-                                                              <p></p>
-                                                          }
+                            @Html.LabelFor(m => m.Nume): 
                         </div>
                         <div class="editor-field">
                             @Html.TextBoxFor(m => m.Nume)
@@ -66,11 +59,6 @@
                         </div>
                         <p>
                             <input type="submit" value="Update" />
-                        </p>
-                    </td>
-                    <td>
-                        <p>
-                            <img src="../../Pictures/altele/students.png" alt="Students" height="480" width="290" />
                         </p>
                     </td>
                 </tr>

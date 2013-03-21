@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using EduIncluziva.Models;
@@ -51,7 +52,7 @@ namespace EduIncluziva.Metrics
             }
         }
         #endregion
-        
+
         #region User
         /// <summary>
         /// Returns an User corresponding to the Mail parameter.
@@ -71,6 +72,24 @@ namespace EduIncluziva.Metrics
             {
                 //Logger.Instance.LogError(ErrorCategory.Data, "Unable to retrieve information about Employees.", exc);
                 throw exc;
+            }
+        }
+
+        public void UpdateUser(string parola, string nume, string prenume, string mail,
+                               HighSchool scoalaDeProvenienta)
+        {
+            using (var context = new EducatieIncluzivaDBContext9())
+            {
+                var theUser = this.GetUserByMail(mail);
+                theUser.Parola = (parola.Equals("")) ? theUser.Parola : parola;
+                theUser.Nume = (nume.Equals("")) ? theUser.Nume : nume;
+                theUser.Prenume = (prenume.Equals("")) ? theUser.Prenume : prenume;
+                theUser.Mail = (mail.Equals("")) ? theUser.Mail : mail;
+                theUser.ScoalaDeProvenienta = (scoalaDeProvenienta == theUser.ScoalaDeProvenienta) ? theUser.ScoalaDeProvenienta : scoalaDeProvenienta;
+
+                context.Users.Attach(theUser);
+                context.Entry(theUser).State = EntityState.Modified;
+                context.SaveChanges();
             }
         }
 
