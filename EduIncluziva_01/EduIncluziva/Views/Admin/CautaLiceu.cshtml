@@ -1,0 +1,8 @@
+﻿@using EduIncluziva.Models
+@model EduIncluziva.Models.HighSchool
+@{
+    ViewBag.Title = "CautaLiceu";
+    var highSchool = Model as HighSchool;
+}
+
+@Html.LabelFor(m => m.Nume) : @highSchool.Nume

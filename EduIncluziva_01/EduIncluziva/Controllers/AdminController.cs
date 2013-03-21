@@ -1,4 +1,5 @@
-﻿using EduIncluziva.Metrics;
+﻿using System.Web.Routing;
+using EduIncluziva.Metrics;
 using EduIncluziva.Models;
 using System.Web.Mvc;
 
@@ -59,6 +60,29 @@ namespace EduIncluziva.Controllers
                 return RedirectToAction("Index", "Home");
             }
             return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult InformatiiLicee()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult InformatiiLicee(SearchedHighSchoolModel searchedHighSchoolModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var rr = new ResourcesRepository();
+                var highSchool = rr.GetHighSchoolByName(searchedHighSchoolModel.Nume);
+                return RedirectToAction("CautaLiceu", new { highSchool = (highSchool as HighSchool) });
+            }
+            return RedirectToAction("Index", "Home");
+        }
+        
+        public ActionResult CautaLiceu(HighSchool highSchool)
+        {
+            var model = highSchool;
+            return View(model);
         }
 
     }

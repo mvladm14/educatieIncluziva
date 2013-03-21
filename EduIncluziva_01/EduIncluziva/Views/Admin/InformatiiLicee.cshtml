@@ -1,0 +1,31 @@
+﻿@using EduIncluziva.Metrics
+@model EduIncluziva.Models.SearchedHighSchoolModel
+@{
+    ViewBag.Title = "InformatiiLicee";
+    var resourcesRepository = new ResourcesRepository();
+    var listaLicee = resourcesRepository.GetAllHighSchools();
+    var listaLiceeNume = from nume in listaLicee
+                         select nume.Nume;
+}
+
+<h2>Informatii Licee</h2>
+<h3>Selectati liceul dorit: </h3>
+@using (Html.BeginForm("InformatiiLicee", "Admin"))
+{ 
+    @Html.ValidationSummary(true, "Oooups! Va rugam corectati erorile si apoi reincercati.")
+    <div>
+        <table border="0">
+            <tr>
+                <td>
+                    <div class="editor-field" style="width: 172px;">
+                        @Html.DropDownListFor(m => m.Nume, new SelectList(listaLiceeNume))
+                    </div>
+
+                    <p>
+                        <input type="submit" value="Cautare" />
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </div>
+}

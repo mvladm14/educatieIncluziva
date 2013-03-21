@@ -163,4 +163,11 @@ namespace EduIncluziva.Models
         [Display(Name = "Scurta descriere")]
         public string ScurtaDescriere { get; set; }
     }
+
+    public class SearchedHighSchoolModel
+    {
+        [Required]
+        [Display(Name = "Numele exact al liceului")]
+        public string Nume { get; set; }
+    }
 }
