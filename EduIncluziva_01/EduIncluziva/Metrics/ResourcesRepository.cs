@@ -113,6 +113,22 @@ namespace EduIncluziva.Metrics
             }
         }
 
+        public List<HighSchool> GetAllHighSchools()
+        {
+            try
+            {
+                using (var context = new EducatieIncluzivaDBContext9())
+                {
+                    return context.HighSchools.ToList();
+                }
+            }
+            catch (Exception exc)
+            {
+                //Logger.Instance.LogError(ErrorCategory.Data, "Unable to retrieve information about Employees.", exc);
+                throw exc;
+            }
+        }
+
         #endregion
     }
 }
