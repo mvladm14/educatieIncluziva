@@ -1,0 +1,10 @@
+﻿9283223b-df33-468d-9cf6-760d1845f519	Liceu1
+48cf575b-c128-45d0-8722-500053eae96c	Gradinita Speciala
+db1ec129-40c2-4088-ac73-6e9ca4d20c43	Centrul Scolar pentru Educatie Incluziva 
+6c43cbbe-17db-4835-875d-06d7bcda42a5	Scoala Gimnaziala Speciala Centrul de Resurse si Documentare in Educatia Incluziva
+2261dce6-7f1e-46ef-b6cc-017336b65fee	Liceul pentru Deficienti de Vedere 
+4ec39b15-5659-4af5-b7a9-3071f04608ab	Liceul pentru Deficienti de Auz 
+8073fd55-cd03-4a3a-ba7b-5beaa0a78fb4	Scoala de Arte si Meserii "SAMUS" 
+9734e4c6-7dbb-4a10-a3d9-2ed12eb578c4	Scoala Gimnaziala Speciala "Transilvania" Baciu 
+84faf128-6e0a-45ac-a589-54eb82dd7d4c	Scoala Gimnaziala Speciala Dej 
+b230f34d-a516-4a36-ab00-124bbf234f46	Scoala Gimnaziala Speciala Huedin 
