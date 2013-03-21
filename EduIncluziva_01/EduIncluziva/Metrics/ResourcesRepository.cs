@@ -81,10 +81,10 @@ namespace EduIncluziva.Metrics
             using (var context = new EducatieIncluzivaDBContext9())
             {
                 var theUser = this.GetUserByMail(mail);
-                theUser.Parola = (parola.Equals("")) ? theUser.Parola : parola;
-                theUser.Nume = (nume.Equals("")) ? theUser.Nume : nume;
-                theUser.Prenume = (prenume.Equals("")) ? theUser.Prenume : prenume;
-                theUser.Mail = (mail.Equals("")) ? theUser.Mail : mail;
+                theUser.Parola = parola == null ? theUser.Parola : parola;
+                theUser.Nume = nume == null ? theUser.Nume : nume;
+                theUser.Prenume = prenume == null ? theUser.Prenume : prenume;
+                theUser.Mail = mail == null ? theUser.Mail : mail;
                 theUser.ScoalaDeProvenienta = (scoalaDeProvenienta == theUser.ScoalaDeProvenienta) ? theUser.ScoalaDeProvenienta : scoalaDeProvenienta;
 
                 context.Users.Attach(theUser);
