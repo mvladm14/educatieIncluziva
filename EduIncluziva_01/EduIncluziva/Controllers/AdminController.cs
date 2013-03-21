@@ -48,14 +48,14 @@ namespace EduIncluziva.Controllers
             {
                 ResourcesRepository rr = new ResourcesRepository();
                 User user = rr.GetUserByMail(mail);
-                UserInfoModel newUIM = new UserInfoModel();
-                newUIM.Nume = user.Nume;
-                newUIM.Prenume = user.Prenume;
-                newUIM.Mail = user.Mail;
-                newUIM.Parola = user.Parola;
+                UserInfoModel newUim = new UserInfoModel();
+                newUim.Nume = user.Nume;
+                newUim.Prenume = user.Prenume;
+                newUim.Mail = user.Mail;
+                newUim.Parola = user.Parola;
                 //TODO change the schoolName
-                newUIM.ScoalaDeProvenienta = "Liceu1";
-                return View(newUIM);
+                newUim.ScoalaDeProvenienta = "Liceu1";
+                return View(newUim);
             }
             return View();
         }
