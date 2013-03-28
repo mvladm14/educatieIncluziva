@@ -35,10 +35,9 @@
                                 @Html.LabelFor(m => student.Mail) : @student.Mail
                             </div>
                         }
-                        @if (typeOfUser == 1)
+                        @if (Model.Role.Equals("Profesor"))
                         {
-                            //adica pt profesor
-                            //Html.Partial("~/Views/Profesori/PaginaProfesorului.cshtml");
+                            Html.RenderAction("PaginaProfesorului","Profesori");
                         }
                     </td>
                 </tr>

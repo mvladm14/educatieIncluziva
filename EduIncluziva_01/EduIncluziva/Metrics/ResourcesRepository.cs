@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Web;
 using EduIncluziva.Models;
 
 namespace EduIncluziva.Metrics
@@ -13,15 +12,15 @@ namespace EduIncluziva.Metrics
         /// <summary>
         /// Returns a Profesor corresponding to the Profesor_Mail parameter.
         /// </summary>
-        /// <param name="Mail"></param>
+        /// <param name="mail"></param>
         /// <returns></returns>
-        public Teacher GetProfesoriByMail(string Mail)
+        public Teacher GetProfesoriByMail(string mail)
         {
             try
             {
-                using (var context = new EducatieIncluzivaDBContext9())
+                using (var context = new EducatieIncluzivaDbContext())
                 {
-                    return context.Teachers.SingleOrDefault(item => item.Mail == Mail);
+                    return context.Teachers.SingleOrDefault(item => item.Mail == mail);
                 }
             }
             catch (Exception exc)
@@ -34,15 +33,15 @@ namespace EduIncluziva.Metrics
         /// <summary>
         /// Returns a Profesor corresponding to the GUID parameter.
         /// </summary>
-        /// <param name="ID"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
-        public Teacher GetProfesorByID(Guid ID)
+        public Teacher GetProfesorById(Guid id)
         {
             try
             {
-                using (var context = new EducatieIncluzivaDBContext9())
+                using (var context = new EducatieIncluzivaDbContext())
                 {
-                    return context.Teachers.SingleOrDefault(item => item.User_ID.Equals(ID));
+                    return context.Teachers.SingleOrDefault(item => item.UserId.Equals(id));
                 }
             }
             catch (Exception exc)
@@ -57,15 +56,15 @@ namespace EduIncluziva.Metrics
         /// <summary>
         /// Returns an User corresponding to the Mail parameter.
         /// </summary>
-        /// <param name="Mail"></param>
+        /// <param name="mail"></param>
         /// <returns></returns>
-        public User GetUserByMail(string Mail)
+        public User GetUserByMail(string mail)
         {
             try
             {
-                using (var context = new EducatieIncluzivaDBContext9())
+                using (var context = new EducatieIncluzivaDbContext())
                 {
-                    return context.Users.SingleOrDefault(item => item.Mail == Mail);
+                    return context.Users.SingleOrDefault(item => item.Mail == mail);
                 }
             }
             catch (Exception exc)
@@ -78,7 +77,7 @@ namespace EduIncluziva.Metrics
         public void UpdateUser(string parola, string nume, string prenume, string mail,
                                HighSchool scoalaDeProvenienta)
         {
-            using (var context = new EducatieIncluzivaDBContext9())
+            using (var context = new EducatieIncluzivaDbContext())
             {
                 var theUser = this.GetUserByMail(mail);
                 theUser.Parola = parola == null ? theUser.Parola : parola;
@@ -97,13 +96,13 @@ namespace EduIncluziva.Metrics
 
         #region HighSchool
 
-        public HighSchool GetHighSchoolByName(string Name)
+        public HighSchool GetHighSchoolByName(string name)
         {
             try
             {
-                using (var context = new EducatieIncluzivaDBContext9())
+                using (var context = new EducatieIncluzivaDbContext())
                 {
-                    return context.HighSchools.SingleOrDefault(item => item.Nume == Name);
+                    return context.HighSchools.Include("Users").SingleOrDefault(item => item.Nume == name);
                 }
             }
             catch (Exception exc)
@@ -117,9 +116,26 @@ namespace EduIncluziva.Metrics
         {
             try
             {
-                using (var context = new EducatieIncluzivaDBContext9())
+                using (var context = new EducatieIncluzivaDbContext())
                 {
                     return context.HighSchools.ToList();
+                }
+            }
+            catch (Exception exc)
+            {
+                //Logger.Instance.LogError(ErrorCategory.Data, "Unable to retrieve information about Employees.", exc);
+                throw exc;
+            }
+        }
+
+        public HighSchool GetHighSchoolById(Guid highSchoolId)
+        {
+            try
+            {
+                using (var context = new EducatieIncluzivaDbContext())
+                {
+                    return context.HighSchools.Include("Users").SingleOrDefault(
+                        highschool => highschool.HighSchoolId == highSchoolId);
                 }
             }
             catch (Exception exc)

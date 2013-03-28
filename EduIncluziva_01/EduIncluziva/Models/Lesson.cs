@@ -1,20 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EduIncluziva.Models
 {
     public class Lesson
     {
         [ConcurrencyCheck]
-        public string   Titlu { get; set; }
+        public string Titlu { get; set; }
 
         [Key]
-        public System.Guid Lesson_ID { get; set; }
+        public Guid LessonId { get; set; }
 
-        public Teacher ProfesorOwner;
+        public Guid ProfesorOwnerId { get; set; }
+
+        [ForeignKey("ProfesorOwnerId")]
+        public virtual Teacher ProfesorOwner { get; set; }
         public DateTime DataPublicatie;
 
         public Lesson() { }

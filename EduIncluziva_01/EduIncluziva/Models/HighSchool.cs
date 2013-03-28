@@ -1,18 +1,22 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EduIncluziva.Models
 {
-    public class HighSchool
+    public sealed class HighSchool
     {
         [ConcurrencyCheck]
         public string Nume { get; set; }
 
         [Key]
-        public System.Guid HighSchool_ID { get; set; }
+        public Guid HighSchoolId { get; set; }
 
-        public virtual List<Teacher> Profesori { get; set; }
-        public virtual List<Student> Elevi { get; set; }
+        public List<User> Users { get; set; }
+        public HighSchool()
+        {
+            Users = new List<User>();
+        }
     }
 }

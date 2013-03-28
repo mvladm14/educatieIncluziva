@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.ComponentModel.DataAnnotations;
-
-
-namespace EduIncluziva.Models
+﻿namespace EduIncluziva.Models
 {
     public class Student : User
     {
-        private static string ELEV_ROLE = "Elev";
+        private const string ElevRole = "Elev";
 
-        public Student(string Parola, string Nume, string Prenume, string Mail, HighSchool ScoalaDeProvenienta) :
-            base(Parola, Nume, Prenume, Mail, ScoalaDeProvenienta)
+        public Student(string parola, string nume, string prenume, string mail, HighSchool scoalaDeProvenienta) :
+            base(parola, nume, prenume, mail, scoalaDeProvenienta)
         {
-            this.Role = ELEV_ROLE;
+            Role = ElevRole;
         }
 
         public Student() { }

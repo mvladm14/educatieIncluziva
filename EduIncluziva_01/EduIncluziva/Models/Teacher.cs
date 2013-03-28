@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EduIncluziva.Models
 {
-    public class Teacher : User
+    public sealed class Teacher : User
     {
-        public virtual List<Course> Materii { get; set; }
-        private static string PROFESOR_ROLE = "Profesor";
+        public List<Course> Materii { get; set; }
 
-        public Teacher(string Parola, string Nume, string Prenume, string Mail, HighSchool ScoalaDeProvenienta) :
-            base(Parola, Nume, Prenume, Mail, ScoalaDeProvenienta)
+        private const string ProfesorRole = "Profesor";
+
+        public Teacher(string parola, string nume, string prenume, string mail, HighSchool scoalaDeProvenienta) :
+            base(parola, nume, prenume, mail, scoalaDeProvenienta)
         {
-            this.Role = PROFESOR_ROLE;
+            Role = ProfesorRole;
+            Materii = new List<Course>();
         }
 
         public Teacher() { }

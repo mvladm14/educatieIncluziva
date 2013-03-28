@@ -7,10 +7,10 @@ namespace EduIncluziva.Models
 {
     public class EmailDetail
     {
-        public string nume { get; set; }
-        public string mail { get; set; }
-        public string bio { get; set; }
-        public string prenume { get; set; }
-        public string pass { get; set; }
+        public string Nume { get; set; }
+        public string Mail { get; set; }
+        public string Bio { get; set; }
+        public string Prenume { get; set; }
+        public string Pass { get; set; }
     }
 }

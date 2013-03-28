@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using EduIncluziva.Models;
-using EduIncluziva.Metrics;
+﻿using System.Web.Mvc;
 
 namespace EduIncluziva.Controllers
 {
@@ -12,8 +6,6 @@ namespace EduIncluziva.Controllers
     {
         //
         // GET: /Elevi/
-
-        EducatieIncluzivaDBContext9 _educatieIncluzivaDB = new EducatieIncluzivaDBContext9();
 
         public ActionResult Index()
         {

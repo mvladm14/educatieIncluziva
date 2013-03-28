@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Routing;
 using System.Web.Security;
 using EduIncluziva.Models;
 using EduIncluziva.Metrics;
-using System.Web.Helpers;
-using System.Web.Mail;
 using System.Net.Mail;
 using System.Data;
 
@@ -93,11 +87,11 @@ namespace EduIncluziva.Controllers
                 mail.Subject = "New User";
 
                 string s = "";
-                s += " Nume :  " + objEmailDetail.nume + "\n" +
-                    " Prenume : " + objEmailDetail.prenume + "\n" +
-                    "Mail : " + objEmailDetail.mail + "\n" +
-                    "Descriere : " + objEmailDetail.bio + "\n" +
-                    "Parola : " + objEmailDetail.pass;
+                s += " Nume :  " + objEmailDetail.Nume + "\n" +
+                    " Prenume : " + objEmailDetail.Prenume + "\n" +
+                    "Mail : " + objEmailDetail.Mail + "\n" +
+                    "Descriere : " + objEmailDetail.Bio + "\n" +
+                    "Parola : " + objEmailDetail.Pass;
 
                 mail.Body = s;
 
@@ -176,7 +170,7 @@ namespace EduIncluziva.Controllers
 
                 //User user = new User(model.Parola, model.Nume, model.Prenume, model.Mail);
 
-                using (var db = new EducatieIncluzivaDBContext9())
+                using (var db = new EducatieIncluzivaDbContext())
                 {                
                     //db.Useri.Add(user);
                     db.Entry(hs).State = EntityState.Unchanged;
