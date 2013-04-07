@@ -4,10 +4,6 @@
 
     EduIncluziva.Models.Student student = null;
     EduIncluziva.Models.Teacher teacher = null;
-    // 0 pt elev 
-    // 1 pt profesor
-    // 2 pt administrator
-    int typeOfUser = 0;    
 }
 <div>
     <fieldset>
@@ -25,7 +21,7 @@
                         {
                             //adica pt elev
                             student = (EduIncluziva.Models.Student)Model;
-                            <div class="editor-label">
+                            @*<div class="editor-label">
                                 @Html.LabelFor(m => student.Nume) : @student.Nume
                             </div>
                             <div class="editor-label">
@@ -33,7 +29,8 @@
                             </div>
                             <div class="editor-label">
                                 @Html.LabelFor(m => student.Mail) : @student.Mail
-                            </div>
+                            </div>*@
+                            Html.RenderAction("PaginaElevului","Elevi");
                         }
                         @if (Model.Role.Equals("Profesor"))
                         {

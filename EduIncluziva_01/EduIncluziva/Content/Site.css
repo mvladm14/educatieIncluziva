@@ -363,7 +363,7 @@ div#title {
     width: 100%;
 }
 
-.studentAndTeachersTable th, tr td {
+.studentAndTeachersTable th, .studentsTable, .teachersTable {
     border-width: 2px;
     border-color: black;
 }
