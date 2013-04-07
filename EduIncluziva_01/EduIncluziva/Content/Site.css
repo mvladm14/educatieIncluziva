@@ -351,3 +351,19 @@ div#title {
 {
     width:100%;
 }
+
+.studentAndTeachersTable {
+    width: 100%;
+}
+.studentsTable {
+    width: 100%;
+}
+
+.teachersTable {
+    width: 100%;
+}
+
+.studentAndTeachersTable th, tr td {
+    border-width: 2px;
+    border-color: black;
+}

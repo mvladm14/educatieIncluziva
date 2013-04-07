@@ -72,16 +72,17 @@ namespace EduIncluziva.Controllers
         {
             if (ModelState.IsValid)
             {
-                var rr = new ResourcesRepository();
-                var highSchool = rr.GetHighSchoolByName(searchedHighSchoolModel.Nume);
-                return RedirectToAction("CautaLiceu", new { highSchool = (highSchool as HighSchool) });
+                //var rr = new ResourcesRepository();
+                //var highSchool = rr.GetHighSchoolByName(searchedHighSchoolModel.Nume);
+                return RedirectToAction("CautaLiceu", "Admin", new { searchedHighSchoolName = searchedHighSchoolModel.Nume });
             }
             return RedirectToAction("Index", "Home");
         }
-        
-        public ActionResult CautaLiceu(HighSchool highSchool)
+
+        public ActionResult CautaLiceu(string searchedHighSchoolName)
         {
-            var model = highSchool;
+            var rr = new ResourcesRepository();
+            var model = rr.GetHighSchoolByName(searchedHighSchoolName);
             return View(model);
         }
 

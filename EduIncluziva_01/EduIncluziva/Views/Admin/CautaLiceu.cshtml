@@ -3,6 +3,91 @@
 @{
     ViewBag.Title = "CautaLiceu";
     var highSchool = Model as HighSchool;
+    var students = new List<Student>();
+    var teachers = new List<Teacher>();
 }
 
-@Html.LabelFor(m => m.Nume) : @highSchool.Nume
+<h1>@highSchool.Nume</h1>
+
+@foreach (var user in highSchool.Users)
+{
+    if (user is Student)
+    {
+        students.Add(user as Student);
+    }
+    if (user is Teacher)
+    {
+        teachers.Add(user as Teacher);
+    }
+}
+
+<table class ="studentAndTeachersTable">
+    <tr>
+        <th>
+            Elevi
+        </th>
+        <th>
+            Profesori
+        </th>
+    </tr>
+    <tr>
+        <td>
+            <table class="studentsTable">
+                <tr>
+                    <th>
+                        Nume
+                    </th>
+                    <th>
+                        Prenume
+                    </th>
+                    <th>
+                        Mail
+                    </th>
+                </tr>
+                @foreach (var student in students)
+                {
+                    <tr>
+                        <td>
+                            @student.Nume
+                        </td>
+                        <td>
+                            @student.Prenume
+                        </td>
+                        <td>
+                            @student.Mail
+                        </td>
+                    </tr>
+                }
+            </table>
+        </td>
+        <td>
+            <table class="teachersTable">
+                <tr>
+                    <th>
+                        Nume
+                    </th>
+                    <th>
+                        Prenume
+                    </th>
+                    <th>
+                        Mail
+                    </th>
+                </tr>
+                @foreach (var teacher in teachers)
+                {
+                    <tr>
+                        <td>
+                            @teacher.Nume
+                        </td>
+                        <td>
+                            @teacher.Prenume
+                        </td>
+                        <td>
+                            @teacher.Mail
+                        </td>
+                    </tr>
+                }
+            </table>
+        </td>
+    </tr>
+</table>

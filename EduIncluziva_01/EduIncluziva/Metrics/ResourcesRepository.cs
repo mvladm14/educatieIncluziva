@@ -102,7 +102,8 @@ namespace EduIncluziva.Metrics
             {
                 using (var context = new EducatieIncluzivaDbContext())
                 {
-                    return context.HighSchools.Include("Users").SingleOrDefault(item => item.Nume == name);
+                    return context.HighSchools.Include("Users")
+                                              .SingleOrDefault(item => item.Nume == name);
                 }
             }
             catch (Exception exc)
