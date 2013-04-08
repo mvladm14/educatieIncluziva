@@ -29,7 +29,35 @@ namespace EduIncluziva.Metrics
                 throw new InvalidUserException();
             }
         }
+        public void UpdateTeacher(string nume, string prenume, string mail, string bio, string imgurl, string c1, string c2, string c3)
+        {
+            using (var context = new EducatieIncluzivaDbContext())
+            {
+                List<Course> curs = new List<Course>();
+                Course cur = new Course();
+                cur.Nume = c1;
+                Course cur2 = new Course();
+                cur2.Nume = c2;
+                Course cur3 = new Course();
+                cur3.Nume = c3;
+                curs.Add(cur);
+                curs.Add(cur2);
+                curs.Add(cur3);
 
+
+                var theUser = this.GetProfesoriByMail(mail);
+                theUser.Description = bio;
+                theUser.Mail = mail;
+                theUser.ImageUrlSetter = imgurl;
+                theUser.Nume = nume;
+                theUser.Prenume = prenume;
+                theUser.Materii = curs;
+                context.Teachers.Attach(theUser);
+                context.Entry(theUser).State = EntityState.Modified;
+                context.SaveChanges();
+
+            }
+        }
         /// <summary>
         /// Returns a Profesor corresponding to the GUID parameter.
         /// </summary>
