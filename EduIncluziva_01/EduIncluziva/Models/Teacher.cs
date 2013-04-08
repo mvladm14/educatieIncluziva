@@ -7,7 +7,9 @@ namespace EduIncluziva.Models
     public sealed class Teacher : User
     {
         public List<Course> Materii { get; set; }
-
+        public  string ImageUrlSetter { get; set; }
+        public  string Description { get; set; }
+      
         private const string ProfesorRole = "Profesor";
 
         public Teacher(string parola, string nume, string prenume, string mail, HighSchool scoalaDeProvenienta) :
@@ -19,5 +21,6 @@ namespace EduIncluziva.Models
 
         public Teacher() { }
         
-    }
+    
+}
 }
