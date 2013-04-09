@@ -8,7 +8,7 @@ namespace InsertInitialData
     {
         static void Main(string[] args)
         {
-            /*
+            
             Console.WriteLine("Populating with highschools");
 
             var inserareLicee = new InserareLicee();
@@ -25,12 +25,11 @@ namespace InsertInitialData
 
             var inserareAdministrator = new InserareAdministrator();
             inserareAdministrator.InsertAdministrator();
-            */
-            /*
+            
             var inserareProfesori = new InserareProfesori();
             inserareProfesori.InseramProfesori();
             Console.Write("Am terminat de adaugat profesori");
-            */
+            
             var rr = new ResourcesRepository();
             var h = rr.GetHighSchoolById(new Guid("80bc4591-cc75-4b1a-8162-1808ad8ff8f7"));
             

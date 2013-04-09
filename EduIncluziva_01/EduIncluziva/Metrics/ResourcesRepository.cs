@@ -48,7 +48,7 @@ namespace EduIncluziva.Metrics
                 var theUser = this.GetProfesoriByMail(mail);
                 theUser.Description = bio;
                 theUser.Mail = mail;
-                theUser.ImageUrlSetter = imgurl;
+                theUser.ImageUrl = imgurl;
                 theUser.Nume = nume;
                 theUser.Prenume = prenume;
                 theUser.Materii = curs;

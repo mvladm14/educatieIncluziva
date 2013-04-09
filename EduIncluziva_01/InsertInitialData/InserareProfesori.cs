@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using EduIncluziva.Metrics;
 using EduIncluziva.Models;
 
@@ -29,23 +30,27 @@ namespace InsertInitialData
         {
             using (var context = new EducatieIncluzivaDbContext())
             {
-                string parola = "parola";
-                string nume = "nume";
-                string prenume = "prenume";
-                string mail = "prof@yahoo.com";
-
+                const string parola = "parola";
+                const string nume = "nume";
+                const string prenume = "prenume";
+                const string mail = "prof@yahoo.com";
+                const string imageUrlForTest = 
+                    "C:\\Users\\vlad.mirel\\Documents\\Visual Studio 2012\\Projects\\EduIncluziva(1)\\EduIncluziva_01\\EduIncluziva\\Pictures\\Profesori\\Test\\testpic1.jpg";
                 for (int i = 0; i < 10; i++)
                 {
-                    Random random = new Random();
+                    var random = new Random();
 
                     int rand = random.Next(0, _numeLicee.Length);
                     string name = _numeLicee[rand];
 
                     HighSchool highSchool = _resourcesRepository.GetHighSchoolByName(name);
 
-                    var teacher = new Teacher(parola + i.ToString(), nume + i.ToString(),
-                        prenume + i.ToString(), mail + i.ToString(), highSchool,"urltest" + i.ToString(),"Bio test in care punem si liceul "+highSchool);
-
+                    var teacher = new Teacher(
+                        parola + i.ToString(), nume + i.ToString(),
+                        prenume + i.ToString(), mail + i.ToString(),
+                        highSchool, imageUrlForTest,
+                        "Bio test in care punem si liceul " + highSchool);
+                    
                     context.Teachers.Add(teacher);
                 }
                 context.SaveChanges();

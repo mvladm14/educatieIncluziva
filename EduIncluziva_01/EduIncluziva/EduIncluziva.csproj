@@ -108,6 +108,7 @@
     <Content Include="App_Data\articoleVechi.txt" />
     <Content Include="App_Data\news.txt" />
     <Content Include="App_Data\ListaLicee.txt" />
+    <Content Include="Content\Pictures\Profesori\testpic1.jpg" />
     <Content Include="Content\reveal.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -415,6 +416,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\uploads\" />
+    <Folder Include="Pictures\Profesori\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Admin\AdminPage.cshtml" />

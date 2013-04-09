@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.IO;
+using System.Web.Mvc;
 
 namespace EduIncluziva.Controllers
 {
@@ -14,6 +15,8 @@ namespace EduIncluziva.Controllers
 
         public ActionResult PaginaElevului()
         {
+            var path = Server.MapPath("~/Pictures/Profesori/Test");
+            Directory.CreateDirectory(path);
             return View();
         }
     }
