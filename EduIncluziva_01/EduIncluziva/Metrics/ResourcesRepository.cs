@@ -58,6 +58,19 @@ namespace EduIncluziva.Metrics
 
             }
         }
+
+        public void UpdateTeacher(string mail, string imageUrl)
+        {
+            using (var context = new EducatieIncluzivaDbContext())
+            {
+                var teacher = this.GetProfesoriByMail(mail);
+                teacher.ImageUrl = imageUrl;
+                context.Teachers.Attach(teacher);
+                context.Entry(teacher).State = EntityState.Modified;
+                context.SaveChanges();
+            }
+        }
+
         /// <summary>
         /// Returns a Profesor corresponding to the GUID parameter.
         /// </summary>

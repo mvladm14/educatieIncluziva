@@ -66,6 +66,16 @@ namespace EduIncluziva.Controllers
                 Directory.CreateDirectory(directoryPath);
                 var path = Path.Combine(Server.MapPath("~/Content/Pictures/Profesori/" + mail), fileName);
                 file.SaveAs(path);
+
+
+                //update the user so that he now stores the picture
+                string imageUrl = "~/Content/Pictures/Profesori/" + mail + "/" + fileName;
+
+                var rr = new ResourcesRepository();
+                rr.UpdateTeacher(mail, imageUrl);
+                var user = rr.GetUserByMail(mail);
+
+
             }
             // redirect back to the index action to show the form once again
             return RedirectToAction("Index", "Home");
