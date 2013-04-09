@@ -27,6 +27,12 @@ namespace EduIncluziva
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
 
+            routes.MapRoute(
+                "AdaugaPoza",
+                "AdaugaPoza/{mail}",
+                new {controller = "Profesori", action = "AdaugaPoza"}
+                );
+
         }
 
         protected void Application_Start()

@@ -28,7 +28,7 @@ namespace EduIncluziva.Controllers
                 file.SaveAs(path);
             }
             // redirect back to the index action to show the form once again
-            return View("../../Views/Profesori/PaginaProfesorului");
+            return RedirectToAction("Index", "Home");
         }
         public ActionResult Index()
         {

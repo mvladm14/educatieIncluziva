@@ -34,7 +34,7 @@
                         }
                         @if (Model.Role.Equals("Profesor"))
                         {
-                            Html.RenderAction("PaginaProfesorului","Profesori");
+                            Html.RenderAction("PaginaProfesorului","Profesori", Model.Mail);
                         }
                     </td>
                 </tr>

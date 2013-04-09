@@ -2,8 +2,8 @@
     ViewBag.Title = "PaginaProfesorului";
     Layout = null;
 }
-<h2>
-    Pagina Profesorului</h2>
+@model EduIncluziva.Models.User
+<h2>Pagina Profesorului</h2>
 <table border="0">
     <tr>
         <td>
@@ -11,10 +11,16 @@
                 <table border="0">
                     <tr>
                         <td>
-                            Poza
-                        </td>
-                        <td>
-                            <input id="File1" type="file" />
+                            <center>
+                                <p>Alegeti o poza</p>
+                                @using (Html.BeginForm("AdaugaPoza", "Profesori", new { mail = Model.Mail }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+                                    <input name="file" type="file" />
+                                    <br/>
+                                    <br/>
+                                    <p>Click pe butonul de mai jos pentru a incarca poza</p><input id="Submit1" type="submit" value="Incarcati" />
+                                }
+                            </center>
                         </td>
                     </tr>
                     <tr>
