@@ -3,6 +3,7 @@
     Layout = null;
 }
 @model EduIncluziva.Models.User
+@using EduIncluziva.Models
 <h2>Pagina Profesorului</h2>
 <table border="0">
     <tr>
@@ -13,6 +14,13 @@
                         <td>
                             <center>
                                 <p>Alegeti o poza</p>
+                                @{
+                                    var teacher = Model as Teacher;
+                                    if (!teacher.ImageUrl.Equals(""))
+                                    {
+                                        <img src="@Url.Content(teacher.ImageUrl)" alt="Fara poza" height="80" width="80" align="middle"/>
+                                    }
+                                }                                
                                 @using (Html.BeginForm("AdaugaPoza", "Profesori", new { mail = Model.Mail }, FormMethod.Post, new { enctype = "multipart/form-data" }))
                                 {
                                     <input name="file" type="file" />
