@@ -39,7 +39,11 @@
                     </tr>
                     @{
                         var teach = Model as Teacher;
-                    
+
+                    }
+                    @using(Html.BeginForm("Update","Profesori",teach,FormMethod.Post))
+                    {
+                                       
                     <tr>
                         <td>
                             Nume :
@@ -59,33 +63,26 @@
                             @Html.TextAreaFor(m => teach.Description)
                         </td>
                     </tr>
-                    }
+                    
                     <tr>
                         <td>
                             Materia 1 :
                             @Html.TextBoxFor(m => teach.Materii[0])
                         </td>
                         <td>
-                            <center>
-                                @using (Html.BeginForm("AdaugaLectii", "Profesori", FormMethod.Post))
-                                {
-                                    <input type="submit" value="Adauga Lectii" name="materie1" />
-                                }
-                            </center>
+                                    <input id ="unu" type="submit" value="Adauga Lectii" name="materie1" />
+                         
                         </td>
                     </tr>
+                        
                     <tr>
                         <td>
                             Materia 2 :
                             @Html.TextBoxFor(m => teach.Materii[1])
                         </td>
                         <td>
-                            <center>
-                                @using (Html.BeginForm("AdaugaLectii", "Profesori", FormMethod.Post))
-                                {
-                                    <input type="submit" value="Adauga Lectii" name="materie2" />
-                                }
-                            </center>
+                                    <input id="doi" type="submit" value="Adauga Lectii" name="materie2" />
+                         
                         </td>
                     </tr>
                     <tr>
@@ -94,22 +91,20 @@
                            @Html.TextBoxFor(m => teach.Materii[2])
                         </td>
                         <td>
-                            <center>
-                                @using (Html.BeginForm("AdaugaLectii", "Profesori", FormMethod.Post))
-                                {
-                                    <input type="submit" value="Adauga Lectii" name="materie3" />
-                                }
-                            </center>
+                                    <input id="trei" type="submit" value="Adauga Lectii" name="materie3" />
+                              
+                          
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <center>
-                                <input id="Submit1" type="submit" value="Update Informatii" />
-                            </center>
+                               <input id="submit" type="submit" value="Update" />
+                           
                         </td>
                     </tr>
+                    }
                 </table>
+                    
             </center>
         </td>
         <td>
