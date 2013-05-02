@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity.Infrastructure;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -17,6 +19,28 @@ namespace EduIncluziva.Controllers
             var rr = new ResourcesRepository();
             var user = rr.GetUserByMail(mail);
             return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult Update(Teacher te)
+        {
+            using (var db = new EducatieIncluzivaDbContext())
+            {
+                Teacher t = db.Teachers.FirstOrDefault(p => p.Mail.Equals(te.Mail));
+                if (t != null)
+                {
+                    t.Materii = te.Materii;
+                    t.Nume = te.Nume;
+                    t.Prenume = te.Prenume;
+                    t.Description = te.Description;
+                    DbEntityEntry<Teacher> entry = db.Entry(t);
+                    entry.State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+               
+
+            }
+            return RedirectToAction("Index", "Home");
         }
         [HttpPost]
         public ActionResult AdaugaLectii(FormCollection collection)
