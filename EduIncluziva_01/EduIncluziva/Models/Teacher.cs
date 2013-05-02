@@ -6,7 +6,7 @@ namespace EduIncluziva.Models
 {
     public sealed class Teacher : User
     {
-        public List<Course> Materii { get; set; }
+        public IList<Course> Materii { get; set; }
         public string ImageUrl { get; set; }
         public string Description { get; set; }
 
