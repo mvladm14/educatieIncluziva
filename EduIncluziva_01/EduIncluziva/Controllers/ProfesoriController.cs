@@ -22,45 +22,22 @@ namespace EduIncluziva.Controllers
         }
 
         [HttpPost]
-        public ActionResult Update( FormCollection te, string mail)
+        public ActionResult Update(FormCollection te, string mail)
         {
-            //var rr = new ResourcesRepository();
-            //var t = rr.GetProfesoriByMail(mail);
-              
-            using (var db = new EducatieIncluzivaDbContext())
-            {
-                Teacher t;
-                t = db.Teachers.FirstOrDefault(p => p.Mail.Equals(mail));
-               
-                Course c1 = new Course();
-                Course c2 = new Course();
-                Course c3 = new Course();
+            var rr = new ResourcesRepository();
 
-                if (t != null)
-                {
-                    c1.Nume = te.GetValue("teach.Materii[0]").AttemptedValue;
-                    c2.Nume = te.GetValue("teach.Materii[1]").AttemptedValue;
-                    c3.Nume = te.GetValue("teach.Materii[2]").AttemptedValue;
-                    t.Materii = new List<Course>();
-                    t.Materii.Add(c1);
-                    t.Materii.Add(c2);
-                    t.Materii.Add(c3);
-                    t.Nume = te.GetValue("teach.Nume").AttemptedValue;
-                    t.Prenume = te.GetValue("teach.Prenume").AttemptedValue;
-                    t.Description = te.GetValue("teach.Description").AttemptedValue;
+            string numeCurs1 = te.GetValue("teach.Materii[0]").AttemptedValue;
+            string numeCurs2 = te.GetValue("teach.Materii[1]").AttemptedValue;
+            string numeCurs3 = te.GetValue("teach.Materii[2]").AttemptedValue;
 
-                 //   rr.UpdateTeacher(t.Nume, t.Prenume, t.Mail, t.Description, t.ImageUrl, te.GetValue("teach.Materii[0]").AttemptedValue, te.GetValue("teach.Materii[1]").AttemptedValue, te.GetValue("teach.Materii[2]").AttemptedValue);
+            string nume = te.GetValue("teach.Nume").AttemptedValue;
+            string prenume = te.GetValue("teach.Prenume").AttemptedValue;
+            string description = te.GetValue("teach.Description").AttemptedValue;
 
-                    db.Teachers.Attach(t);
-                    db.Entry(t).State = EntityState.Modified;
-                    db.SaveChanges();
-                  // DbEntityEntry<Teacher> entry = db.Entry(t);
-                  //  entry.State = EntityState.Modified;
-                   // db.SaveChanges();
-                }
-               
+            rr.UpdateTeacher(nume, prenume, mail, description,
+                             numeCurs1, numeCurs2, numeCurs3);
 
-            }
+
             return RedirectToAction("Index", "Home");
         }
         [HttpPost]
@@ -96,7 +73,7 @@ namespace EduIncluziva.Controllers
         {
             return View();
         }
-        
+
         [HttpPost]
         public ActionResult AdaugaPoza(HttpPostedFileBase file, string mail)
         {

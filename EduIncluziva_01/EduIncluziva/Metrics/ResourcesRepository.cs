@@ -29,32 +29,60 @@ namespace EduIncluziva.Metrics
                 throw new InvalidUserException();
             }
         }
-        public void UpdateTeacher(string nume, string prenume, string mail, string bio, string imgurl, string c1, string c2, string c3)
+        public void UpdateTeacher(string nume,   string prenume,
+                                  string mail,   string bio,
+                                  string c1, string c2, string c3)
         {
             using (var context = new EducatieIncluzivaDbContext())
             {
-                List<Course> curs = new List<Course>();
+                // get the teacher
+                var theUser = this.GetProfesoriByMail(mail);
+
+                //update general info about the teacher
+                theUser.Description = bio;
+                theUser.Mail = mail;
+                theUser.Nume = nume;
+                theUser.Prenume = prenume;
+                
                 Course cur = new Course();
                 cur.Nume = c1;
                 Course cur2 = new Course();
                 cur2.Nume = c2;
                 Course cur3 = new Course();
                 cur3.Nume = c3;
-                curs.Add(cur);
-                curs.Add(cur2);
-                curs.Add(cur3);
 
+                cur.ProfesorId = theUser.UserId;
+                cur2.ProfesorId = theUser.UserId;
+                cur3.ProfesorId = theUser.UserId;
 
-                var theUser = this.GetProfesoriByMail(mail);
-                theUser.Description = bio;
-                theUser.Mail = mail;
-                theUser.ImageUrl = imgurl;
-                theUser.Nume = nume;
-                theUser.Prenume = prenume;
-                theUser.Materii = curs;
+                //if the teacher already has some courses
+                if (theUser.Materii != null)
+                {
+                    if (!theUser.Materii.Contains(cur))
+                    {
+                        context.Courses.Add(cur);
+                    }
+                    if (!theUser.Materii.Contains(cur2))
+                    {
+                        context.Courses.Add(cur2);
+                    }
+                    if (!theUser.Materii.Contains(cur3))
+                    {
+                        context.Courses.Add(cur3);
+                    }
+                }
+                else
+                {
+                    context.Courses.Add(cur);
+                    context.Courses.Add(cur2);
+                    context.Courses.Add(cur3);
+                }
+
+                context.SaveChanges();
+
                 context.Teachers.Attach(theUser);
                 context.Entry(theUser).State = EntityState.Modified;
-                context.SaveChanges();
+                
 
             }
         }

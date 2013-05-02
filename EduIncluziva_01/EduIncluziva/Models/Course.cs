@@ -12,10 +12,7 @@ namespace EduIncluziva.Models
 
         [Key]
         public Guid CourseId { get; set; }
-
-        public int? LessoId { get; set; }
-
-        [ForeignKey("LessonId")]
+                
         public IList<Lesson> Lectii { get; set; }
 
         public Guid ProfesorId { get; set; }
@@ -25,6 +22,7 @@ namespace EduIncluziva.Models
 
         public Course()
         {
+            CourseId = Guid.NewGuid();
             Profesori = new List<Teacher>();
             Lectii = new List<Lesson>();
         }
