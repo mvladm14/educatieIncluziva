@@ -16,7 +16,7 @@ namespace EduIncluziva.Models
         public Guid LessoId { get; set; }
 
         [ForeignKey("LessonId")]
-        public List<Lesson> Lectii { get; set; }
+        public IList<Lesson> Lectii { get; set; }
 
         public Guid ProfesorId { get; set; }
 
