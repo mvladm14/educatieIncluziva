@@ -8,11 +8,9 @@
 <table border="0">
     <tr>
         <td>
-            <center>
                 <table border="0">
                     <tr>
                         <td>
-                            <center>
                                 <p>Alegeti o poza</p>
                                 @{
                                     var teacher = Model as Teacher;
@@ -34,14 +32,14 @@
                                     </p>
                                     <input id="Submit1" type="submit" value="Incarcati" />
                                 }
-                            </center>
+                            
                         </td>
                     </tr>
                     @{
                         var teach = Model as Teacher;
 
                     }
-                    @using(Html.BeginForm("Update","Profesori",teach,FormMethod.Post))
+                    @using (Html.BeginForm("Update", "Profesori" ,new { mail = Model.Mail}, FormMethod.Post))
                     {
                                        
                     <tr>
@@ -104,8 +102,6 @@
                     </tr>
                     }
                 </table>
-                    
-            </center>
         </td>
         <td>
             <img alt="Profesori" src="../../Pictures/altele/a1.png" width="300" height="400" />
