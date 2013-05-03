@@ -31,7 +31,7 @@ namespace EduIncluziva.Controllers
                 te.GetValue("teach.Materii[2]").AttemptedValue.Equals(""))
             {
                 TempData["alertMessage"] = "The user has to be alerted";
-                return View();
+                return View("../../Views/Profesori/PaginaProfesorului");
             }
             else
             {
