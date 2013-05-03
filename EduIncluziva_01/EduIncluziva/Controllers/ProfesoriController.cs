@@ -25,13 +25,14 @@ namespace EduIncluziva.Controllers
         public ActionResult Update(FormCollection te, string mail)
         {
             var rr = new ResourcesRepository();
-
+            var model = rr.GetUserByMail(mail);
             if (te.GetValue("teach.Materii[0]").AttemptedValue.Equals("") ||
                 te.GetValue("teach.Materii[1]").AttemptedValue.Equals("") ||
                 te.GetValue("teach.Materii[2]").AttemptedValue.Equals(""))
             {
                 TempData["alertMessage"] = "The user has to be alerted";
-                return View("../../Views/Profesori/PaginaProfesorului");
+                return View("../../Views/Cont/ContulMeu", model);
+              
             }
             else
             {
