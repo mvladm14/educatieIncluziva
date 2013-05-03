@@ -1,7 +1,7 @@
 ﻿ @{
     ViewBag.Title = "AddLesson";
 }
-
+@model EduIncluziva.Models.User
  <div>
       <img alt="Add Lesson" src="../../Pictures/altele/AddLessonBanner.png" />
 </div>
@@ -33,7 +33,7 @@ Selecteaza Lectia:
 Adauga Lectie
 </h2>
 
-@using (Html.BeginForm("AddLesson", "AddLesson", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("AddLesson", "AddLesson", new { mail = Model.Mail }, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
 <input name="file" type="file" />
 <input id="Submit1" type="submit" value="submit" />
