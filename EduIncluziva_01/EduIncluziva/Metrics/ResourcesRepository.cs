@@ -20,7 +20,8 @@ namespace EduIncluziva.Metrics
             {
                 using (var context = new EducatieIncluzivaDbContext())
                 {
-                    return context.Teachers.SingleOrDefault(item => item.Mail == mail);
+                    return context.Teachers
+                        .SingleOrDefault(item => item.Mail == mail);
                 }
             }
             catch (Exception exc)
