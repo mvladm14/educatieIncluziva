@@ -26,19 +26,29 @@ namespace EduIncluziva.Controllers
         {
             var rr = new ResourcesRepository();
 
-            string numeCurs1 = te.GetValue("teach.Materii[0]").AttemptedValue;
-            string numeCurs2 = te.GetValue("teach.Materii[1]").AttemptedValue;
-            string numeCurs3 = te.GetValue("teach.Materii[2]").AttemptedValue;
+            if (te.GetValue("teach.Materii[0]").AttemptedValue.Equals("") ||
+                te.GetValue("teach.Materii[1]").AttemptedValue.Equals("") ||
+                te.GetValue("teach.Materii[2]").AttemptedValue.Equals(""))
+            {
+                TempData["alertMessage"] = "The user has to be alerted";
+                return View();
+            }
+            else
+            {
+                TempData["alertMessage"] = null;
+                string numeCurs1 = te.GetValue("teach.Materii[0]").AttemptedValue;
+                string numeCurs2 = te.GetValue("teach.Materii[1]").AttemptedValue;
+                string numeCurs3 = te.GetValue("teach.Materii[2]").AttemptedValue;
 
-            string nume = te.GetValue("teach.Nume").AttemptedValue;
-            string prenume = te.GetValue("teach.Prenume").AttemptedValue;
-            string description = te.GetValue("teach.Description").AttemptedValue;
+                string nume = te.GetValue("teach.Nume").AttemptedValue;
+                string prenume = te.GetValue("teach.Prenume").AttemptedValue;
+                string description = te.GetValue("teach.Description").AttemptedValue;
 
-            rr.UpdateTeacher(nume, prenume, mail, description,
-                             numeCurs1, numeCurs2, numeCurs3);
+                rr.UpdateTeacher(nume, prenume, mail, description,
+                                 numeCurs1, numeCurs2, numeCurs3);
 
-
-            return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Home");
+            }
         }
         [HttpPost]
         public ActionResult AdaugaLectii(FormCollection collection)
