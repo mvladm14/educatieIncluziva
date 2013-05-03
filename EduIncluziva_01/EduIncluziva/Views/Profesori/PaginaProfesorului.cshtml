@@ -5,6 +5,16 @@
 @model EduIncluziva.Models.User
 @using EduIncluziva.Models
 <h2>Pagina Profesorului</h2>
+
+@{
+    if(null != TempData["alertMessage"])
+    {
+        <script type="text/javascript">
+            alert("Va rugam completati campurile obligatorii");
+        </script>
+    }
+}
+}
 <table border="0">
     <tr>
         <td>
@@ -108,3 +118,4 @@
         </td>
     </tr>
 </table>
+
