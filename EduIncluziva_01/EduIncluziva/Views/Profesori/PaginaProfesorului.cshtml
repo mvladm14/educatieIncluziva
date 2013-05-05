@@ -46,26 +46,25 @@
                     </tr>
                     @{
                         var teach = Model as Teacher;
-
                     }
                     @using (Html.BeginForm("Update", "Profesori" ,new { mail = Model.Mail}, FormMethod.Post))
                     {
                                        
                     <tr>
                         <td>
-                            Nume :
+                            *Nume :
                            @Html.TextBoxFor(m => teach.Nume)
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            Prenume :
+                            *Prenume :
                             @Html.TextBoxFor(m => teach.Prenume)
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            Bio :
+                            *Bio :
                             <br />
                             @Html.TextAreaFor(m => teach.Description)
                         </td>
@@ -73,11 +72,12 @@
                     
                     <tr>
                         <td>
-                            Materia 1 :
+                            *Materia 1 :
                             @Html.TextBoxFor(m => teach.Materii[0])
                         </td>
                         <td>
-                                    <input id ="unu" type="submit" value="Adauga Lectii" name="materie1" />
+                             
+                           @Html.ActionLink(" ", "SubmitToLesson", new {mail = Model.Mail, materie = "0" }, new { style = "background:url('../../Pictures/altele/bb2.png')no-repeat center right; display:block; height:60px; width:200px; " })
                          
                         </td>
                     </tr>
@@ -88,9 +88,10 @@
                             @Html.TextBoxFor(m => teach.Materii[1])
                         </td>
                         <td>
-                                    <input id="doi" type="submit" value="Adauga Lectii" name="materie2" />
-                         
-                        </td>
+                           
+                                  @Html.ActionLink(" ", "SubmitToLesson", new {mail = Model.Mail, materie = "1" }, new { style = "background:url('../../Pictures/altele/bb2.png')no-repeat center right; display:block; height:60px; width:200px; " })
+                                 
+                             </td>
                     </tr>
                     <tr>
                         <td>
@@ -98,9 +99,8 @@
                            @Html.TextBoxFor(m => teach.Materii[2])
                         </td>
                         <td>
-                                    <input id="trei" type="submit" value="Adauga Lectii" name="materie3" />
-                              
-                          
+                             @Html.ActionLink(" ", "SubmitToLesson", new { mail = Model.Mail,materie = "2"}, new { style = "background:url('../../Pictures/altele/bb2.png')no-repeat center right; display:block; height:60px; width:200px; " })
+                                    
                         </td>
                     </tr>
                     <tr>
