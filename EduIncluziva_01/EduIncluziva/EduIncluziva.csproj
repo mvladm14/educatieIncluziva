@@ -310,6 +310,7 @@
     <Content Include="Pictures\altele\AddLessonBanner.png" />
     <Content Include="Pictures\altele\administrator.png" />
     <Content Include="Pictures\altele\Banner.png" />
+    <Content Include="Pictures\altele\bb2.png" />
     <Content Include="Pictures\altele\cs.jpg" />
     <Content Include="Pictures\altele\happy.png" />
     <Content Include="Pictures\altele\LatestNews.png" />
@@ -322,6 +323,8 @@
     <Content Include="Pictures\altele\teachers.png" />
     <Content Include="Pictures\altele\test.png" />
     <Content Include="Pictures\altele\untip.jpg" />
+    <Content Include="Pictures\altele\bb.png" />
+    <Content Include="Pictures\altele\button.gif" />
     <Content Include="Pictures\gifs\ajax-loader.gif" />
     <Content Include="Scripts\jquery-1.4.4.min.js" />
     <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
@@ -464,7 +467,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>50054</DevelopmentServerPort>
+          <DevelopmentServerPort>5629</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>
