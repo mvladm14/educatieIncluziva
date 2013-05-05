@@ -11,7 +11,14 @@
     <h2>Adauga Lectii pentru materia: @Html.Encode(ViewData["materie"])</h2> 
 
 </div>
-
+@{
+    if(ViewData["fileUp"] != null)
+    {
+        <script type="text/javascript">
+            alert("Fisierul a fost incarcat cu succes");
+        </script>
+    }  
+}
 <div style= 'display: inline-block;'>
 <div>
 <div>
@@ -32,8 +39,7 @@ Selecteaza Lectia:
 <h2>
 Adauga Lectie
 </h2>
-
-@using (Html.BeginForm("AddLesson", "AddLesson", new { mail = Model.Mail }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("AddLesson", "AddLesson", new { mail = Model.Mail, materie = ViewData["materie"] }, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
 <input name="file" type="file" />
 <input id="Submit1" type="submit" value="submit" />
