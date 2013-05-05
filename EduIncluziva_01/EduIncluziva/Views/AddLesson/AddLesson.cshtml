@@ -6,6 +6,7 @@
       <img alt="Add Lesson" src="../../Pictures/altele/AddLessonBanner.png" />
 </div>
 
+
 <div>
 
     <h2>Adauga Lectii pentru materia: @Html.Encode(ViewData["materie"])</h2> 
@@ -22,6 +23,34 @@
 <div style= 'display: inline-block;'>
 <div>
 <div>
+    @{
+            if(ViewBag.nr == 1)
+            {
+                <script type="text/javascript">
+                    alert("Lectia cu acest nume a fost gasita in baza de date");
+                </script>
+            }
+            else if(ViewBag.nr == 0)
+            {
+                 <script type="text/javascript">
+                     alert("Lectia cu acest nume NU a fost gasita in baza de date");
+                </script>
+            }
+    }
+      @{
+            if(ViewBag.stergere == 1)
+            {
+                <script type="text/javascript">
+                    alert("Lectia a fost stearsa");
+                </script>
+            }
+            else if(ViewBag.stergere == 0)
+            {
+                 <script type="text/javascript">
+                     alert("Lectia cu acest nume NU a putut fi stearsa.");
+                </script>
+            }
+    }
 
 Selecteaza Lectia:
  
@@ -48,15 +77,25 @@ Adauga Lectie
 <div>
 <h2>Cauta Lectie: </h2>
 Nume:
-    <input id="Text1" type="text" />
-    <input id="Submit2" type="submit" value="Cauta" />
-
+@using (Html.BeginForm("SearchForLesson", "AddLesson", new { mail = Model.Mail, materie = ViewData["materie"] }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    
+   <input id="account" type="text" name="name" class="s" />
+     <input id="Submit2" type="submit" value="Cauta" />
+}
+    @Html.Raw((String)ViewBag.myData)
 </div>
 <div>
 <h2>Sterge Lectie: </h2>
 Nume:
-    <input id="Text2" type="text" />
+@using (Html.BeginForm("DeleteLesson", "AddLesson", new { mail = Model.Mail, materie = ViewData["materie"] }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    
+   <input id="sterge" type="text" name="name" class="s" />
+   
     <input id="Submit3" type="submit" value="Sterge" />
+}
+    @Html.Raw((String)ViewBag.eraseData)
 
 </div>
 </div>
