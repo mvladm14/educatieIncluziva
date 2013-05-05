@@ -20,6 +20,50 @@ namespace EduIncluziva.Controllers
             return View();
         }
         [HttpPost]
+        public ActionResult DeleteLesson(string mail, string materie, string name)
+        {
+            ViewBag.stergere = null;
+            ViewData["materie"] = materie;
+            var rr = new ResourcesRepository();
+            var model = rr.GetProfesoriByMail(mail);
+            if (rr.EraseLesson(name, mail, materie) == 1)
+            {
+                ViewBag.eraseData = "Lectia a fost stearsa cu succes";
+                ViewBag.stergere = 1;
+           
+            }
+            else
+            {
+                ViewBag.eraseData = "Lectia cu numele " + name + " nu a putut fi stearsa. Verificati cu atentie numele lectiei";
+                ViewBag.stergere = 0;
+           
+            }
+
+            return View("../../Views/AddLesson/AddLesson", model);
+        }
+        
+        [HttpPost]
+        public ActionResult SearchForLesson(string mail, string materie,string name)
+        {
+            ViewBag.myData = null;
+            ViewBag.nr = null;
+            ViewData["materie"] = materie;
+            var rr = new ResourcesRepository();
+            var model = rr.GetProfesoriByMail(mail);
+            if (rr.FindLesson(name, mail, materie) == 1)
+            {
+                ViewBag.myData = "Lectia se afla in baza de date";
+                ViewBag.nr = 1;
+            }
+            else
+            {
+                ViewBag.myData = "Lectia cu numele " + name + " nu se gaseste momentan in baza de date.";
+                ViewBag.nr = 0;
+            }
+
+             return View("../../Views/AddLesson/AddLesson", model);
+        }
+        [HttpPost]
         public ActionResult AddLesson(HttpPostedFileBase file,string mail, string materie)
         {
             // Verify that the user selected a file
@@ -49,11 +93,30 @@ namespace EduIncluziva.Controllers
 
                 var path = Path.Combine(Server.MapPath("~/App_Data/uploads/"),  mail + "/" , materie, fileName);
                 file.SaveAs(path);
-
+                int nr = 0;
                 using (var db = new EducatieIncluzivaDbContext())
                 {
                     Teacher myTeacher = db.Teachers.FirstOrDefault(p => p.Mail.Equals(mail));
-                    myTeacher.ImageUrl = path.ToString();
+                   
+                    Lesson l = new Lesson();
+                    l.ProfesorOwner = myTeacher;
+                    l.ProfesorOwnerId = myTeacher.UserId;
+                    l.Titlu = fileName;
+                    
+
+                    if (myTeacher.Materii[0].Nume.Equals(materie))
+                    {
+                        nr = 0;
+                    }
+                    else if (myTeacher.Materii[1].Nume.Equals(materie))
+                    {
+                        nr = 1;
+                    }
+                    else
+                    {
+                        nr = 2;
+                    }
+                    myTeacher.Materii[nr].Lectii.Add(l);
 
                     DbEntityEntry<Teacher> entry = db.Entry(myTeacher);
                     entry.State = EntityState.Modified;
