@@ -27,8 +27,9 @@ namespace EduIncluziva.Controllers
             var rr = new ResourcesRepository();
             var model = rr.GetUserByMail(mail);
             if (te.GetValue("teach.Materii[0]").AttemptedValue.Equals("") ||
-                te.GetValue("teach.Materii[1]").AttemptedValue.Equals("") ||
-                te.GetValue("teach.Materii[2]").AttemptedValue.Equals(""))
+                te.GetValue("teach.Nume").AttemptedValue.Equals("") ||
+                te.GetValue("teach.Prenume").AttemptedValue.Equals("") ||
+                te.GetValue("teach.Description").AttemptedValue.Equals(""))
             {
                 TempData["alertMessage"] = "The user has to be alerted";
                 return View("../../Views/Cont/ContulMeu", model);
@@ -45,9 +46,21 @@ namespace EduIncluziva.Controllers
                 string prenume = te.GetValue("teach.Prenume").AttemptedValue;
                 string description = te.GetValue("teach.Description").AttemptedValue;
 
-                rr.UpdateTeacher(nume, prenume, mail, description,
-                                 numeCurs1, numeCurs2, numeCurs3);
-
+                if (numeCurs2.Equals(""))
+                {
+                    rr.UpdateTeacher(nume, prenume, mail, description,
+                                 numeCurs1);
+                }
+                else if (numeCurs3.Equals(""))
+                {
+                    rr.UpdateTeacher(nume, prenume, mail, description,
+                                 numeCurs1, numeCurs2);
+                }
+                else
+                {
+                    rr.UpdateTeacher(nume, prenume, mail, description,
+                                     numeCurs1, numeCurs2, numeCurs3);
+                }
                 return RedirectToAction("Index", "Home");
             }
         }
@@ -83,6 +96,28 @@ namespace EduIncluziva.Controllers
         public ActionResult Profesori()
         {
             return View();
+        }
+
+        public ActionResult SubmitToLesson(string materie,string mail)
+        {
+            if (materie.Equals("0"))
+            {
+                ViewData["materie"] = "materie0";
+            }
+            else if (materie.Equals("1"))
+            {
+                ViewData["materie"] = "materie1";
+            }
+            else if (materie.Equals("2"))
+            {
+                ViewData["materie"] = "materie2";
+            }
+            var rr = new ResourcesRepository();
+          
+            var model = rr.GetUserByMail(mail);
+           
+            return View("../../Views/AddLesson/AddLesson",model);
+
         }
 
         [HttpPost]
