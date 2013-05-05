@@ -79,15 +79,107 @@ namespace EduIncluziva.Metrics
                     context.Courses.Add(cur3);
                 }
 
-                context.SaveChanges();
-
                 context.Teachers.Attach(theUser);
                 context.Entry(theUser).State = EntityState.Modified;
                 
+                context.SaveChanges();
+
 
             }
         }
+        public void UpdateTeacher(string nume, string prenume,
+                                  string mail, string bio,
+                                  string c1)
+        {
+            using (var context = new EducatieIncluzivaDbContext())
+            {
+                // get the teacher
+                var theUser = this.GetProfesoriByMail(mail);
 
+                //update general info about the teacher
+                theUser.Description = bio;
+                theUser.Mail = mail;
+                theUser.Nume = nume;
+                theUser.Prenume = prenume;
+
+                Course cur = new Course();
+                cur.Nume = c1;
+                cur.ProfesorId = theUser.UserId;
+               
+                //if the teacher already has some courses
+                if (theUser.Materii != null)
+                {
+                    if (!theUser.Materii.Contains(cur))
+                    {
+                        context.Courses.Add(cur);
+                    }
+                }
+                else
+                {
+                    context.Courses.Add(cur);
+                }
+
+
+                context.Teachers.Attach(theUser);
+                context.Entry(theUser).State = EntityState.Modified;
+
+                context.SaveChanges();
+
+
+            }
+        }
+        public void UpdateTeacher(string nume, string prenume,
+                                  string mail, string bio,
+                                  string c1, string c2)
+        {
+            using (var context = new EducatieIncluzivaDbContext())
+            {
+                // get the teacher
+                var theUser = this.GetProfesoriByMail(mail);
+
+                //update general info about the teacher
+                theUser.Description = bio;
+                theUser.Mail = mail;
+                theUser.Nume = nume;
+                theUser.Prenume = prenume;
+
+                Course cur = new Course();
+                cur.Nume = c1;
+                Course cur2 = new Course();
+                cur2.Nume = c2;
+                
+                cur.ProfesorId = theUser.UserId;
+                cur2.ProfesorId = theUser.UserId;
+                
+                //if the teacher already has some courses
+                if (theUser.Materii != null)
+                {
+                    if (!theUser.Materii.Contains(cur))
+                    {
+                        context.Courses.Add(cur);
+                    }
+                    if (!theUser.Materii.Contains(cur2))
+                    {
+                        context.Courses.Add(cur2);
+                    }
+                 }
+                else
+                {
+                    context.Courses.Add(cur);
+                    context.Courses.Add(cur2);
+                   
+                 }
+
+                context.Teachers.Attach(theUser);
+                context.Entry(theUser).State = EntityState.Modified;
+                context.SaveChanges();
+
+              
+            }
+        }
+
+        
+        
         public void UpdateTeacher(string mail, string imageUrl)
         {
             using (var context = new EducatieIncluzivaDbContext())
@@ -198,7 +290,53 @@ namespace EduIncluziva.Metrics
                 throw exc;
             }
         }
+        public int FindLesson(string name, string mail,string materii)
+        {
+            int nr=0;
+            var rr = new ResourcesRepository();
+            var model = rr.GetProfesoriByMail(mail);
+            if(materii.Equals(model.Materii[0].Nume))
+                nr = 0;
+            else if(materii.Equals(model.Materii[1].Nume))
+                nr = 1;
+            else
+            {
+                nr = 2;
+            }
+            foreach (Lesson l in model.Materii[nr].Lectii)
+            {
+                if (l.Titlu.Equals(name))
+                    return 1;
+            }
+            return 0;
+        }
+        public int EraseLesson(string nume,string mail,string materii)
+        {
+            int nr = 0;
+            var rr = new ResourcesRepository();
+            var model = rr.GetProfesoriByMail(mail);
+            if (materii.Equals(model.Materii[0].Nume))
+                nr = 0;
+            else if (materii.Equals(model.Materii[1].Nume))
+                nr = 1;
+            else
+            {
+                nr = 2;
+            }
+            int index=0;
+            foreach (Lesson l in model.Materii[nr].Lectii)
+            {
+                index++;
+                if (l.Titlu.Equals(nume))
+                {
+                    break;
+                }
+            }
+            model.Materii[nr].Lectii.RemoveAt(index);
 
+            return 0;
+
+        }
         public HighSchool GetHighSchoolById(Guid highSchoolId)
         {
             try
