@@ -18,6 +18,8 @@ namespace EduIncluziva.Models
         public virtual Teacher ProfesorOwner { get; set; }
         public DateTime DataPublicatie;
 
-        public Lesson() { }
+        public Lesson() {
+            LessonId = Guid.NewGuid();
+        }
     }
 }
