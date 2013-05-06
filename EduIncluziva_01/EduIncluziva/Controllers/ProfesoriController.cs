@@ -100,7 +100,7 @@ namespace EduIncluziva.Controllers
 
         public ActionResult SubmitToLesson(string materie,string mail)
         {
-            if (materie.Equals("0"))
+           /* if (materie.Equals("0"))
             {
                 ViewData["materie"] = "materie0";
             }
@@ -111,7 +111,8 @@ namespace EduIncluziva.Controllers
             else if (materie.Equals("2"))
             {
                 ViewData["materie"] = "materie2";
-            }
+            }*/
+            ViewData["materie"] = materie;
             var rr = new ResourcesRepository();
           
             var model = rr.GetUserByMail(mail);
