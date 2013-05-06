@@ -66,6 +66,8 @@ namespace EduIncluziva.Controllers
         [HttpPost]
         public ActionResult AddLesson(HttpPostedFileBase file,string mail, string materie)
         {
+            var rr = new ResourcesRepository();
+
             // Verify that the user selected a file
             if (file != null && file.ContentLength > 0)
             {
@@ -94,16 +96,44 @@ namespace EduIncluziva.Controllers
                 var path = Path.Combine(Server.MapPath("~/App_Data/uploads/"),  mail + "/" , materie, fileName);
                 file.SaveAs(path);
                 int nr = 0;
+              
                 using (var db = new EducatieIncluzivaDbContext())
                 {
-                    Teacher myTeacher = db.Teachers.FirstOrDefault(p => p.Mail.Equals(mail));
-                   
+                    var myTeacher = db.Teachers.SingleOrDefault(item => item.Mail == mail);
+                    var curs = from p in db.Courses
+                               where p.Nume.Equals(materie) && p.ProfesorId == myTeacher.UserId
+                               select p;  
+
+                  /*  Course cur = new Course();
+                    cur.Nume = materie;
+                    cur.ProfesorId = myTeacher.UserId;
+                    */
                     Lesson l = new Lesson();
                     l.ProfesorOwner = myTeacher;
                     l.ProfesorOwnerId = myTeacher.UserId;
                     l.Titlu = fileName;
-                    
 
+                    foreach (var c in curs)
+                    {
+                        c.Lectii.Add(l);
+                        break;
+                    } 
+                  /*  if (myTeacher.Materii != null)
+                    {
+                        if (myTeacher.Materii.Contains(cur))
+                        {
+                            db.Lessons.Add(l);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Nu exista");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("e NULL");
+                    }
+                    /*
                     if (myTeacher.Materii[0].Nume.Equals(materie))
                     {
                         nr = 0;
@@ -117,17 +147,17 @@ namespace EduIncluziva.Controllers
                         nr = 2;
                     }
                     myTeacher.Materii[nr].Lectii.Add(l);
-
+                    */
                     DbEntityEntry<Teacher> entry = db.Entry(myTeacher);
                     entry.State = EntityState.Modified;
 
                     db.SaveChanges();
+
                     ViewData["fileUp"] = "incarcat";
                     ViewData["materie"] = materie;
                 }
             }
-            var rr = new ResourcesRepository();
-
+           
             var model = rr.GetUserByMail(mail);
            
             // redirect back to the index action to show the form once again
