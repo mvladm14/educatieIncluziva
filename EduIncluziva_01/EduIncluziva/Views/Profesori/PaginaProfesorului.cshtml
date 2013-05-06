@@ -44,9 +44,36 @@
                             
                         </td>
                     </tr>
-                    @{
+                     @{
                         var teach = Model as Teacher;
-                    }
+                     }
+                   
+                    @{
+                        int index = 0;
+                     using (var db = new EducatieIncluzivaDbContext())
+                     {
+                         var curs = from p in db.Courses
+                                    where  p.ProfesorId == teach.UserId
+                                    select p; 
+                         foreach(var c in curs)
+                         {
+                             if(index == 0)
+                             {
+                                 ViewBag.curs1 = c.Nume;
+                             }
+                             else if(index == 1)
+                             {
+                                 ViewBag.curs2 = c.Nume;
+                             }
+                             else if(index == 2)
+                             {
+                                 ViewBag.curs3 = c.Nume;
+                             }
+                             index++;
+                         } 
+                     }
+                   }
+               
                     @using (Html.BeginForm("Update", "Profesori" ,new { mail = Model.Mail}, FormMethod.Post))
                     {
                                        
@@ -73,11 +100,15 @@
                     <tr>
                         <td>
                             *Materia 1 :
+                          
+                           @Html.Raw((String)ViewBag.curs1)
+                            <br />
+                            
                             @Html.TextBoxFor(m => teach.Materii[0])
                         </td>
                         <td>
                              
-                           @Html.ActionLink(" ", "SubmitToLesson", new {mail = Model.Mail, materie = "0" }, new { style = "background:url('../../Pictures/altele/bb2.png')no-repeat center right; display:block; height:60px; width:200px; " })
+                           @Html.ActionLink(" ", "SubmitToLesson", new {mail = Model.Mail, materie = (String)ViewBag.curs1 }, new { style = "background:url('../../Pictures/altele/bb2.png')no-repeat center right; display:block; height:60px; width:200px; " })
                          
                         </td>
                     </tr>
@@ -85,21 +116,26 @@
                     <tr>
                         <td>
                             Materia 2 :
+                                 @Html.Raw((String)ViewBag.curs2)
+                            <br />
                             @Html.TextBoxFor(m => teach.Materii[1])
                         </td>
                         <td>
                            
-                                  @Html.ActionLink(" ", "SubmitToLesson", new {mail = Model.Mail, materie = "1" }, new { style = "background:url('../../Pictures/altele/bb2.png')no-repeat center right; display:block; height:60px; width:200px; " })
+                                  @Html.ActionLink(" ", "SubmitToLesson", new {mail = Model.Mail, materie = (String)ViewBag.curs2 }, new { style = "background:url('../../Pictures/altele/bb2.png')no-repeat center right; display:block; height:60px; width:200px; " })
                                  
                              </td>
                     </tr>
                     <tr>
                         <td>
                             Materia 3:
+                      
+                            @Html.Raw((String)ViewBag.curs3)
+                            <br />
                            @Html.TextBoxFor(m => teach.Materii[2])
                         </td>
                         <td>
-                             @Html.ActionLink(" ", "SubmitToLesson", new { mail = Model.Mail,materie = "2"}, new { style = "background:url('../../Pictures/altele/bb2.png')no-repeat center right; display:block; height:60px; width:200px; " })
+                             @Html.ActionLink(" ", "SubmitToLesson", new { mail = Model.Mail,materie = (String)ViewBag.curs3}, new { style = "background:url('../../Pictures/altele/bb2.png')no-repeat center right; display:block; height:60px; width:200px; " })
                                     
                         </td>
                     </tr>
