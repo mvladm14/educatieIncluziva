@@ -20,6 +20,7 @@
         </script>
     }  
 }
+
 <div style= 'display: inline-block;'>
 <div>
 <div>
@@ -53,16 +54,23 @@
     }
 
 Selecteaza Lectia:
- 
-    <select id="Select1">
-        <option>Lectii</option>
-          <option>Lectii</option>
-            <option>Lectii</option>
-              <option>Lectii</option>
-                <option>Lectii</option>
-                  <option>Lectii</option>
-    </select>
+    @using (Html.BeginForm("ViewLesson","AddLesson"))
+    {
+    
+    var resourcesRepository = new EduIncluziva.Metrics.ResourcesRepository();
+    var listaLectii = resourcesRepository.GetAllLessons(Model.Mail,ViewData["materie"].ToString());
+    var listaLectiiNume = from nume in listaLectii
+                         select nume.Titlu;
+    
+            var teacher = Model as EduIncluziva.Models.Teacher;
+            int nr = resourcesRepository.GetCursNumber(ViewData["materie"].ToString(), teacher.Mail);
+        
+        @Html.DropDownListFor(m => teacher.Materii[nr], new SelectList(listaLectiiNume))
+                        
+
+                   
     <input id="Submit4" type="submit" value="Vezi Lectie Selectata" />
+    }
 </div>
 <div>
 <h2>
