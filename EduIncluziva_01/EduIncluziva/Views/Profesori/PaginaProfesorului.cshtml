@@ -25,7 +25,7 @@
                                     var teacher = Model as Teacher;
                                     if (!teacher.ImageUrl.Equals(""))
                                     {
-                                        <img src="@Url.Content(teacher.ImageUrl)" alt="Fara poza" height="80" width="80" align="middle"/>
+                                        <img src="@Url.Content(teacher.ImageUrl)" alt="Fara poza" height="80" width="80" />
                                     }
                                 }                                
                                 @using (Html.BeginForm("AdaugaPoza", "Profesori", new { mail = Model.Mail }, FormMethod.Post, new { enctype = "multipart/form-data" }))
