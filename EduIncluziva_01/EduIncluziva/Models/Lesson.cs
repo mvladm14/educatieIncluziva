@@ -18,8 +18,13 @@ namespace EduIncluziva.Models
         public virtual Teacher ProfesorOwner { get; set; }
         public DateTime DataPublicatie;
 
+        public Guid CourseId { get; set; }
+
+         [ForeignKey("CourseId")]
+        public virtual Course myCourse { get; set; }
         public Lesson() {
             LessonId = Guid.NewGuid();
+            
         }
     }
 }
