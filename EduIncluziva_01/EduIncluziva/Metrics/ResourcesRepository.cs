@@ -373,22 +373,25 @@ namespace EduIncluziva.Metrics
         }
         public int FindLesson(string name, string mail,string materii)
         {
-            int nr=0;
-          /*  var rr = new ResourcesRepository();
+           var rr = new ResourcesRepository();
             var model = rr.GetProfesoriByMail(mail);
-            if(materii.Equals(model.Materii[0].Nume))
-                nr = 0;
-            else if(materii.Equals(model.Materii[1].Nume))
-                nr = 1;
-            else
+
+            using (var context = new EducatieIncluzivaDbContext())
             {
-                nr = 2;
-            }
-            foreach (Lesson l in model.Materii[nr].Lectii)
-            {
-                if (l.Titlu.Equals(name))
+                Course curs = (from p in context.Courses
+                               where p.ProfesorId == model.UserId && p.Nume.Equals(materii)
+                               select p).FirstOrDefault();
+
+                Lesson l = (from m in context.Lessons
+                            where m.CourseId == curs.CourseId && m.ProfesorOwnerId == model.UserId && m.Titlu.Equals(name)
+                            select m).FirstOrDefault();
+                if (l != null)
+                {
                     return 1;
-            }*/
+                }
+                
+            }
+          
             return 0;
         }
 
@@ -396,44 +399,31 @@ namespace EduIncluziva.Metrics
         {
             try
             {
-
-                int nr = 0;
                 var rr = new ResourcesRepository();
                 var model = rr.GetProfesoriByMail(mail);
-                if (materii.Equals(model.Materii[0].Nume))
-                    nr = 0;
-                else if (materii.Equals(model.Materii[1].Nume))
-                    nr = 1;
-                else
-                {
-                    nr = 2;
-                }
-                int index = 0;
-                foreach (Lesson l in model.Materii[nr].Lectii)
-                {
-                    index++;
-                    if (l.Titlu.Equals(nume))
-                    {
-                        break;
-                    }
-                }
-                model.Materii[nr].Lectii.RemoveAt(index);
 
                 using (var context = new EducatieIncluzivaDbContext())
                 {
-                    context.Teachers.Attach(model);
-                    context.Entry(model).State = EntityState.Modified;
-                    context.SaveChanges();
-                }
-                return 1;
-            }
-            catch 
-            {
-                return 0;
-            }
-           
+                    Course curs = (from p in context.Courses
+                                   where p.ProfesorId == model.UserId && p.Nume.Equals(materii)
+                                   select p).FirstOrDefault();
 
-        }
+                    Lesson l = (from m in context.Lessons
+                                where m.CourseId == curs.CourseId && m.ProfesorOwnerId == model.UserId && m.Titlu.Equals(nume)
+                                select m).FirstOrDefault();
+                    if (l != null)
+                    {
+                        context.Lessons.Remove(l);
+                        context.SaveChanges();
+                        return 1;
+                    }
+
+                }
+            }
+            catch
+            { }
+                return 0;
+         }
         public HighSchool GetHighSchoolById(Guid highSchoolId)
         {
             try
