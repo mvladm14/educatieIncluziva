@@ -46,20 +46,51 @@ namespace EduIncluziva.Controllers
                 string prenume = te.GetValue("teach.Prenume").AttemptedValue;
                 string description = te.GetValue("teach.Description").AttemptedValue;
 
+                    int index = 0;
+                    string c1,c2,c3;
+                    c1 = "";
+                    c2 = "";
+                    c3 = "";
+
+                    using (var db = new EducatieIncluzivaDbContext())
+                    {
+                        var curs = from p in db.Courses
+                                   where p.ProfesorId == model.UserId
+                                   select p;
+
+                        foreach (var c in curs)
+                        {
+                            if (index == 0)
+                            {
+                                c1 = c.Nume;
+                            }
+                            else if (index == 1)
+                            {
+                                c2 = c.Nume;
+
+                            }
+                            else if (index == 2)
+                            {
+                                c3 = c.Nume;
+                            }
+                            index++;
+                        }
+                    }  
+
                 if (numeCurs2.Equals(""))
                 {
                     rr.UpdateTeacher(nume, prenume, mail, description,
-                                 numeCurs1);
+                                 numeCurs1, c1);
                 }
                 else if (numeCurs3.Equals(""))
                 {
                     rr.UpdateTeacher(nume, prenume, mail, description,
-                                 numeCurs1, numeCurs2);
+                                 numeCurs1, numeCurs2,c1, c2);
                 }
                 else
                 {
                     rr.UpdateTeacher(nume, prenume, mail, description,
-                                     numeCurs1, numeCurs2, numeCurs3);
+                                     numeCurs1, numeCurs2, numeCurs3,c1,c2, c3);
                 }
                 return RedirectToAction("Index", "Home");
             }
