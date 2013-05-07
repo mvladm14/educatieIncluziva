@@ -64,6 +64,16 @@ namespace EduIncluziva.Controllers
              return View("../../Views/AddLesson/AddLesson", model);
         }
         [HttpPost]
+        public ActionResult ViewLesson(string mail,FormCollection c)
+        {
+            var rr = new ResourcesRepository();
+            var model = rr.GetProfesoriByMail(mail);
+            string link = "http://www.google.com";
+            return Redirect(link);
+            //return View("../../Views/AddLesson/AddLesson", model);
+  
+        }
+        [HttpPost]
         public ActionResult AddLesson(HttpPostedFileBase file,string mail, string materie)
         {
             var rr = new ResourcesRepository();
