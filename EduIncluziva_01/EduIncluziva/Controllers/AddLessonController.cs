@@ -50,6 +50,7 @@ namespace EduIncluziva.Controllers
             ViewData["materie"] = materie;
             var rr = new ResourcesRepository();
             var model = rr.GetProfesoriByMail(mail);
+
             if (rr.FindLesson(name, mail, materie) == 1)
             {
                 ViewBag.myData = "Lectia se afla in baza de date";
