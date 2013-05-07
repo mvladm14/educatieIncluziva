@@ -84,11 +84,13 @@
     <Compile Include="Controllers\EleviController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MaterieController.cs" />
     <Compile Include="Controllers\ProfesoriController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Metrics\DataBaseValidator.cs" />
+    <Compile Include="Metrics\DownloadResult.cs" />
     <Compile Include="Metrics\Exceptii.cs" />
     <Compile Include="Metrics\ResourcesRepository.cs" />
     <Compile Include="Models\AccountModels.cs" />
@@ -446,6 +448,9 @@
   <ItemGroup>
     <Content Include="ClassDiagram1.cd" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Materie\VizualizareLectiiMaterie.cshtml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -468,7 +473,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>5629</DevelopmentServerPort>
+          <DevelopmentServerPort>43363</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

@@ -9,9 +9,54 @@ namespace EduIncluziva.Metrics
 {
     public class ResourcesRepository
     {
+
+        #region Courses
+
+        public List<Course> GetCoursesByTeacherMail(string mail)
+        {
+            var courses = new List<Course>();
+            var user = this.GetProfesoriByMail(mail);
+            var userId = user.UserId;
+
+            try
+            {
+                using (var context = new EducatieIncluzivaDbContext())
+                {
+                    courses = context.Courses
+                               .Where(c => c.ProfesorId == userId)
+                               .OrderBy(c => c.Nume)
+                               .ToList<Course>();
+                }
+            }
+            catch
+            {
+                //Logger.Instance.LogError(ErrorCategory.Data, "Unable to retrieve information about Employees.", exc);
+                throw new InvalidUserException();
+            }
+            return courses;
+        }
+
+        public Course GetCourseById(Guid courseId)
+        {
+            try
+            {
+                using (var context = new EducatieIncluzivaDbContext())
+                {
+                    return context.Courses.SingleOrDefault(item => item.CourseId.Equals(courseId));
+                }
+            }
+            catch
+            {
+                //Logger.Instance.LogError(ErrorCategory.Data, "Unable to retrieve information about Employees.", exc);
+                throw new InvalidUserException();
+            }
+        }
+
+        #endregion
+
         #region Lessons
 
-        public List<Lesson> GetAllLessons(string mail,string materie)
+        public List<Lesson> GetAllLessons(string mail, string materie)
         {
             List<Lesson> myList = new List<Lesson>();
             try
@@ -24,14 +69,14 @@ namespace EduIncluziva.Metrics
                                 where p.Nume.Equals(materie) && p.ProfesorId == teach.UserId
                                 select p).FirstOrDefault();
                     var lectii = from p in db.Lessons
-                                 where p.ProfesorOwner == teach 
+                                 where p.ProfesorOwner == teach
                                  select p;
                     var b = db.Lessons.ToList();
 
                     foreach (Lesson c in b)
                     {
-                        if(c.ProfesorOwnerId == teach.UserId && c.CourseId == curs.CourseId)
-                         myList.Add(c);
+                        if (c.ProfesorOwnerId == teach.UserId && c.CourseId == curs.CourseId)
+                            myList.Add(c);
                     }
                     return myList;
                 }
@@ -41,25 +86,25 @@ namespace EduIncluziva.Metrics
                 throw exc;
             }
         }
-        public int GetCursNumber(string materie,string mail)
+        public int GetCursNumber(string materie, string mail)
         {
-               int index = 0;
-                using (var db = new EducatieIncluzivaDbContext())
+            int index = 0;
+            using (var db = new EducatieIncluzivaDbContext())
+            {
+                var rr = new EduIncluziva.Metrics.ResourcesRepository();
+                var teach = rr.GetProfesoriByMail(mail);
+                var curs = from p in db.Courses
+                           where p.ProfesorId == teach.UserId
+                           select p;
+                foreach (var c in curs)
                 {
-                    var rr = new EduIncluziva.Metrics.ResourcesRepository();
-                    var teach = rr.GetProfesoriByMail(mail);
-                    var curs = from p in db.Courses
-                               where p.ProfesorId == teach.UserId
-                               select p;
-                    foreach (var c in curs)
-                    {
-                        if (c.Nume.Equals(materie))
-                            break;
-                        else
-                            index++;
-                    }
+                    if (c.Nume.Equals(materie))
+                        break;
+                    else
+                        index++;
                 }
-                return index;
+            }
+            return index;
         }
         #endregion
 
@@ -79,7 +124,7 @@ namespace EduIncluziva.Metrics
                     return context.Teachers.SingleOrDefault(item => item.Mail == mail);
                 }
             }
-            catch 
+            catch
             {
                 //Logger.Instance.LogError(ErrorCategory.Data, "Unable to retrieve information about Employees.", exc);
                 throw new InvalidUserException();
@@ -99,20 +144,20 @@ namespace EduIncluziva.Metrics
                     DbEntityEntry<Course> entry = context.Entry(curs);
                     entry.State = EntityState.Modified;
                     context.SaveChanges();
-             
+
                 }
                 else
                 {
-                Course cur = new Course();
-                cur.Nume = cursNume;
-                cur.ProfesorId = t1.UserId;
-                context.Courses.Add(cur);
-                context.SaveChanges();
+                    Course cur = new Course();
+                    cur.Nume = cursNume;
+                    cur.ProfesorId = t1.UserId;
+                    context.Courses.Add(cur);
+                    context.SaveChanges();
                 }
             }
         }
-        public void UpdateTeacher(string nume,   string prenume,
-                                  string mail,   string bio,
+        public void UpdateTeacher(string nume, string prenume,
+                                  string mail, string bio,
                                   string c1, string numevechi1, string c2, string numevechi2, string c3, string numevechi3)
         {
             using (var context = new EducatieIncluzivaDbContext())
@@ -129,30 +174,30 @@ namespace EduIncluziva.Metrics
                 UpdateCurs(c1, theUser, numevechi1);
                 UpdateCurs(c2, theUser, numevechi2);
                 UpdateCurs(c3, theUser, numevechi3);
-               
+
                 //if the teacher already has some courses
-               /* if (theUser.Materii != null)
-                {
-                    if (!theUser.Materii.Contains(cur))
-                    {
-                        context.Courses.Add(cur);
-                    }
-                    if (!theUser.Materii.Contains(cur2))
-                    {
-                        context.Courses.Add(cur2);
-                    }
-                    if (!theUser.Materii.Contains(cur3))
-                    {
-                        context.Courses.Add(cur3);
-                    }
-                }
-                else
-                {
-                    context.Courses.Add(cur);
-                    context.Courses.Add(cur2);
-                    context.Courses.Add(cur3);
-                }
-                */
+                /* if (theUser.Materii != null)
+                 {
+                     if (!theUser.Materii.Contains(cur))
+                     {
+                         context.Courses.Add(cur);
+                     }
+                     if (!theUser.Materii.Contains(cur2))
+                     {
+                         context.Courses.Add(cur2);
+                     }
+                     if (!theUser.Materii.Contains(cur3))
+                     {
+                         context.Courses.Add(cur3);
+                     }
+                 }
+                 else
+                 {
+                     context.Courses.Add(cur);
+                     context.Courses.Add(cur2);
+                     context.Courses.Add(cur3);
+                 }
+                 */
 
                 DbEntityEntry<Teacher> entry = context.Entry(theUser);
                 entry.State = EntityState.Modified;
@@ -176,24 +221,24 @@ namespace EduIncluziva.Metrics
                 theUser.Nume = nume;
                 theUser.Prenume = prenume;
 
-            /*    Course cur = new Course();
-                cur.Nume = c1;
-                cur.ProfesorId = theUser.UserId;
+                /*    Course cur = new Course();
+                    cur.Nume = c1;
+                    cur.ProfesorId = theUser.UserId;
                
-                //if the teacher already has some courses
-                if (theUser.Materii != null)
-                {
-                    if (!theUser.Materii.Contains(cur))
+                    //if the teacher already has some courses
+                    if (theUser.Materii != null)
+                    {
+                        if (!theUser.Materii.Contains(cur))
+                        {
+                            context.Courses.Add(cur);
+                        }
+                    }
+                    else
                     {
                         context.Courses.Add(cur);
                     }
-                }
-                else
-                {
-                    context.Courses.Add(cur);
-                }
 
-                */
+                    */
                 UpdateCurs(c1, theUser, numevechi1);
 
                 DbEntityEntry<Teacher> entry = context.Entry(theUser);
@@ -206,7 +251,7 @@ namespace EduIncluziva.Metrics
         }
         public void UpdateTeacher(string nume, string prenume,
                                   string mail, string bio,
-                                  string c1, string c2,string numevechi1, string numevechi2)
+                                  string c1, string c2, string numevechi1, string numevechi2)
         {
             using (var context = new EducatieIncluzivaDbContext())
             {
@@ -220,33 +265,33 @@ namespace EduIncluziva.Metrics
                 theUser.Prenume = prenume;
 
 
-               /* Course cur = new Course();
-                cur.Nume = c1;
-                Course cur2 = new Course();
-                cur2.Nume = c2;
+                /* Course cur = new Course();
+                 cur.Nume = c1;
+                 Course cur2 = new Course();
+                 cur2.Nume = c2;
                 
-                cur.ProfesorId = theUser.UserId;
-                cur2.ProfesorId = theUser.UserId;
+                 cur.ProfesorId = theUser.UserId;
+                 cur2.ProfesorId = theUser.UserId;
                 
-                //if the teacher already has some courses
-                if (theUser.Materii != null)
-                {
-                    if (!theUser.Materii.Contains(cur))
-                    {
-                        context.Courses.Add(cur);
-                    }
-                    if (!theUser.Materii.Contains(cur2))
-                    {
-                        context.Courses.Add(cur2);
-                    }
-                 }
-                else
-                {
-                    context.Courses.Add(cur);
-                    context.Courses.Add(cur2);
+                 //if the teacher already has some courses
+                 if (theUser.Materii != null)
+                 {
+                     if (!theUser.Materii.Contains(cur))
+                     {
+                         context.Courses.Add(cur);
+                     }
+                     if (!theUser.Materii.Contains(cur2))
+                     {
+                         context.Courses.Add(cur2);
+                     }
+                  }
+                 else
+                 {
+                     context.Courses.Add(cur);
+                     context.Courses.Add(cur2);
                    
-                 }
-                */
+                  }
+                 */
                 UpdateCurs(c1, theUser, numevechi1);
                 UpdateCurs(c2, theUser, numevechi2);
 
@@ -255,7 +300,7 @@ namespace EduIncluziva.Metrics
                 context.SaveChanges();
 
 
-              
+
             }
         }
 
@@ -285,7 +330,7 @@ namespace EduIncluziva.Metrics
                     return context.Teachers.SingleOrDefault(item => item.UserId.Equals(id));
                 }
             }
-            catch 
+            catch
             {
                 //Logger.Instance.LogError(ErrorCategory.Data, "Unable to retrieve information about Employees.", exc);
                 throw new InvalidUserException();
@@ -369,9 +414,9 @@ namespace EduIncluziva.Metrics
                 throw exc;
             }
         }
-        public int FindLesson(string name, string mail,string materii)
+        public int FindLesson(string name, string mail, string materii)
         {
-           var rr = new ResourcesRepository();
+            var rr = new ResourcesRepository();
             var model = rr.GetProfesoriByMail(mail);
 
             using (var context = new EducatieIncluzivaDbContext())
@@ -387,13 +432,13 @@ namespace EduIncluziva.Metrics
                 {
                     return 1;
                 }
-                
+
             }
-          
+
             return 0;
         }
 
-        public int EraseLesson(string nume,string mail,string materii)
+        public int EraseLesson(string nume, string mail, string materii)
         {
             try
             {
@@ -420,8 +465,8 @@ namespace EduIncluziva.Metrics
             }
             catch
             { }
-                return 0;
-         }
+            return 0;
+        }
         public HighSchool GetHighSchoolById(Guid highSchoolId)
         {
             try

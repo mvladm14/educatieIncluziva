@@ -1,5 +1,20 @@
-﻿@{
+﻿@model HighSchool
+@using EduIncluziva.Models
+
+@{
     Layout = null;
+    var highSchool = Model;
+    var teachers = new List<Teacher>();
+    var rr = new EduIncluziva.Metrics.ResourcesRepository();
+}
+
+
+@foreach (var user in highSchool.Users)
+{
+    if (user is Teacher)
+    {
+        teachers.Add(user as Teacher);
+    }
 }
 
 <!DOCTYPE html>
@@ -9,8 +24,32 @@
     <title>PaginaElevului</title>
 </head>
 <body>
-    <div>
-        Pagina elevului
-    </div>
+    <table>
+        <tr>
+            <th>Poza</th>
+            <th>Numele Profesorului</th>
+            <th>Materile Profesorului</th>
+        </tr>
+        @foreach (var teacher in teachers)
+        {
+            
+            <tr>
+                <td>
+                    <img src="@Url.Content(teacher.ImageUrl)" alt="Fara poza" height="42" width="42" align="middle"/>
+                <td>
+                    @teacher.Nume @teacher.Prenume
+                </td>
+                <td>
+                    @{
+            var materii = rr.GetCoursesByTeacherMail(teacher.Mail);               
+                    }
+                    @foreach (var materie in materii)
+                    {
+                        @Html.ActionLink(materie.Nume, "VizualizareLectiiMaterie", "Materie", new { mail = teacher.Mail, numeMaterie = materie.Nume }, null)
+                    }
+                </td>
+            </tr>
+        }
+    </table>
 </body>
 </html>

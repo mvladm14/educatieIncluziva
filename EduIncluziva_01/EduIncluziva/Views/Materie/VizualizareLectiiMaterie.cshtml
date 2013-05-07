@@ -1,0 +1,38 @@
+﻿@model IEnumerable<EduIncluziva.Models.Lesson>
+@{
+    ViewBag.Title = "VizualizareLectiiMaterie";
+    string filePath = "~/App_Data/uploads/";
+
+    var rr = new EduIncluziva.Metrics.ResourcesRepository();
+    var firstLesson = Model.FirstOrDefault();
+    var userId = firstLesson.ProfesorOwnerId;
+
+    var user = rr.GetProfesorById(userId);
+    var mail = user.Mail;
+
+    var numeFolder = firstLesson.myCourse.Nume;
+    filePath = filePath + mail + "/" + numeFolder + "/";
+}
+
+<h2>Lectiile profesorului</h2>
+
+
+<table>
+    <tr>
+        <th>Titlul Lectiei
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var lesson in Model)
+    {
+        <tr>
+            <td>
+                @{
+        string newFilePath = filePath + lesson.Titlu;   
+                }
+                @Html.ActionLink(lesson.Titlu, "Download", new { virtualPath = newFilePath, fileDownloadName = lesson.Titlu })
+            </td>
+        </tr>
+    }
+</table>
+

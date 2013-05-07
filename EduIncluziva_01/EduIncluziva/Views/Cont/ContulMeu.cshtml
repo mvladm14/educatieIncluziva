@@ -1,9 +1,6 @@
 ﻿@model EduIncluziva.Models.User
 @{
     ViewBag.Title = "ContulMeu";
-
-    EduIncluziva.Models.Student student = null;
-    EduIncluziva.Models.Teacher teacher = null;
 }
 <div>
     <fieldset>
@@ -19,22 +16,11 @@
                     <td>
                         @if (Model.Role.Equals("Elev"))
                         {
-                            //adica pt elev
-                            student = (EduIncluziva.Models.Student)Model;
-                            @*<div class="editor-label">
-                                @Html.LabelFor(m => student.Nume) : @student.Nume
-                            </div>
-                            <div class="editor-label">
-                                @Html.LabelFor(m => student.Prenume) : @student.Prenume
-                            </div>
-                            <div class="editor-label">
-                                @Html.LabelFor(m => student.Mail) : @student.Mail
-                            </div>*@
-                            Html.RenderAction("PaginaElevului","Elevi");
+                            Html.RenderAction("PaginaElevului", "Elevi", Model.Mail);
                         }
                         @if (Model.Role.Equals("Profesor"))
                         {
-                            Html.RenderAction("PaginaProfesorului","Profesori", Model.Mail);
+                            Html.RenderAction("PaginaProfesorului", "Profesori", Model.Mail);
                         }
                     </td>
                 </tr>

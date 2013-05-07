@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using EduIncluziva.Metrics;
+using System.IO;
 using System.Web.Mvc;
 
 namespace EduIncluziva.Controllers
@@ -13,11 +14,13 @@ namespace EduIncluziva.Controllers
             return View();
         }
 
-        public ActionResult PaginaElevului()
+        public ActionResult PaginaElevului(string mail)
         {
-            var path = Server.MapPath("~/Pictures/Profesori/Test");
-            Directory.CreateDirectory(path);
-            return View();
+            var rr = new ResourcesRepository();
+            var user = rr.GetUserByMail(mail);
+            var highschoolId = user.ScoalaDeProvenientaId;
+            var highschool = rr.GetHighSchoolById(highschoolId);
+            return View(highschool);
         }
     }
 }
