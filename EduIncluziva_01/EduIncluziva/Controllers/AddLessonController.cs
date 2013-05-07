@@ -106,7 +106,7 @@ namespace EduIncluziva.Controllers
 
                 var path = Path.Combine(Server.MapPath("~/App_Data/uploads/"),  mail + "/" , materie, fileName);
                 file.SaveAs(path);
-                int nr = 0;
+             
               
                 using (var db = new EducatieIncluzivaDbContext())
                 {
