@@ -79,7 +79,7 @@ namespace EduIncluziva.Metrics
                     return context.Teachers.SingleOrDefault(item => item.Mail == mail);
                 }
             }
-            catch (Exception exc)
+            catch 
             {
                 //Logger.Instance.LogError(ErrorCategory.Data, "Unable to retrieve information about Employees.", exc);
                 throw new InvalidUserException();
@@ -259,8 +259,6 @@ namespace EduIncluziva.Metrics
             }
         }
 
-        
-        
         public void UpdateTeacher(string mail, string imageUrl)
         {
             using (var context = new EducatieIncluzivaDbContext())
@@ -287,7 +285,7 @@ namespace EduIncluziva.Metrics
                     return context.Teachers.SingleOrDefault(item => item.UserId.Equals(id));
                 }
             }
-            catch (Exception exc)
+            catch 
             {
                 //Logger.Instance.LogError(ErrorCategory.Data, "Unable to retrieve information about Employees.", exc);
                 throw new InvalidUserException();
