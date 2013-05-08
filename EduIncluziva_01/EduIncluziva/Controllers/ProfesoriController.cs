@@ -80,17 +80,19 @@ namespace EduIncluziva.Controllers
                 if (numeCurs2.Equals(""))
                 {
                     rr.UpdateTeacher(nume, prenume, mail, description,
-                                 numeCurs1, c1);
+                                  c1,numeCurs1);
                 }
                 else if (numeCurs3.Equals(""))
                 {
                     rr.UpdateTeacher(nume, prenume, mail, description,
-                                 numeCurs1, numeCurs2,c1, c2);
+                                   c1, c2,
+                                 numeCurs1, numeCurs2);
                 }
                 else
                 {
                     rr.UpdateTeacher(nume, prenume, mail, description,
-                                     numeCurs1, numeCurs2, numeCurs3,c1,c2, c3);
+                                      c1,c2, c3,
+                                     numeCurs1, numeCurs2, numeCurs3);
                 }
                 return RedirectToAction("Index", "Home");
             }
