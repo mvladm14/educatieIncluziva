@@ -158,7 +158,7 @@ namespace EduIncluziva.Metrics
         }
         public void UpdateTeacher(string nume, string prenume,
                                   string mail, string bio,
-                                  string c1, string numevechi1, string c2, string numevechi2, string c3, string numevechi3)
+                                   string numevechi1, string numevechi2, string numevechi3, string c2, string c1, string c3)
         {
             using (var context = new EducatieIncluzivaDbContext())
             {
@@ -175,30 +175,6 @@ namespace EduIncluziva.Metrics
                 UpdateCurs(c2, theUser, numevechi2);
                 UpdateCurs(c3, theUser, numevechi3);
 
-                //if the teacher already has some courses
-                /* if (theUser.Materii != null)
-                 {
-                     if (!theUser.Materii.Contains(cur))
-                     {
-                         context.Courses.Add(cur);
-                     }
-                     if (!theUser.Materii.Contains(cur2))
-                     {
-                         context.Courses.Add(cur2);
-                     }
-                     if (!theUser.Materii.Contains(cur3))
-                     {
-                         context.Courses.Add(cur3);
-                     }
-                 }
-                 else
-                 {
-                     context.Courses.Add(cur);
-                     context.Courses.Add(cur2);
-                     context.Courses.Add(cur3);
-                 }
-                 */
-
                 DbEntityEntry<Teacher> entry = context.Entry(theUser);
                 entry.State = EntityState.Modified;
                 context.SaveChanges();
@@ -208,7 +184,7 @@ namespace EduIncluziva.Metrics
         }
         public void UpdateTeacher(string nume, string prenume,
                                   string mail, string bio,
-                                  string c1, string numevechi1)
+                                   string numevechi1, string c1)
         {
             using (var context = new EducatieIncluzivaDbContext())
             {
@@ -251,7 +227,7 @@ namespace EduIncluziva.Metrics
         }
         public void UpdateTeacher(string nume, string prenume,
                                   string mail, string bio,
-                                  string c1, string c2, string numevechi1, string numevechi2)
+                                 string numevechi1, string numevechi2,  string c1, string c2)
         {
             using (var context = new EducatieIncluzivaDbContext())
             {
