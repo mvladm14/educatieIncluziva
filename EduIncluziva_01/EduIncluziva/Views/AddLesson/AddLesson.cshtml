@@ -20,7 +20,6 @@
         </script>
     }  
 }
-
 <div style= 'display: inline-block;'>
 <div>
 <div>
@@ -53,7 +52,6 @@
             }
     }
 
-Selecteaza Lectia:
     @using (Html.BeginForm("ViewLesson","AddLesson"))
     {
     
@@ -65,11 +63,8 @@ Selecteaza Lectia:
             var teacher = Model as EduIncluziva.Models.Teacher;
             int nr = resourcesRepository.GetCursNumber(ViewData["materie"].ToString(), teacher.Mail);
         
-        @Html.DropDownListFor(m => teacher.Materii[nr], new SelectList(listaLectiiNume))
+      //  @Html.DropDownListFor(m => teacher.Materii[nr], new SelectList(listaLectiiNume))
                         
-
-                   
-    <input id="Submit4" type="submit" value="Vezi Lectie Selectata" />
     }
 </div>
 <div>
@@ -111,5 +106,36 @@ Nume:
 </div>
 </div>
 <div style ='display: inline-block; '>
-    <img alt="Image" src="../../Pictures/altele/1a.png" />
+    <table border ="0">
+    <tr>
+        <th>Numele Lectiilor de la materia curenta</th>
+    </tr>
+    @{
+    var rr = new EduIncluziva.Metrics.ResourcesRepository();
+    var ll = rr.GetAllLessons(Model.Mail,ViewData["materie"].ToString());
+    var lln = from nume in ll
+              select nume.Titlu;
+              int num = 0;
+                  foreach(string s in lln)
+                  {
+                      num++;
+                      <tr>
+                          <td>
+                              @Html.Raw(s)
+                          </td>
+                      </tr>
+                  }
+                  if(num == 0)
+                  {
+                       <tr>
+                          <td>
+                             Momentan nu exista lectii pentru aceasta materie in baza de date
+                          </td>
+                      </tr>
+                  }
+    }
+</table>
+</div>
+<div style ='display: inline-block; '>
+ <img alt="Image" src="../../Pictures/altele/1a.png" />
 </div>
