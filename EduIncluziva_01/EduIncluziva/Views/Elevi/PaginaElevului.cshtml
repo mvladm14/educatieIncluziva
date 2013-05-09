@@ -46,6 +46,7 @@
                     @foreach (var materie in materii)
                     {
                         @Html.ActionLink(materie.Nume, "VizualizareLectiiMaterie", "Materie", new { mail = teacher.Mail, numeMaterie = materie.Nume }, null)
+                    <br />
                     }
                 </td>
             </tr>

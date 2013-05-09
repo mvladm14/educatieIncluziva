@@ -83,7 +83,7 @@ namespace EduIncluziva.Controllers
                 SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
 
                 mail.From = new MailAddress("eduincluziva@gmail.com");
-                mail.To.Add("mmp_mircea@yahoo.com");
+                mail.To.Add("csei_cluj@yahoo.com");
                 mail.Subject = "New User";
 
                 string s = "";

@@ -28,7 +28,7 @@
                                         <img src="@Url.Content(teacher.ImageUrl)" alt="Fara poza" height="80" width="80" />
                                     }
                                 }                                
-                                @using (Html.BeginForm("AdaugaPoza", "Profesori", new { mail = Model.Mail }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                @using (Html.BeginForm("AdaugaPoza", "Profesori", new { mail = Model.Mail}, FormMethod.Post, new { enctype = "multipart/form-data" }))
                                 {
                                     <input name="file" type="file" />
                                     <br/>
@@ -43,7 +43,7 @@
                                 }
                             
                         </td>
-                    </tr>
+                    </tr>                     
                      @{
                         var teach = Model as Teacher;
                      }

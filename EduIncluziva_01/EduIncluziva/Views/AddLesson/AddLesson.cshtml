@@ -1,141 +1,143 @@
-﻿ @{
+﻿@{
     ViewBag.Title = "AddLesson";
 }
 @model EduIncluziva.Models.User
- <div>
-      <img alt="Add Lesson" src="../../Pictures/altele/AddLessonBanner.png" />
+<div>
+    <img alt="Add Lesson" src="../../Pictures/altele/AddLessonBanner.png" />
 </div>
 
 
 <div>
 
-    <h2>Adauga Lectii pentru materia: @Html.Encode(ViewData["materie"])</h2> 
+    <h2>Adauga Lectii pentru materia: @Html.Encode(ViewData["materie"])</h2>
 
 </div>
 @{
-    if(ViewData["fileUp"] != null)
+    if (ViewData["fileUp"] != null)
     {
-        <script type="text/javascript">
-            alert("Fisierul a fost incarcat cu succes");
-        </script>
+    <script type="text/javascript">
+        alert("Fisierul a fost incarcat cu succes");
+    </script>
     }  
 }
-<div style= 'display: inline-block;'>
-<div>
-<div>
-    @{
-            if(ViewBag.nr == 1)
-            {
+<div style='display: inline-block;'>
+    <div>
+        <div>
+            @{
+                if (ViewBag.nr == 1)
+                {
                 <script type="text/javascript">
                     alert("Lectia cu acest nume a fost gasita in baza de date");
                 </script>
             }
-            else if(ViewBag.nr == 0)
+            else if (ViewBag.nr == 0)
             {
-                 <script type="text/javascript">
-                     alert("Lectia cu acest nume NU a fost gasita in baza de date");
+                <script type="text/javascript">
+                    alert("Lectia cu acest nume NU a fost gasita in baza de date");
                 </script>
             }
-    }
-      @{
-            if(ViewBag.stergere == 1)
-            {
+            }
+            @{
+                if (ViewBag.stergere == 1)
+                {
                 <script type="text/javascript">
                     alert("Lectia a fost stearsa");
                 </script>
             }
-            else if(ViewBag.stergere == 0)
+            else if (ViewBag.stergere == 0)
             {
-                 <script type="text/javascript">
-                     alert("Lectia cu acest nume NU a putut fi stearsa.");
+                <script type="text/javascript">
+                    alert("Lectia cu acest nume NU a putut fi stearsa.");
                 </script>
             }
-    }
+            }
 
-    @using (Html.BeginForm("ViewLesson","AddLesson"))
-    {
-    
-    var resourcesRepository = new EduIncluziva.Metrics.ResourcesRepository();
-    var listaLectii = resourcesRepository.GetAllLessons(Model.Mail,ViewData["materie"].ToString());
-    var listaLectiiNume = from nume in listaLectii
-                         select nume.Titlu;
-    
-            var teacher = Model as EduIncluziva.Models.Teacher;
-            int nr = resourcesRepository.GetCursNumber(ViewData["materie"].ToString(), teacher.Mail);
-        
-      //  @Html.DropDownListFor(m => teacher.Materii[nr], new SelectList(listaLectiiNume))
-                        
-    }
-</div>
-<div>
-<h2>
-Adauga Lectie
-</h2>
-@using (Html.BeginForm("AddLesson", "AddLesson", new { mail = Model.Mail, materie = ViewData["materie"] }, FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-<input name="file" type="file" />
-<input id="Submit1" type="submit" value="submit" />
+            @using (Html.BeginForm("ViewLesson", "AddLesson"))
+            {
+
+                var resourcesRepository = new EduIncluziva.Metrics.ResourcesRepository();
+                var listaLectii = resourcesRepository.GetAllLessons(Model.Mail, ViewData["materie"].ToString());
+                var listaLectiiNume = from nume in listaLectii
+                                      select nume.Titlu;
+
+                var teacher = Model as EduIncluziva.Models.Teacher;
+                int nr = resourcesRepository.GetCursNumber(ViewData["materie"].ToString(), teacher.Mail);
+
+                //  @Html.DropDownListFor(m => teacher.Materii[nr], new SelectList(listaLectiiNume))
+
+            }
+        </div>
+        <div>
+            <h2>Adauga Lectie
+            </h2>
+            @using (Html.BeginForm("AddLesson", "AddLesson", new { mail = Model.Mail, materie = ViewData["materie"] }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <input name="file" type="file" />
+                <input id="Submit1" type="submit" value="submit" />
 }
-</div>
-<div>
-<h2>Cauta Lectie: </h2>
-Nume:
-@using (Html.BeginForm("SearchForLesson", "AddLesson", new { mail = Model.Mail, materie = ViewData["materie"] }, FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
+        </div>
+        <div>
+            <h2>Cauta Lectie: </h2>
+            Nume:
+            @using (Html.BeginForm("SearchForLesson", "AddLesson", new { mail = Model.Mail, materie = ViewData["materie"] }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
     
-   <input id="account" type="text" name="name" class="s" />
-     <input id="Submit2" type="submit" value="Cauta" />
+                <input id="account" type="text" name="name" class="s" />
+                <input id="Submit2" type="submit" value="Cauta" />
 }
-    @Html.Raw((String)ViewBag.myData)
-</div>
-<div>
-<h2>Sterge Lectie: </h2>
-Nume:
-@using (Html.BeginForm("DeleteLesson", "AddLesson", new { mail = Model.Mail, materie = ViewData["materie"] }, FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
+            @Html.Raw((String)ViewBag.myData)
+        </div>
+        <div>
+            <h2>Sterge Lectie: </h2>
+            Nume:
+            @using (Html.BeginForm("DeleteLesson", "AddLesson", new { mail = Model.Mail, materie = ViewData["materie"] }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
     
-   <input id="sterge" type="text" name="name" class="s" />
+                <input id="sterge" type="text" name="name" class="s" />
    
-    <input id="Submit3" type="submit" value="Sterge" />
+                <input id="Submit3" type="submit" value="Sterge" />
 }
-    @Html.Raw((String)ViewBag.eraseData)
+            @Html.Raw((String)ViewBag.eraseData)
 
+        </div>
+    </div>
+    <div>
+    </div>
 </div>
-</div>
-<div>
-</div>
-</div>
-<div style ='display: inline-block; '>
-    <table border ="0">
-    <tr>
-        <th>Numele Lectiilor de la materia curenta</th>
-    </tr>
-    @{
-    var rr = new EduIncluziva.Metrics.ResourcesRepository();
-    var ll = rr.GetAllLessons(Model.Mail,ViewData["materie"].ToString());
-    var lln = from nume in ll
-              select nume.Titlu;
-              int num = 0;
-                  foreach(string s in lln)
-                  {
-                      num++;
-                      <tr>
-                          <td>
-                              @Html.Raw(s)
-                          </td>
-                      </tr>
+<div style='display: inline-block;'>
+    <table border="0">
+        <tr>
+            <th>Numele Lectiilor de la materia curenta</th>
+        </tr>
+        @{
+            var rr = new EduIncluziva.Metrics.ResourcesRepository();
+            var ll = rr.GetAllLessons(Model.Mail, ViewData["materie"].ToString());
+            var numeMaterie = ViewData["materie"].ToString();
+            var mailProfesor = Model.Mail;
+            string filePath = "~/App_Data/uploads/" + mailProfesor + "/" + numeMaterie + "/";
+            var lln = from nume in ll
+                      select nume.Titlu;
+            int num = 0;
+            foreach (string s in lln)
+            {
+                num++;
+            <tr>
+                <td>
+                    @{var fullFilePath = filePath + s;}
+                    @Html.ActionLink(s, "Download", new { virtualPath = fullFilePath, fileDownloadName = s })
+                </td>
+            </tr>
                   }
-                  if(num == 0)
+                  if (num == 0)
                   {
-                       <tr>
-                          <td>
-                             Momentan nu exista lectii pentru aceasta materie in baza de date
-                          </td>
-                      </tr>
+            <tr>
+                <td>Momentan nu exista lectii pentru aceasta materie in baza de date
+                </td>
+            </tr>
                   }
-    }
-</table>
+        }
+    </table>
 </div>
-<div style ='display: inline-block; '>
- <img alt="Image" src="../../Pictures/altele/1a.png" />
+<div style='display: inline-block;'>
+    <img alt="Image" src="../../Pictures/altele/1a.png" />
 </div>

@@ -179,5 +179,10 @@ namespace EduIncluziva.Controllers
             return View();
         }
 
+        public ActionResult Download(string virtualPath, string fileDownloadName)
+        {
+            return new DownloadResult { VirtualPath = virtualPath, FileDownloadName = fileDownloadName };
+        }
+
     }
 }
