@@ -166,4 +166,39 @@ namespace EduIncluziva.Models
         [Display(Name = "Numele exact al liceului")]
         public string Nume { get; set; }
     }
+
+    public class TeacherRegisterModel
+    {
+        [Required]
+        [Display(Name = "Nume")]
+        public string Nume { get; set; }
+
+        [Required]
+        [Display(Name = "Prenume")]
+        public string Prenume { get; set; }
+
+        [Required]
+        [DataType(DataType.EmailAddress)]
+        [Display(Name = "Mail")]
+        public string Mail { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "{0} trebuie sa aiba cel putin {2} caractere.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Parola")]
+        public string Parola { get; set; }
+
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirmare parola")]
+        [Compare("Parola", ErrorMessage = "Parolele nu coincid.")]
+        public string ConfirmareParola { get; set; }
+
+        [Required]
+        [Display(Name = "Scoala de provenienta")]
+        public string ScoalaDeProvenienta { get; set; }
+                
+        [Display(Name = "Descriere")]
+        public string Descriere { get; set; }
+
+    }
 }

@@ -7,148 +7,145 @@
 <h2>Pagina Profesorului</h2>
 
 @{
-    if(TempData["alertMessage"] != null)
+    if (TempData["alertMessage"] != null)
     {
-        <script type="text/javascript">
-            alert("Va rugam completati campurile obligatorii");
-        </script>
+    <script type="text/javascript">
+        alert("Va rugam completati campurile obligatorii");
+    </script>
     }
 }
 <table border="0">
     <tr>
         <td>
-                <table border ="0">
-                    <tr>
-                        <td>
-                                <p>Alegeti o poza</p>
-                                @{
-                                    var teacher = Model as Teacher;
-                                    if (!teacher.ImageUrl.Equals(""))
-                                    {
-                                        <img src="@Url.Content(teacher.ImageUrl)" alt="Fara poza" height="80" width="80" />
-                                    }
-                                }                                
-                                @using (Html.BeginForm("AdaugaPoza", "Profesori", new { mail = Model.Mail}, FormMethod.Post, new { enctype = "multipart/form-data" }))
+            <table border="0">
+                <tr>
+                    <td>
+                        <p>Alegeti o poza</p>
+                        @{
+                            var teacher = Model as Teacher;
+                            if (teacher.ImageUrl != null)
+                            {
+                                if (!teacher.ImageUrl.Equals(""))
                                 {
-                                    <input name="file" type="file" />
-                                    <br/>
-                                    <br/>
-                                    <p>
-                                        Click pe butonul de mai jos pentru a incarca poza
-                                    </p>
-                                    <p>
-                                        Va rugam sa incarcati doar poze in format .jpg sau .jpeg!
-                                    </p>
-                                    <input id="Submit1" type="submit" value="Incarcati" />
+<img src="@Url.Content(teacher.ImageUrl)" alt="Fara poza" height="80" width="80" />
                                 }
-                            
-                        </td>
-                    </tr>                     
-                     @{
-                        var teach = Model as Teacher;
-                     }
-                   
-                    @{
-                        int index = 0;
-                     using (var db = new EducatieIncluzivaDbContext())
-                     {
-                         var curs = from p in db.Courses
-                                    where  p.ProfesorId == teach.UserId
-                                    select p; 
-                         foreach(var c in curs)
-                         {
-                             if(index == 0)
-                             {
-                                 ViewBag.curs1 = c.Nume;
-                                 
-                             }
-                             else if(index == 1)
-                             {
-                                 ViewBag.curs2 = c.Nume;
-                                 
-                               
-                             }
-                             else if(index == 2)
-                             {
-                                 ViewData["curs3"] = c.Nume;
-                             }
-                             index++;
-                         } 
-                     }
-                   }
-                    
-                    @using (Html.BeginForm("Update", "Profesori" ,new { mail = Model.Mail}, FormMethod.Post))
+                            }
+                        }
+                        @using (Html.BeginForm("AdaugaPoza", "Profesori", new { mail = Model.Mail }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <input name="file" type="file" />
+                            <br />
+                            <br />
+                            <p>
+                                Click pe butonul de mai jos pentru a incarca poza
+                            </p>
+                            <p>
+                                Va rugam sa incarcati doar poze in format .jpg sau .jpeg!
+                            </p>
+                            <input id="Submit1" type="submit" value="Incarcati" />
+                        }
+
+                    </td>
+                </tr>
+                @{
+                    var teach = Model as Teacher;
+                }
+
+                @{
+                    int index = 0;
+                    using (var db = new EducatieIncluzivaDbContext())
                     {
+                        var curs = from p in db.Courses
+                                   where p.ProfesorId == teach.UserId
+                                   select p;
+                        foreach (var c in curs)
+                        {
+                            if (index == 0)
+                            {
+                                ViewBag.curs1 = c.Nume;
+
+                            }
+                            else if (index == 1)
+                            {
+                                ViewBag.curs2 = c.Nume;
+
+
+                            }
+                            else if (index == 2)
+                            {
+                                ViewData["curs3"] = c.Nume;
+                            }
+                            index++;
+                        }
+                    }
+                }
+
+                @using (Html.BeginForm("Update", "Profesori", new { mail = Model.Mail }, FormMethod.Post))
+                {
                     <tr>
-                        <td>
-                            *Nume :
+                        <td>*Nume :
                            @Html.TextBoxFor(m => teach.Nume)
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            *Prenume :
+                        <td>*Prenume :
                             @Html.TextBoxFor(m => teach.Prenume)
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            *Bio :
+                        <td>*Bio :
                             <br />
                             @Html.TextAreaFor(m => teach.Description)
                         </td>
                     </tr>
                     
                     <tr>
-                        <td>
-                            *Materia 1 :
+                        <td>*Materia 1 :
                            
                            @Html.Raw((String)ViewBag.curs1)
                             <br />
-                            
+
                             @Html.TextBoxFor(m => teach.Materii[0])
                         </td>
                         <td>
-                             
-                           @Html.ActionLink(" ", "SubmitToLesson", new {mail = Model.Mail, materie = (String)ViewBag.curs1 }, new { style = "background:url('../../Pictures/altele/button2.png')no-repeat center right; display:block; height:60px; width:200px; " })
-                         
+
+                            @Html.ActionLink(" ", "SubmitToLesson", new { mail = Model.Mail, materie = (String)ViewBag.curs1 }, new { style = "background:url('../../Pictures/altele/button2.png')no-repeat center right; display:block; height:60px; width:200px; " })
+
                         </td>
                     </tr>
                         
                     <tr>
-                        <td>
-                            Materia 2 :
+                        <td>Materia 2 :
                                  @Html.Raw((String)ViewBag.curs2)
                             <br />
                             @Html.TextBoxFor(m => teach.Materii[1])
                         </td>
                         <td>
-                           
-                                  @Html.ActionLink(" ", "SubmitToLesson", new {mail = Model.Mail, materie = (String)ViewBag.curs2 }, new { style = "background:url('../../Pictures/altele/button2.png')no-repeat center right; display:block; height:60px; width:200px; " })
-                                 
-                             </td>
+
+                            @Html.ActionLink(" ", "SubmitToLesson", new { mail = Model.Mail, materie = (String)ViewBag.curs2 }, new { style = "background:url('../../Pictures/altele/button2.png')no-repeat center right; display:block; height:60px; width:200px; " })
+
+                        </td>
                     </tr>
                     <tr>
-                        <td>
-                            Materia 3:
+                        <td>Materia 3:
                       
                             @Html.Raw((String)ViewBag.curs3)
                             <br />
-                           @Html.TextBoxFor(m => teach.Materii[2])
+                            @Html.TextBoxFor(m => teach.Materii[2])
                         </td>
                         <td>
-                             @Html.ActionLink(" ", "SubmitToLesson", new { mail = Model.Mail,materie = (String)ViewBag.curs3}, new { style = "background:url('../../Pictures/altele/button2.png')no-repeat center right; display:block; height:60px; width:200px; " })
-                                    
+                            @Html.ActionLink(" ", "SubmitToLesson", new { mail = Model.Mail, materie = (String)ViewBag.curs3 }, new { style = "background:url('../../Pictures/altele/button2.png')no-repeat center right; display:block; height:60px; width:200px; " })
+
                         </td>
                     </tr>
                     <tr>
                         <td>
-                               <input id="submit" type="submit" value="Update" />
-                           
+                            <input id="submit" type="submit" value="Update" />
+
                         </td>
                     </tr>
-                    }
-                </table>
+                }
+            </table>
         </td>
         <td>
             <img alt="Profesori" src="../../Pictures/altele/a1.png" width="300" height="400" />

@@ -2,6 +2,9 @@
 using EduIncluziva.Metrics;
 using EduIncluziva.Models;
 using System.Web.Mvc;
+using System.Data;
+using System;
+using System.Web.Security;
 
 namespace EduIncluziva.Controllers
 {
@@ -30,6 +33,42 @@ namespace EduIncluziva.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public ActionResult AdaugaUtilizatorNou(TeacherRegisterModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                ResourcesRepository rr = new ResourcesRepository();
+                HighSchool hs = rr.GetHighSchoolByName(model.ScoalaDeProvenienta);
+
+                Teacher teacher = new Teacher(model.Parola, model.Nume, model.Prenume, model.Mail, hs);
+
+                //User user = new User(model.Parola, model.Nume, model.Prenume, model.Mail);
+
+                using (var db = new EducatieIncluzivaDbContext())
+                {
+                    //db.Useri.Add(user);
+                    db.Entry(hs).State = EntityState.Unchanged;
+                    db.Teachers.Add(teacher);
+                    try
+                    {
+                        db.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+
+                    //FormsAuthentication.SetAuthCookie(model.Mail, false /* createPersistentCookie */);
+                    //return RedirectToAction("Index", "Home");
+                }
+            }
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+
 
         public ActionResult CautaUtilizator(string mail)
         {
