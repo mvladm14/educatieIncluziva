@@ -13,13 +13,15 @@ namespace EduIncluziva.Controllers
 {
     public class ProfesoriController : Controller
     {
-
+       
         public ActionResult PaginaProfesorului(string mail)
         {
             var rr = new ResourcesRepository();
             var user = rr.GetUserByMail(mail);
             return View(user);
         }
+
+
 
         [HttpPost]
         public ActionResult Update(FormCollection te, string mail)

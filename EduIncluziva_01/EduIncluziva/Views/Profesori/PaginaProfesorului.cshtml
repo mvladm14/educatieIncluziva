@@ -4,13 +4,14 @@
 }
 @model EduIncluziva.Models.User
 @using EduIncluziva.Models
+
 <h2>Pagina Profesorului</h2>
 
 @{
     if (TempData["alertMessage"] != null)
     {
     <script type="text/javascript">
-        alert("Va rugam completati campurile obligatorii");
+        alert("Vă rugăm completaţi câmpurile obligatorii");
     </script>
     }
 }
@@ -20,7 +21,7 @@
             <table border="0">
                 <tr>
                     <td>
-                        <p>Alegeti o poza</p>
+                        <p>Alegeţi o poza</p>
                         @{
                             var teacher = Model as Teacher;
                             if (teacher.ImageUrl != null)
@@ -37,12 +38,13 @@
                             <br />
                             <br />
                             <p>
-                                Click pe butonul de mai jos pentru a incarca poza
+                                Click pe butonul de mai jos pentru a încărca poza   (vă rugăm să încărcaţi doar poze în format .jpg sau .jpeg!)
+                           
                             </p>
-                            <p>
-                                Va rugam sa incarcati doar poze in format .jpg sau .jpeg!
-                            </p>
-                            <input id="Submit1" type="submit" value="Incarcati" />
+                            
+                               
+                           
+                            <input id="Submit1" type="submit" value="Incărcaţi" />
                         }
 
                     </td>
