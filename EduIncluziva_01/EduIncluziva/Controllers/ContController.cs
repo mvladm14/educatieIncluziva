@@ -99,8 +99,8 @@ namespace EduIncluziva.Controllers
                 System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage();
                 SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
 
-                mail.From = new MailAddress("eduincluziva@gmail.com");
-                mail.To.Add("csei_cluj@yahoo.com");
+                mail.From = new MailAddress("educatieincluziva@gmail.com");
+                mail.To.Add("weekside@yahoo.com");
                 mail.Subject = "New User";
 
                 string s = "";
@@ -113,7 +113,7 @@ namespace EduIncluziva.Controllers
                 mail.Body = s;
 
                 SmtpServer.Port = 587;
-                SmtpServer.Credentials = new System.Net.NetworkCredential("eduincluziva", "edu123456789");
+                SmtpServer.Credentials = new System.Net.NetworkCredential("educatieincluziva", "educatieincluziva123");
                 SmtpServer.EnableSsl = true;
 
                 SmtpServer.Send(mail);

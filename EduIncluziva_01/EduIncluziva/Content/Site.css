@@ -5,36 +5,32 @@ to use a different color start by replacing all instances of
 ----------------------------------------------------------*/
 body
 {
-    background-color: #CCCCCC;
-    font-size: 0.85em;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #fff;
+    border-top: solid 10px #000;
+    color: #666699;
+    font-size: .85em;
+    font-family: "Segoe UI" , Verdana, Helvetica, Sans-Serif;
     margin: 0;
     padding: 0;
-    color: #336699;
-    font-weight: normal;
-    font-style: normal;
 }
 
-a:link
+a
 {
-    color: #0000FF;
+    color: #3333FF;
+    outline: none;
+    padding-left: 3px;
+    padding-right: 3px;
     text-decoration: underline;
 }
 
-a:visited
+    a:link, a:visited, a:active, a:hover
 {
-    color: #000080;
+    color: #666699;
 }
 
-a:hover
-{
-    color: #1d60ff;
-    text-decoration: none;
-}
-
-a:active {
-    color: #12eb87;
-}
+   /* a:hover {
+        background-color: #c7d1d6;*/
+    }
 
 p, ul {
     margin-bottom: 20px;
@@ -48,22 +44,48 @@ section {
     display: block;
 }
 
+
+mark
+{
+    background-color: #a6dbed;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+.clear-fix:after {
+    content: ".";
+    clear: both;
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+
+
+
+
 /* HEADINGS   
 ----------------------------------------------------------*/
-h1, h2, h3, h4, h5, h6
-{
-    font-size: 2em;
-    color: #800000;
+h1, h2, h3,
+h4, h5, h6 {
+    color: #000;
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
 
 h1 {
     font-size: 2em;
-    padding-bottom: 0;
-    margin-bottom: 0;
 }
 
 h2 {
-    padding: 0 0 10px 0;
+    font-size: 1.75em;
 }
 
 h3 {
@@ -78,6 +100,11 @@ h5, h6 {
     font-size: 1em;
 }
 
+    h5 a:link, h5 a:visited, h5 a:active {
+        padding: 0;
+        text-decoration: none;
+    }
+
 /* PRIMARY LAYOUT ELEMENTS   
 ----------------------------------------------------------*/
 
@@ -89,7 +116,47 @@ page width. Or, you can specify an exact pixel width. */
     margin-right: auto;
 }
 
-header, #header {
+/* main layout
+----------------------------------------------------------
+.content-wrapper {
+    margin: 0 auto;
+    max-width: 960px;
+}
+
+
+#body {
+    background-color: #efeeef;
+    clear: both;
+    padding-bottom: 35px;
+}
+
+ .main-content {
+        background: url("../Images/accent.png") no-repeat;
+        padding-left: 10px;
+        padding-top: 30px;
+    }
+
+
+ .featured + .main-content {
+        background: url("../Images/heroAccent.png") no-repeat;
+    }
+
+header .content-wrapper {
+    padding-top: 20px; 
+}
+
+footer {
+    clear: both;
+    background-color: #e2e2e2;
+    font-size: .8em;
+    height: 100px;
+}
+
+*/
+
+header, #header
+{
+    
     position: relative;
     margin-bottom: 0px;
     color: #000;
@@ -116,9 +183,9 @@ header h1, #header h1 {
     -moz-border-radius: 4px 0 0 0;
 }
 
-footer, 
-#footer {
-    background-color: #fff;
+footer, #footer
+{
+    background-color: #CCCCFF;
     color: #999;
     padding: 10px 0;
     text-align: center;
@@ -132,59 +199,33 @@ footer,
 
 /* TAB MENU   
 ----------------------------------------------------------*/
-ul#menu
-{
-    border-bottom: 1px #5C87B2 solid;
-    padding: 0 0 2px;
-    position: relative;
-    margin: 0;
+ul#menu {
+    font-size: 1.3em;
+    font-weight: 600;
+    margin: 0 0 5px;
+    padding: 0;
     text-align: left;
-    border-color: #FFFFFF;
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
 }
 
-ul#menu li {
-    display: inline;
-    list-style: none;
-}
+    ul#menu li {
+        display: inline;
+        list-style: none;
+        padding-left: 15px;
+    }
 
-ul#menu li#greeting {
-    padding: 10px 20px;
-    font-weight: bold;
-    text-decoration: none;
-    line-height: 2.8em;
-    color: #fff;
-}
-
-ul#menu li a
+        ul#menu li a
 {
-    padding: 10px 20px;
-    font-weight: bold;
+    background: none;
+    color: #666699;
     text-decoration: none;
-    line-height: 2.8em;
-    background-color: #FFFF99;
-    color: #0066FF;
-    border-radius: 4px 4px 0 0;
-    -webkit-border-radius: 4px 4px 0 0;
-    -moz-border-radius: 4px 4px 0 0;
 }
 
-ul#menu li a:hover
+        ul#menu li a:hover
 {
-    background-color: #FF9900;
+    color: #0000CC;
     text-decoration: none;
 }
 
-ul#menu li a:active {
-    background-color: #a6e2a6;
-    text-decoration: none;
-}
-
-ul#menu li.selected a {
-    background-color: #fff;
-    color: #000;
-}
 
 /* FORM LAYOUT ELEMENTS   
 ----------------------------------------------------------*/
@@ -245,14 +286,15 @@ table th
 {
     padding: 6px 5px;
     text-align: left;
-    background-color: #FFFFCC;
+    background-color: #CCCCFF;
     border: solid 1px #e8eef4;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 1em;
     font-weight: bold;
-    color: #800000;
+    color: black;
     font-style: normal;
 }
+
 
 /* MISC  
 ----------------------------------------------------------*/
@@ -286,16 +328,16 @@ div#title {
 
 #logindisplay
 {
-    font-size: 1.3em;
+    font-size: 1.2em;
     display: block;
     text-align: right;
     margin: 10px;
-    color: #3333FF;
+    color: #333333;
 }
 
 #logindisplay a:link
 {
-    color: #3366CC;
+    color: #666699;
     text-decoration: underline;
 }
 
@@ -307,7 +349,7 @@ div#title {
 
 #logindisplay a:hover
 {
-    color: #3399FF;
+    color: #9900FF;
     text-decoration: none;
 }
 
