@@ -1,7 +1,10 @@
-﻿@model EduIncluziva.Models.EmailDetail
+﻿@model EduIncluziva.Models.InregistrareProfesorModel
 @{
     ViewBag.Title = "Register";
-    
+    var resourcesRepository = new EduIncluziva.Metrics.ResourcesRepository();
+    var listaLicee = resourcesRepository.GetAllHighSchools();
+    var listaLiceeNume = from nume in listaLicee
+                         select nume.Nume;
 }
 <link rel="stylesheet" href="../../Content/reveal.css">
 <script src="../../Scripts/jquery-1.4.4.min.js" type="text/javascript"></script>
@@ -19,15 +22,13 @@
         });
     });
 </script>
-<h2>
-    Register</h2>
+<h2>Register</h2>
 <table border="0">
     <tr>
         <td>
             <img src="../../Pictures/altele/t.jpg" alt="Teacher and Student" height="400" width="300" />
         </td>
-        <td>
-            Alegeti categoria la care apartineti :
+        <td>Alegeti categoria la care apartineti :
             <br />
             <br />
             <input id="Elevi" name="categorie" type="radio" />Elevi
@@ -40,46 +41,65 @@
         </td>
     </tr>
 </table>
-@using (Html.BeginForm("SendEmail","Cont"))
-{
-    
+@using (Html.BeginForm("InregistrareProfesori", "Cont"))
+{    
     <div id="myModalTeachers" class="reveal-modal">
-        <h1>
-            Register</h1>
+        <h1>Register</h1>
         <br />
         <table border="0">
             <tr>
                 <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(m => m.Nume)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(m => m.Nume)
+                        @Html.ValidationMessageFor(m => m.Nume)
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(m => m.Prenume)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(m => m.Prenume)
+                        @Html.ValidationMessageFor(m => m.Prenume)
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(m => m.Mail)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(m => m.Mail)
+                        @Html.ValidationMessageFor(m => m.Mail)
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(m => m.ScoalaDeProveninenta)
+                    </div>
+                    <div class="editor-field" style="width: 172px;">
+                        @Html.DropDownListFor(m => m.ScoalaDeProveninenta, new SelectList(listaLiceeNume))
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(m => m.Descriere)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(m => m.Descriere)
+                        @Html.ValidationMessageFor(m => m.Descriere)
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(m => m.Parola)
+                    </div>
+                    <div class="editor-field">
+                        @Html.PasswordFor(m => m.Parola)
+                        @Html.ValidationMessageFor(m => m.Parola)
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(m => m.ConfirmareParola)
+                    </div>
+                    <div class="editor-field">
+                        @Html.PasswordFor(m => m.ConfirmareParola)
+                        @Html.ValidationMessageFor(m => m.ConfirmareParola)
+                    </div>
                     <p>
-                        Nume :
+                        <input type="submit" value="Inregistrare" />
                     </p>
-                    @Html.TextBoxFor(m => m.Nume)
-                    <p>
-                        Prenume :
-                    </p>
-                    @Html.TextBoxFor(m => m.Prenume)
-                    <p>
-                        Mail (Acesta va fi si user Name) :
-                    </p>
-                  @Html.TextBoxFor(m => m.Mail)
-                    <p>
-                        Poza</p>
-                    <input id="File1" type="file" />
-                    <p>
-                        Scurta Descriere</p>
-                    @Html.TextAreaFor(m => m.Bio)
-                    <p>
-                        Parola :
-                    </p>
-                     @Html.TextBoxFor(m => m.Pass)
-                    <p>
-                        Confirma Parola :
-                    </p>
-                    <input id="pa2" type="password" />
-                    <br />
-                    <br />
-                    <br />
-                    <input id="Enter2" type="submit" value="Inregistreaza-te" />
                 </td>
                 <td>
                     <img src="../../Pictures/altele/teacher.png" alt="Students" height="360" width="290" />
