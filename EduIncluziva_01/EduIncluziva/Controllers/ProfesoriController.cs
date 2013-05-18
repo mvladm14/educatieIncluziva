@@ -54,7 +54,7 @@ namespace EduIncluziva.Controllers
                     c2 = "";
                     c3 = "";
 
-                    using (var db = new EducatieIncluzivaDbContext())
+                    using (var db = new EducatieIncluzivaDBContext())
                     {
                         var curs = from p in db.Courses
                                    where p.ProfesorId == model.UserId

@@ -9,6 +9,9 @@ namespace EduIncluziva.Models
 {
     public class InregistrareProfesorModel
     {
+        [Key]
+        public Guid UserId { get; set; }
+
         [Required]
         [Display(Name = "Nume")]
         public string Nume { get; set; }

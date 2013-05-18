@@ -27,7 +27,7 @@ namespace InsertInitialData
 
         public void InseramElevi()
         {
-            using (var context = new EducatieIncluzivaDbContext())
+            using (var context = new EducatieIncluzivaDBContext())
             {
                 string parola = "parola";
                 string nume = "nume";

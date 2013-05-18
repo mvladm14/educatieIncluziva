@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using System.Data;
 using System;
 using System.Web.Security;
+using System.Collections.Generic;
 
 namespace EduIncluziva.Controllers
 {
@@ -46,7 +47,7 @@ namespace EduIncluziva.Controllers
 
                 //User user = new User(model.Parola, model.Nume, model.Prenume, model.Mail);
 
-                using (var db = new EducatieIncluzivaDbContext())
+                using (var db = new EducatieIncluzivaDBContext())
                 {
                     //db.Useri.Add(user);
                     db.Entry(hs).State = EntityState.Unchanged;
@@ -123,6 +124,46 @@ namespace EduIncluziva.Controllers
             var rr = new ResourcesRepository();
             var model = rr.GetHighSchoolByName(searchedHighSchoolName);
             return View(model);
+        }
+
+        public ActionResult CereriInregistrare()
+        {
+            List<InregistrareProfesorModel> requests;
+            var rr = new ResourcesRepository();
+            requests = rr.GetAllRegistrationRequests();
+
+            return View(requests);
+        }
+
+        public ActionResult Approve(Guid id)
+        {
+            var rr = new ResourcesRepository();
+
+            var request = rr.GetRequestById(id);
+
+            var highschool = rr.GetHighSchoolByName(request.ScoalaDeProveninenta);
+
+            var teacher = new Teacher(request.Parola, request.Nume, request.Prenume,
+                                      request.Mail, highschool);
+            using (var context = new EducatieIncluzivaDBContext())
+            {
+                var entry = context.RegistrationRequests.Find(id);
+                context.RegistrationRequests.Remove(entry);
+                context.Teachers.Add(teacher);
+                context.SaveChanges();
+            }
+            return RedirectToAction("CereriInregistrare");
+        }
+
+        public ActionResult Reject(Guid id)
+        {
+            using (var context = new EducatieIncluzivaDBContext())
+            {
+                var entry = context.RegistrationRequests.Find(id);
+                context.RegistrationRequests.Remove(entry);
+                context.SaveChanges();
+            }
+            return RedirectToAction("CereriInregistrare");
         }
 
     }

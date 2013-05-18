@@ -20,7 +20,7 @@ namespace InsertInitialData
 
         public void InsertInitialHighSchools()
         {
-            using (var context = new EducatieIncluzivaDbContext())
+            using (var context = new EducatieIncluzivaDBContext())
             {
                 foreach (var numeLiceu in _numeLicee)
                 {

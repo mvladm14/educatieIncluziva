@@ -20,7 +20,7 @@ namespace EduIncluziva.Metrics
 
             try
             {
-                using (var context = new EducatieIncluzivaDbContext())
+                using (var context = new EducatieIncluzivaDBContext())
                 {
                     courses = context.Courses
                                .Where(c => c.ProfesorId == userId)
@@ -40,7 +40,7 @@ namespace EduIncluziva.Metrics
         {
             try
             {
-                using (var context = new EducatieIncluzivaDbContext())
+                using (var context = new EducatieIncluzivaDBContext())
                 {
                     return context.Courses.SingleOrDefault(item => item.CourseId.Equals(courseId));
                 }
@@ -61,7 +61,7 @@ namespace EduIncluziva.Metrics
             List<Lesson> myList = new List<Lesson>();
             try
             {
-                using (var db = new EducatieIncluzivaDbContext())
+                using (var db = new EducatieIncluzivaDBContext())
                 {
                     var rr = new EduIncluziva.Metrics.ResourcesRepository();
                     var teach = rr.GetProfesoriByMail(mail);
@@ -89,7 +89,7 @@ namespace EduIncluziva.Metrics
         public int GetCursNumber(string materie, string mail)
         {
             int index = 0;
-            using (var db = new EducatieIncluzivaDbContext())
+            using (var db = new EducatieIncluzivaDBContext())
             {
                 var rr = new EduIncluziva.Metrics.ResourcesRepository();
                 var teach = rr.GetProfesoriByMail(mail);
@@ -119,7 +119,7 @@ namespace EduIncluziva.Metrics
         {
             try
             {
-                using (var context = new EducatieIncluzivaDbContext())
+                using (var context = new EducatieIncluzivaDBContext())
                 {
                     return context.Teachers.SingleOrDefault(item => item.Mail == mail);
                 }
@@ -132,7 +132,7 @@ namespace EduIncluziva.Metrics
         }
         private void UpdateCurs(string cursNume, Teacher t1, string numevechi1)
         {
-            using (var context = new EducatieIncluzivaDbContext())
+            using (var context = new EducatieIncluzivaDBContext())
             {
                 Course curs = (from p in context.Courses
                                where p.ProfesorId == t1.UserId && p.Nume.Equals(numevechi1)
@@ -160,7 +160,7 @@ namespace EduIncluziva.Metrics
                                   string mail, string bio,
                                    string numevechi1, string numevechi2, string numevechi3, string c2, string c1, string c3)
         {
-            using (var context = new EducatieIncluzivaDbContext())
+            using (var context = new EducatieIncluzivaDBContext())
             {
                 // get the teacher
                 var theUser = this.GetProfesoriByMail(mail);
@@ -186,7 +186,7 @@ namespace EduIncluziva.Metrics
                                   string mail, string bio,
                                    string numevechi1, string c1)
         {
-            using (var context = new EducatieIncluzivaDbContext())
+            using (var context = new EducatieIncluzivaDBContext())
             {
                 // get the teacher
                 var theUser = this.GetProfesoriByMail(mail);
@@ -229,7 +229,7 @@ namespace EduIncluziva.Metrics
                                   string mail, string bio,
                                  string numevechi1, string numevechi2,  string c1, string c2)
         {
-            using (var context = new EducatieIncluzivaDbContext())
+            using (var context = new EducatieIncluzivaDBContext())
             {
                 // get the teacher
                 var theUser = this.GetProfesoriByMail(mail);
@@ -282,7 +282,7 @@ namespace EduIncluziva.Metrics
 
         public void UpdateTeacher(string mail, string imageUrl)
         {
-            using (var context = new EducatieIncluzivaDbContext())
+            using (var context = new EducatieIncluzivaDBContext())
             {
                 var teacher = this.GetProfesoriByMail(mail);
                 teacher.ImageUrl = imageUrl;
@@ -301,7 +301,7 @@ namespace EduIncluziva.Metrics
         {
             try
             {
-                using (var context = new EducatieIncluzivaDbContext())
+                using (var context = new EducatieIncluzivaDBContext())
                 {
                     return context.Teachers.SingleOrDefault(item => item.UserId.Equals(id));
                 }
@@ -324,7 +324,7 @@ namespace EduIncluziva.Metrics
         {
             try
             {
-                using (var context = new EducatieIncluzivaDbContext())
+                using (var context = new EducatieIncluzivaDBContext())
                 {
                     return context.Users.SingleOrDefault(item => item.Mail == mail);
                 }
@@ -339,7 +339,7 @@ namespace EduIncluziva.Metrics
         public void UpdateUser(string parola, string nume, string prenume, string mail,
                                HighSchool scoalaDeProvenienta)
         {
-            using (var context = new EducatieIncluzivaDbContext())
+            using (var context = new EducatieIncluzivaDBContext())
             {
                 var theUser = this.GetUserByMail(mail);
                 theUser.Parola = parola == null ? theUser.Parola : parola;
@@ -362,7 +362,7 @@ namespace EduIncluziva.Metrics
         {
             try
             {
-                using (var context = new EducatieIncluzivaDbContext())
+                using (var context = new EducatieIncluzivaDBContext())
                 {
                     return context.HighSchools.Include("Users")
                                               .SingleOrDefault(item => item.Nume == name);
@@ -379,7 +379,7 @@ namespace EduIncluziva.Metrics
         {
             try
             {
-                using (var context = new EducatieIncluzivaDbContext())
+                using (var context = new EducatieIncluzivaDBContext())
                 {
                     return context.HighSchools.ToList();
                 }
@@ -395,7 +395,7 @@ namespace EduIncluziva.Metrics
             var rr = new ResourcesRepository();
             var model = rr.GetProfesoriByMail(mail);
 
-            using (var context = new EducatieIncluzivaDbContext())
+            using (var context = new EducatieIncluzivaDBContext())
             {
                 Course curs = (from p in context.Courses
                                where p.ProfesorId == model.UserId && p.Nume.Equals(materii)
@@ -421,7 +421,7 @@ namespace EduIncluziva.Metrics
                 var rr = new ResourcesRepository();
                 var model = rr.GetProfesoriByMail(mail);
 
-                using (var context = new EducatieIncluzivaDbContext())
+                using (var context = new EducatieIncluzivaDBContext())
                 {
                     Course curs = (from p in context.Courses
                                    where p.ProfesorId == model.UserId && p.Nume.Equals(materii)
@@ -447,7 +447,7 @@ namespace EduIncluziva.Metrics
         {
             try
             {
-                using (var context = new EducatieIncluzivaDbContext())
+                using (var context = new EducatieIncluzivaDBContext())
                 {
                     return context.HighSchools.Include("Users").SingleOrDefault(
                         highschool => highschool.HighSchoolId == highSchoolId);
@@ -461,5 +461,38 @@ namespace EduIncluziva.Metrics
         }
 
         #endregion
+
+        public List<InregistrareProfesorModel> GetAllRegistrationRequests()
+        {
+            try
+            {
+                using (var context = new EducatieIncluzivaDBContext())
+                {
+                    return context.RegistrationRequests.ToList();
+                }
+            }
+            catch (Exception exc)
+            {
+                //Logger.Instance.LogError(ErrorCategory.Data, "Unable to retrieve information about Employees.", exc);
+                throw exc;
+            }
+        }
+
+        public InregistrareProfesorModel GetRequestById(Guid id)
+        {
+            try
+            {
+                using (var context = new EducatieIncluzivaDBContext())
+                {
+                    return context.RegistrationRequests.SingleOrDefault(
+                        request => request.UserId == id);
+                }
+            }
+            catch (Exception exc)
+            {
+                //Logger.Instance.LogError(ErrorCategory.Data, "Unable to retrieve information about Employees.", exc);
+                throw exc;
+            }
+        }
     }
 }

@@ -13,7 +13,7 @@ namespace InsertInitialData
 
         public void InsertAdministrator()
         {
-             using (var context = new EducatieIncluzivaDbContext())
+             using (var context = new EducatieIncluzivaDBContext())
              {
                  var resourcesRepository = new ResourcesRepository();
                  var highSchool = resourcesRepository.GetHighSchoolByName(SchoolName);

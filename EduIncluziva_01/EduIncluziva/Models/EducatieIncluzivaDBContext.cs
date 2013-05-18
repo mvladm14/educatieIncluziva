@@ -7,14 +7,15 @@ using System.Data.Entity;
 
 namespace EduIncluziva.Models
 {
-    public class EducatieIncluzivaDbContext : DbContext
+    public class EducatieIncluzivaDBContext : DbContext
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Lesson> Lessons { get; set; }
-        public DbSet<HighSchool> HighSchools { get; set; }
+        public DbSet<HighSchool> HighSchools { get; set; }        
         public DbSet<Administrator> Administrators { get; set; }
+        public DbSet<InregistrareProfesorModel> RegistrationRequests { get; set; }
     }
 }

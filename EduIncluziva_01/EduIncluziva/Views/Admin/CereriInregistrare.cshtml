@@ -1,0 +1,47 @@
+﻿@model IEnumerable<EduIncluziva.Models.InregistrareProfesorModel>
+@{
+    ViewBag.Title = "CereriInregistrare";
+}
+
+<h2>Cereri de Inregistrare Profesori</h2>
+
+<table>
+    <tr>
+        <th>Nume
+        </th>
+        <th>Prenume
+        </th>
+        <th>Mail
+        </th>
+        <th>ScoalaDeProveninenta
+        </th>
+        <th>Descriere
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nume)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prenume)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ScoalaDeProveninenta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descriere)
+            </td>
+            <td>
+                @Html.ActionLink("Aproba", "Approve", new { id = item.UserId }) |
+                @Html.ActionLink("Respinge", "Reject", new { id = item.UserId }) 
+            </td>
+        </tr>
+    }
+
+</table>

@@ -78,9 +78,15 @@ namespace EduIncluziva.Controllers
         {
             if (ModelState.IsValid)
             {
-
+                using (var context = new EducatieIncluzivaDBContext())
+                {
+                    model.UserId = Guid.NewGuid();
+                    context.RegistrationRequests.Add(model);
+                    context.SaveChanges();
+                    //ViewData["inregProf"] = "Cererea dumneavoastra a fost inregistrata. Va rugam asteptati mesajul de confirmare";
+                }
             }
-            return View();
+            return RedirectToAction("Index", "Home");
         }
 
 
@@ -182,7 +188,7 @@ namespace EduIncluziva.Controllers
                 //User user = new User(model.Parola, model.Nume, model.Prenume, model.Mail);
 
                 using (var db = new EducatieIncluzivaDBContext())
-                {                
+                {
                     //db.Useri.Add(user);
                     db.Entry(hs).State = EntityState.Unchanged;
                     db.Students.Add(elev);
@@ -193,7 +199,7 @@ namespace EduIncluziva.Controllers
                     catch (Exception ex)
                     {
                         throw ex;
-                    }                   
+                    }
 
                     FormsAuthentication.SetAuthCookie(model.Mail, false /* createPersistentCookie */);
                     return RedirectToAction("Index", "Home");

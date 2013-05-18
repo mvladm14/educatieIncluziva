@@ -108,7 +108,7 @@ namespace EduIncluziva.Controllers
                 file.SaveAs(path);
              
               
-                using (var db = new EducatieIncluzivaDbContext())
+                using (var db = new EducatieIncluzivaDBContext())
                 {
                     var myTeacher = db.Teachers.SingleOrDefault(item => item.Mail == mail);
                     var curs = from p in db.Courses

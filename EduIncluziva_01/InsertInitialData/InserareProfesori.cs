@@ -28,7 +28,7 @@ namespace InsertInitialData
 
         public void InseramProfesori()
         {
-            using (var context = new EducatieIncluzivaDbContext())
+            using (var context = new EducatieIncluzivaDBContext())
             {
                 const string parola = "parola";
                 const string nume = "nume";

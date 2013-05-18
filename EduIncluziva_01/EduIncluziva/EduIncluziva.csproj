@@ -96,6 +96,7 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Administrator.cs" />
     <Compile Include="Models\EducatieIncluzivaDBContext.cs" />
+    <Compile Include="Models\InregistrareProfesorModel.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\EmailDetail.cs" />
     <Compile Include="Models\Lesson.cs" />
@@ -450,6 +451,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Materie\VizualizareLectiiMaterie.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Admin\CereriInregistrare.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
