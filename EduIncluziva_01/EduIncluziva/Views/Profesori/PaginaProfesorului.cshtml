@@ -28,7 +28,7 @@
                             {
                                 if (!teacher.ImageUrl.Equals(""))
                                 {
-<img src="@Url.Content(teacher.ImageUrl)" alt="Fara poza" height="80" width="80" />
+                            <img src="@Url.Content(teacher.ImageUrl)" alt="Fara poza" height="80" width="80" />
                                 }
                             }
                         }
@@ -110,7 +110,9 @@
                             @Html.TextBoxFor(m => teach.Materii[0])
                         </td>
                         <td>
-
+                            @Html.ActionLink("Vezi lectii", "SubmitToLesson", new { mail = Model.Mail, materie = (String)ViewBag.curs1 }, null)
+                        </td>
+                        <td>
                             @Html.ActionLink(" ", "SubmitToLesson", new { mail = Model.Mail, materie = (String)ViewBag.curs1 }, new { style = "background:url('../../Pictures/altele/button2.png')no-repeat center right; display:block; height:60px; width:200px; " })
 
                         </td>
@@ -121,6 +123,9 @@
                                  @Html.Raw((String)ViewBag.curs2)
                             <br />
                             @Html.TextBoxFor(m => teach.Materii[1])
+                        </td>
+                        <td>
+                            @Html.ActionLink("Vezi lectii", "SubmitToLesson", new { mail = Model.Mail, materie = (String)ViewBag.curs3 }, null)
                         </td>
                         <td>
 
@@ -134,6 +139,9 @@
                             @Html.Raw((String)ViewBag.curs3)
                             <br />
                             @Html.TextBoxFor(m => teach.Materii[2])
+                        </td>
+                        <td>
+                            @Html.ActionLink("Vezi lectii", "SubmitToLesson", new { mail = Model.Mail, materie = (String)ViewBag.curs3 }, null)
                         </td>
                         <td>
                             @Html.ActionLink(" ", "SubmitToLesson", new { mail = Model.Mail, materie = (String)ViewBag.curs3 }, new { style = "background:url('../../Pictures/altele/button2.png')no-repeat center right; display:block; height:60px; width:200px; " })
