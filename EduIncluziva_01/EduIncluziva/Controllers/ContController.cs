@@ -74,6 +74,17 @@ namespace EduIncluziva.Controllers
         }
 
         [HttpPost]
+        public ActionResult InregistrareProfesori(InregistrareProfesorModel model)
+        {
+            if (ModelState.IsValid)
+            {
+
+            }
+            return View();
+        }
+
+
+        [HttpPost]
         public ActionResult SendEmail(EmailDetail objEmailDetail)
         {
             try
@@ -170,7 +181,7 @@ namespace EduIncluziva.Controllers
 
                 //User user = new User(model.Parola, model.Nume, model.Prenume, model.Mail);
 
-                using (var db = new EducatieIncluzivaDbContext())
+                using (var db = new EducatieIncluzivaDBContext())
                 {                
                     //db.Useri.Add(user);
                     db.Entry(hs).State = EntityState.Unchanged;
