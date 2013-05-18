@@ -34,19 +34,29 @@
         {
             
             <tr>
-                <td>
-                    <img src="@Url.Content(teacher.ImageUrl)" alt="Fara poza" height="42" width="42" align="middle"/>
+                @if (teacher.ImageUrl != null)
+                {                    
+                    <td>
+                        <img src="@Url.Content(teacher.ImageUrl)" alt="Fara poza" height="42" width="42" align="middle"/>
+                    </td>
+                }
+                else
+                {
+                     <td>
+                        <img src="faraPoza.jpg" alt="Fara poza" height="42" width="42" align="middle"/>
+                    </td>
+                }
                 <td>
                     @teacher.Nume @teacher.Prenume
                 </td>
                 <td>
                     @{
-            var materii = rr.GetCoursesByTeacherMail(teacher.Mail);               
+                var materii = rr.GetCoursesByTeacherMail(teacher.Mail);               
                     }
                     @foreach (var materie in materii)
                     {
                         @Html.ActionLink(materie.Nume, "VizualizareLectiiMaterie", "Materie", new { mail = teacher.Mail, numeMaterie = materie.Nume }, null)
-                    <br />
+                        <br />
                     }
                 </td>
             </tr>
