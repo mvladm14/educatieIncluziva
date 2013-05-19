@@ -307,6 +307,7 @@
     <Content Include="Galerie\myalbum.swf" />
     <Content Include="Galerie\myalbum.xml" />
     <Content Include="Global.asax" />
+    <Content Include="Pictures\altele\a.jpg" />
     <Content Include="Pictures\altele\1.png" />
     <Content Include="Pictures\altele\1a.png" />
     <Content Include="Pictures\altele\2.png" />
@@ -329,6 +330,7 @@
     <Content Include="Pictures\altele\untip.jpg" />
     <Content Include="Pictures\altele\bb.png" />
     <Content Include="Pictures\altele\button.gif" />
+    <Content Include="Pictures\altele\elg.jpg" />
     <Content Include="Pictures\gifs\ajax-loader.gif" />
     <Content Include="Scripts\jquery-1.4.4.min.js" />
     <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
@@ -456,6 +458,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Admin\CereriInregistrare.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Cont\Confirm.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
