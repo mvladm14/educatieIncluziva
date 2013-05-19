@@ -181,5 +181,10 @@ namespace EduIncluziva.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        public ActionResult Download(string virtualPath, string fileDownloadName)
+        {
+            return new DownloadResult { VirtualPath = virtualPath, FileDownloadName = fileDownloadName };
+        }
+
     }
 }
