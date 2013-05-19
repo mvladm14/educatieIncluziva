@@ -29,13 +29,13 @@
                 <script type="text/javascript">
                     alert("Lectia cu acest nume a fost gasita in baza de date");
                 </script>
-            }
-            else if (ViewBag.nr == 0)
-            {
+                }
+                else if (ViewBag.nr == 0)
+                {
                 <script type="text/javascript">
                     alert("Lectia cu acest nume NU a fost gasita in baza de date");
                 </script>
-            }
+                }
             }
             @{
                 if (ViewBag.stergere == 1)
@@ -43,13 +43,13 @@
                 <script type="text/javascript">
                     alert("Lectia a fost stearsa");
                 </script>
-            }
-            else if (ViewBag.stergere == 0)
-            {
+                }
+                else if (ViewBag.stergere == 0)
+                {
                 <script type="text/javascript">
                     alert("Lectia cu acest nume NU a putut fi stearsa.");
                 </script>
-            }
+                }
             }
 
             @using (Html.BeginForm("ViewLesson", "AddLesson"))
@@ -63,8 +63,6 @@
                 var teacher = Model as EduIncluziva.Models.Teacher;
                 int nr = resourcesRepository.GetCursNumber(ViewData["materie"].ToString(), teacher.Mail);
 
-                //  @Html.DropDownListFor(m => teacher.Materii[nr], new SelectList(listaLectiiNume))
-
             }
         </div>
         <div>
@@ -74,7 +72,7 @@
             {
                 <input name="file" type="file" />
                 <input id="Submit1" type="submit" value="submit" />
-}
+            }
         </div>
         <div>
             <h2>Cauta Lectie: </h2>
@@ -84,7 +82,7 @@
     
                 <input id="account" type="text" name="name" class="s" />
                 <input id="Submit2" type="submit" value="Cauta" />
-}
+            }
             @Html.Raw((String)ViewBag.myData)
         </div>
         <div>
@@ -96,7 +94,7 @@
                 <input id="sterge" type="text" name="name" class="s" />
    
                 <input id="Submit3" type="submit" value="Sterge" />
-}
+            }
             @Html.Raw((String)ViewBag.eraseData)
 
         </div>
@@ -124,17 +122,17 @@
             <tr>
                 <td>
                     @{var fullFilePath = filePath + s;}
-                    @Html.ActionLink(s, "Download", new { virtualPath = fullFilePath, fileDownloadName = s })
+                    @Html.ActionLink(s, "Download", "Profesori", new { virtualPath = fullFilePath, fileDownloadName = s }, null)
                 </td>
             </tr>
-                  }
-                  if (num == 0)
-                  {
+            }
+            if (num == 0)
+            {
             <tr>
                 <td>Momentan nu exista lectii pentru aceasta materie in baza de date
                 </td>
             </tr>
-                  }
+            }
         }
     </table>
 </div>
