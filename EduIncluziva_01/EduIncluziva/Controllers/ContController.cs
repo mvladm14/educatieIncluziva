@@ -86,7 +86,7 @@ namespace EduIncluziva.Controllers
                     //ViewData["inregProf"] = "Cererea dumneavoastra a fost inregistrata. Va rugam asteptati mesajul de confirmare";
                 }
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Confirm", "Cont");
         }
 
 
@@ -218,6 +218,15 @@ namespace EduIncluziva.Controllers
 
             return View(model);
 
+        }
+
+        public ActionResult GoHome()
+        {
+            return View("../../Views/Home/Index");
+        }
+        public ActionResult Confirm()
+        {
+            return View();
         }
     }
 }
