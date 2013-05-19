@@ -28,14 +28,13 @@ namespace EduIncluziva.Controllers
         {
             var rr = new ResourcesRepository();
             var model = rr.GetUserByMail(mail);
-            if (te.GetValue("teach.Materii[0]").AttemptedValue.Equals("") ||
-                te.GetValue("teach.Nume").AttemptedValue.Equals("") ||
+            if (te.GetValue("teach.Nume").AttemptedValue.Equals("") ||
                 te.GetValue("teach.Prenume").AttemptedValue.Equals("") ||
                 te.GetValue("teach.Description").AttemptedValue.Equals(""))
             {
                 TempData["alertMessage"] = "The user has to be alerted";
                 return View("../../Views/Cont/ContulMeu", model);
-              
+
             }
             else
             {
@@ -48,57 +47,78 @@ namespace EduIncluziva.Controllers
                 string prenume = te.GetValue("teach.Prenume").AttemptedValue;
                 string description = te.GetValue("teach.Description").AttemptedValue;
 
-                    int index = 0;
-                    string c1,c2,c3;
-                    c1 = "";
-                    c2 = "";
-                    c3 = "";
+                int index = 0;
+                string c1, c2, c3;
+                c1 = "";
+                c2 = "";
+                c3 = "";
 
-                    using (var db = new EducatieIncluzivaDBContext())
+                using (var db = new EducatieIncluzivaDBContext())
+                {
+                    var curs = from p in db.Courses
+                               where p.ProfesorId == model.UserId
+                               select p;
+
+                    foreach (var c in curs)
                     {
-                        var curs = from p in db.Courses
-                                   where p.ProfesorId == model.UserId
-                                   select p;
-
-                        foreach (var c in curs)
+                        if (index == 0)
                         {
-                            if (index == 0)
-                            {
-                                c1 = c.Nume;
-                            }
-                            else if (index == 1)
-                            {
-                                c2 = c.Nume;
-
-                            }
-                            else if (index == 2)
-                            {
-                                c3 = c.Nume;
-                            }
-                            index++;
+                            c1 = c.Nume;
                         }
-                    }  
+                        else if (index == 1)
+                        {
+                            c2 = c.Nume;
 
-                if (numeCurs2.Equals(""))
+                        }
+                        else if (index == 2)
+                        {
+                            c3 = c.Nume;
+                        }
+                        index++;
+                    }
+                }
+                //     if (c1.Equals("") || c2.Equals("") || c3.Equals(""))
+                //      {
+                if (!numeCurs1.Equals(""))// && c1.Equals(""))
                 {
                     rr.UpdateTeacher(nume, prenume, mail, description,
-                                  c1,numeCurs1);
+                                  c1, numeCurs1);
                 }
-                else if (numeCurs3.Equals(""))
+                if (!numeCurs2.Equals(""))//&& c2.Equals(""))
                 {
                     rr.UpdateTeacher(nume, prenume, mail, description,
-                                   c1, c2,
-                                 numeCurs1, numeCurs2);
+                                  c2, numeCurs2);
                 }
-                else
+                if (!numeCurs3.Equals(""))// && c3.Equals(""))
                 {
                     rr.UpdateTeacher(nume, prenume, mail, description,
-                                      c1,c2, c3,
-                                     numeCurs1, numeCurs2, numeCurs3);
+                                  c3, numeCurs3);
                 }
-                return RedirectToAction("Index", "Home");
+                //    }
+                /*                 else
+                               {
+                             if (numeCurs2.Equals(""))
+                             {
+                                 rr.UpdateTeacher(nume, prenume, mail, description,
+                                               c1,numeCurs1);
+                             }
+                             else if (numeCurs3.Equals(""))
+                             {
+                                 rr.UpdateTeacher(nume, prenume, mail, description,
+                                                c1, c2,
+                                              numeCurs1, numeCurs2);
+                             }
+                             else
+                             {
+                                 rr.UpdateTeacher(nume, prenume, mail, description,
+                                                   c1,c2, c3,
+                                                  numeCurs1, numeCurs2, numeCurs3);
+                             }
+                             }*/
+                return View("../../Views/Cont/ContulMeu", model);
             }
         }
+
         [HttpPost]
         public ActionResult AdaugaLectii(FormCollection collection)
         {
