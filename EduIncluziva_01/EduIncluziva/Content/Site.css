@@ -6,8 +6,8 @@ to use a different color start by replacing all instances of
 body
 {
     background-color: #fff;
-    border-top: solid 10px #000;
-    color: #666699;
+    /*border-top: solid 10px #000;*/
+    color: #333333;
     font-size: .85em;
     font-family: "Segoe UI" , Verdana, Helvetica, Sans-Serif;
     margin: 0;
@@ -20,12 +20,18 @@ a
     outline: none;
     padding-left: 3px;
     padding-right: 3px;
-    text-decoration: underline;
+    text-decoration: none;
 }
 
-    a:link, a:visited, a:active, a:hover
+    a:link, a:visited, a:active
 {
     color: #666699;
+}
+
+    a:hover
+{
+    color: #0000CC;
+    text-decoration: none;
 }
 
    /* a:hover {
@@ -38,7 +44,6 @@ p, ul {
 }
 
 header,
-footer,
 nav,
 section {
     display: block;
@@ -185,12 +190,13 @@ header h1, #header h1 {
 
 footer, #footer
 {
+    background-position: center center;
     background-color: #CCCCFF;
     color: #999;
-    padding: 10px 0;
-    text-align: center;
+    padding: 0px 10px 10px 0;
+    text-align: left;
     line-height: normal;
-    margin: 0 0 30px 0;
+    margin: 150 0 0px 0;
     font-size: .9em;
     border-radius: 0 0 4px 4px;
     -webkit-border-radius: 0 0 4px 4px;
@@ -199,12 +205,14 @@ footer, #footer
 
 /* TAB MENU   
 ----------------------------------------------------------*/
-ul#menu {
+ul#menu
+{
     font-size: 1.3em;
     font-weight: 600;
-    margin: 0 0 5px;
+    margin-left: 10px;
     padding: 0;
     text-align: left;
+    margin-top: 100px;
 }
 
     ul#menu li {
@@ -242,8 +250,12 @@ legend {
     font-weight: bold;
 }
 
-textarea {
+textarea
+{
     min-height: 75px;
+    font-family: 'Monotype Corsiva';
+    font-size: medium;
+    font-weight: normal;
 }
 
 input[type="text"], input[type="password"]
@@ -280,6 +292,7 @@ table
 table td {
     padding: 5px;
     border: solid 1px #e8eef4;
+    
 }
 
 table th
@@ -311,20 +324,44 @@ nav,
     margin-top: 40px;
 }
 
-div#title {
+div#title
+{
     display: block;
     float: left;
-    text-align: left;
+    font-family: AngsanaUPC;
+    color: #333399;
+    font-size: x-large;
+    font-weight: bold;
+    word-spacing: normal;
+    position: absolute;
+    margin-left: 20px;
 }
 
 #title img
 {
-    display:block;
-    position:relative;
-    width:20%;
-    height:20%;
+    display: block;
+    position: relative;
+    width: 20%;
+    height: 20%;
+    margin: 0 0 0 10px;
+    right: auto;
 }   
     
+#titlu
+{
+    display: block;
+    float: left;
+    text-align: left;
+    right: 45px;
+    clip: rect(auto, auto, auto, 50px);
+    visibility: visible;
+    margin-left: 155px;
+    font-family: 'Monotype Corsiva';
+    font-size: xx-large;
+    color: #666666;
+    font-weight: bold;
+    margin-top: 15px;
+}
 
 #logindisplay
 {
@@ -332,7 +369,7 @@ div#title {
     display: block;
     text-align: right;
     margin: 10px;
-    color: #333333;
+    color: #666699;
 }
 
 #logindisplay a:link
@@ -409,16 +446,19 @@ div#title {
 .LatestNewsTable td
 {
     vertical-align:baseline;
+   
 }
 
 .LatestNewsTable tr th
 {
     width:33%;
+    
 }
 
 #ta, #ta2
 {
     width:100%;
+    
 }
 
 .studentAndTeachersTable {
@@ -435,4 +475,5 @@ div#title {
 .studentAndTeachersTable th, .studentsTable, .teachersTable {
     border-width: 2px;
     border-color: black;
+    
 }
