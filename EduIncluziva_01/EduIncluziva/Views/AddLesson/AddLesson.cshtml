@@ -2,16 +2,12 @@
     ViewBag.Title = "AddLesson";
 }
 @model EduIncluziva.Models.User
-<div>
-    <img alt="Add Lesson" src="../../Pictures/altele/AddLessonBanner.png" />
-</div>
+
+ <div id="materie"> @Html.Encode(ViewData["materie"])</div>
 
 
-<div>
 
-    <h2>Adauga Lectii pentru materia: @Html.Encode(ViewData["materie"])</h2>
-
-</div>
+<br /><br />
 @{
     if (ViewData["fileUp"] != null)
     {
@@ -66,8 +62,7 @@
             }
         </div>
         <div>
-            <h2>Adauga Lectie
-            </h2>
+            <h3>Adaugă lecţie </h3>
             @using (Html.BeginForm("AddLesson", "AddLesson", new { mail = Model.Mail, materie = ViewData["materie"] }, FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
                 <input name="file" type="file" />
@@ -75,7 +70,7 @@
             }
         </div>
         <div>
-            <h2>Cauta Lectie: </h2>
+            <h3>Caută lecţie: </h3>
             Nume:
             @using (Html.BeginForm("SearchForLesson", "AddLesson", new { mail = Model.Mail, materie = ViewData["materie"] }, FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
@@ -86,7 +81,7 @@
             @Html.Raw((String)ViewBag.myData)
         </div>
         <div>
-            <h2>Sterge Lectie: </h2>
+            <h3>Şterge lecţie: </h3> 
             Nume:
             @using (Html.BeginForm("DeleteLesson", "AddLesson", new { mail = Model.Mail, materie = ViewData["materie"] }, FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
@@ -105,7 +100,7 @@
 <div style='display: inline-block;'>
     <table border="0">
         <tr>
-            <th>Numele Lectiilor de la materia curenta</th>
+            <th>Numele lecţiilor de la materia curentă</th>
         </tr>
         @{
             var rr = new EduIncluziva.Metrics.ResourcesRepository();
@@ -129,13 +124,23 @@
             if (num == 0)
             {
             <tr>
-                <td>Momentan nu exista lectii pentru aceasta materie in baza de date
+                <td>Momentan nu există lecţii pentru această materie în baza de date
                 </td>
+
             </tr>
             }
         }
+
+
     </table>
+
+
 </div>
-<div style='display: inline-block;'>
+
+
+<div id="colr">
     <img alt="Image" src="../../Pictures/altele/1a.png" />
 </div>
+<br /><br /><br /><br /><br /><br />
+
+

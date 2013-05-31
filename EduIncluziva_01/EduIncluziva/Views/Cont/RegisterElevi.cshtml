@@ -14,8 +14,10 @@
     @Html.ValidationSummary(true, "Oooups! Va rugam corectati erorile si apoi reincercati.")
     <div>
         <fieldset>
-            <legend>Informatii despre cont</legend>
-            <table border="0">
+            <h1>Înregistrare cont nou</h1>
+   
+            <table border= "0">
+
                 <tr>
                     <td>
                         <div class="editor-label">
@@ -25,6 +27,11 @@
                             @Html.TextBoxFor(m => m.Nume)
                             @Html.ValidationMessageFor(m => m.Nume)
                         </div>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <div class="editor-label">
                             @Html.LabelFor(m => m.Prenume)
                         </div>
@@ -32,12 +39,25 @@
                             @Html.TextBoxFor(m => m.Prenume)
                             @Html.ValidationMessageFor(m => m.Prenume)
                         </div>
+                    </td>
+
+
+
+                </tr>
+                <tr>
+                    <td>
                         <div class="editor-label">
                             @Html.LabelFor(m => m.ScoalaDeProvenienta)
                         </div>
                         <div class="editor-field" style="width: 172px;">
                             @Html.DropDownListFor(m => m.ScoalaDeProvenienta, new SelectList(listaLiceeNume))
                         </div>
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td>
                         <div class="editor-label">
                             @Html.LabelFor(m => m.Mail)
                         </div>
@@ -45,6 +65,13 @@
                             @Html.TextBoxFor(m => m.Mail)
                             @Html.ValidationMessageFor(m => m.Mail)
                         </div>
+                    </td>
+
+
+
+                </tr>
+                <tr>
+                    <td>
                         <div class="editor-label">
                             @Html.LabelFor(m => m.Parola)
                         </div>
@@ -52,6 +79,17 @@
                             @Html.PasswordFor(m => m.Parola)
                             @Html.ValidationMessageFor(m => m.Parola)
                         </div>
+                        <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+                    </td>
+                    <td rowspan="3">
+                        <div>
+                            <img src="../../Pictures/altele/students.png" alt="Students" height="270" width="220" />
+                        </div>
+                    </td>
+                    <
+                </tr>
+                <tr>
+                    <td>
                         <div class="editor-label">
                             @Html.LabelFor(m => m.ConfirmareParola)
                         </div>
@@ -59,15 +97,14 @@
                             @Html.PasswordFor(m => m.ConfirmareParola)
                             @Html.ValidationMessageFor(m => m.ConfirmareParola)
                         </div>
-                        <p>
-                            <input type="submit" value="Inregistrare" />
-                        </p>
                     </td>
+
+                </tr>
+                <tr>
                     <td>
-                        <p>
-                            <img src="../../Pictures/altele/students.png" alt="Students" height="480" width="290" />
-                        </p>
+                        <input type="submit" value="Inregistrare" />
                     </td>
+                    <td>&nbsp;</td>
                 </tr>
             </table>
 

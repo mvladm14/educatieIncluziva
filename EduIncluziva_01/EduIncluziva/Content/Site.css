@@ -35,8 +35,8 @@ a
 }
 
    /* a:hover {
-        background-color: #c7d1d6;*/
-    }
+        background-color: #c7d1d6;
+    }*/
 
 p, ul {
     margin-bottom: 20px;
@@ -78,7 +78,7 @@ mark
 
 /* HEADINGS   
 ----------------------------------------------------------*/
-h1, h2, h3,
+h1, h2, h3
 h4, h5, h6 {
     color: #000;
     margin-bottom: 0;
@@ -93,8 +93,12 @@ h2 {
     font-size: 1.75em;
 }
 
-h3 {
-    font-size: 1.2em;
+h3
+{
+    font-size: large;
+    color: #000000;
+    font-weight: bold;
+    font-style: inherit;
 }
 
 h4 {
@@ -121,48 +125,13 @@ page width. Or, you can specify an exact pixel width. */
     margin-right: auto;
 }
 
-/* main layout
-----------------------------------------------------------
-.content-wrapper {
-    margin: 0 auto;
-    max-width: 960px;
-}
 
-
-#body {
-    background-color: #efeeef;
-    clear: both;
-    padding-bottom: 35px;
-}
-
- .main-content {
-        background: url("../Images/accent.png") no-repeat;
-        padding-left: 10px;
-        padding-top: 30px;
-    }
-
-
- .featured + .main-content {
-        background: url("../Images/heroAccent.png") no-repeat;
-    }
-
-header .content-wrapper {
-    padding-top: 20px; 
-}
-
-footer {
-    clear: both;
-    background-color: #e2e2e2;
-    font-size: .8em;
-    height: 100px;
-}
-
-*/
 
 header, #header
 {
     
     position: relative;
+    /*background-color: #e2e2e2;*/
     margin-bottom: 0px;
     color: #000;
     padding: 0;
@@ -186,6 +155,14 @@ header h1, #header h1 {
     border-radius: 4px 0 0 0;
     -webkit-border-radius: 4px 0 0 0;
     -moz-border-radius: 4px 0 0 0;
+}
+
+#colr
+{
+    float: right;
+    width: 350px;
+    height: 350px;
+    background: #CCCCCC;
 }
 
 footer, #footer
@@ -242,7 +219,9 @@ fieldset
 {
     border: 1px solid #666666;
     padding: 0 1.4em 1.4em 1.4em;
-    margin: 0 0 1.5em 0;
+    
+   
+    
 }
 
 legend {
@@ -298,7 +277,7 @@ table td {
 table th
 {
     padding: 6px 5px;
-    text-align: left;
+    text-align: center;
     background-color: #CCCCFF;
     border: solid 1px #e8eef4;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -363,6 +342,15 @@ div#title
     margin-top: 15px;
 }
 
+
+#materie
+{
+    text-align: justify;
+    font-family: 'Monotype Corsiva';
+    font-size: xx-large;
+    font-weight: bold;
+    color: #0033CC;
+}
 #logindisplay
 {
     font-size: 1.2em;
@@ -419,11 +407,13 @@ div#title
 .display-label, 
 .editor-label {
     margin: 1em 0 0 0;
+    
 }
 
 .display-field, 
 .editor-field {
     margin: 0.5em 0 0 0;
+   
 }
 
 .text-box {

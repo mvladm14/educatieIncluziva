@@ -5,7 +5,7 @@
 @model EduIncluziva.Models.User
 @using EduIncluziva.Models
 
-<h2>Pagina Profesorului</h2>
+<div id="materie">Pagina Profesorului</div>
 
 @{
     if (TempData["alertMessage"] != null)
@@ -21,7 +21,7 @@
             <table border="0">
                 <tr>
                     <td>
-                        <p>Alegeţi o poza</p>
+                        <p>Alegeţi o poză</p>
                         @{
                             var teacher = Model as Teacher;
                             if (teacher.ImageUrl != null)
@@ -38,7 +38,8 @@
                             <br />
                             <br />
                             <p>
-                                Click pe butonul de mai jos pentru a încărca poza   (vă rugăm să încărcaţi doar poze în format .jpg sau .jpeg!)
+                                Click pe butonul de mai jos pentru a încărca poza   <br />
+                                (vă rugăm să încărcaţi doar poze în format .jpg sau .jpeg!)
                            
                             </p>
                             

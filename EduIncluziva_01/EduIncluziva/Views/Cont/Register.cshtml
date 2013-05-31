@@ -28,7 +28,7 @@
         <td>
             <img src="../../Pictures/altele/t.jpg" alt="Teacher and Student" height="400" width="300" />
         </td>
-        <td>Alegeti categoria la care apartineti :
+        <td>Alegeţi categoria de care aparţineţi :
             <br />
             <br />
             <input id="Elevi" name="categorie" type="radio" />Elevi
@@ -44,7 +44,7 @@
 @using (Html.BeginForm("InregistrareProfesori", "Cont"))
 {    
     <div id="myModalTeachers" class="reveal-modal">
-        <h1>Register</h1>
+        <h1>Înregistrare cont nou</h1>
         <br />
         <table border="0">
             <tr>
@@ -56,6 +56,15 @@
                         @Html.TextBoxFor(m => m.Nume)
                         @Html.ValidationMessageFor(m => m.Nume)
                     </div>
+                    <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+                    </td>
+                    <td rowspan="3">
+                    <img src="../../Pictures/altele/teacher.png" alt="Students" height="300" width="250" />
+                </td>
+                    </tr>
+            
+
+            <tr><td>
                     <div class="editor-label">
                         @Html.LabelFor(m => m.Prenume)
                     </div>
@@ -63,6 +72,8 @@
                         @Html.TextBoxFor(m => m.Prenume)
                         @Html.ValidationMessageFor(m => m.Prenume)
                     </div>
+                </td></tr>
+            <tr><td>
                     <div class="editor-label">
                         @Html.LabelFor(m => m.Mail)
                     </div>
@@ -70,12 +81,18 @@
                         @Html.TextBoxFor(m => m.Mail)
                         @Html.ValidationMessageFor(m => m.Mail)
                     </div>
+                </td></tr>
+            <tr><td>
                     <div class="editor-label">
                         @Html.LabelFor(m => m.ScoalaDeProveninenta)
                     </div>
+               
                     <div class="editor-field" style="width: 172px;">
                         @Html.DropDownListFor(m => m.ScoalaDeProveninenta, new SelectList(listaLiceeNume))
                     </div>
+                </td></tr>
+    
+    <tr><td>
                     <div class="editor-label">
                         @Html.LabelFor(m => m.Descriere)
                     </div>
@@ -83,6 +100,9 @@
                         @Html.TextBoxFor(m => m.Descriere)
                         @Html.ValidationMessageFor(m => m.Descriere)
                     </div>
+        </td></tr>
+
+            <tr><td>
                     <div class="editor-label">
                         @Html.LabelFor(m => m.Parola)
                     </div>
@@ -90,6 +110,8 @@
                         @Html.PasswordFor(m => m.Parola)
                         @Html.ValidationMessageFor(m => m.Parola)
                     </div>
+                </td></tr>
+             <tr><td>
                     <div class="editor-label">
                         @Html.LabelFor(m => m.ConfirmareParola)
                     </div>
@@ -97,17 +119,21 @@
                         @Html.PasswordFor(m => m.ConfirmareParola)
                         @Html.ValidationMessageFor(m => m.ConfirmareParola)
                     </div>
-                    <p>
-                        <input type="submit" value="Inregistrare" />
-                    </p>
-                </td>
-                <td>
-                    <img src="../../Pictures/altele/teacher.png" alt="Students" height="360" width="290" />
-                </td>
-            </tr>
+                 </td></tr>
+                    <tr><td>
+                        <input type="submit" value="Înregistrare" />
+                    </td></tr>
+
+               
+           
+
+
         </table>
+
+
         <a class="close-reveal-modal">&#215;</a>
     </div>
+       
 }
 <div id="myModalStudents" class="reveal-modal">
     @Html.Partial("RegisterElevi")
